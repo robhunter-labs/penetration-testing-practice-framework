@@ -4,5 +4,5 @@ contact_links:
     url: https://github.com/robhunter-labs/penetration-testing-practice-framework/discussions
     about: Ask "how would you handle..." questions and compare notes with other practitioners.
   - name: Sensitive report
-    url: https://robhunterworks.com/trust/
-    about: Don't post sensitive material in a public issue. Email hello@robhunterworks.com instead (details on the Trust page).
+    url: https://github.com/robhunter-labs/penetration-testing-practice-framework/security/advisories/new
+    about: Don't post sensitive material in a public issue. Report it privately through GitHub's private vulnerability reporting.

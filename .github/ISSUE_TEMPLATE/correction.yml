@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping keep this accurate. Please don't include credentials, customer or employer details, restricted reports, or live exploit evidence. For anything sensitive, email hello@robhunterworks.com instead.
+        Thanks for helping keep this accurate. Please don't include credentials, customer or employer details, restricted reports, or live exploit evidence. For anything sensitive, use the repository's private vulnerability reporting (Security tab → Report a vulnerability) instead.
   - type: input
     id: component
     attributes:
