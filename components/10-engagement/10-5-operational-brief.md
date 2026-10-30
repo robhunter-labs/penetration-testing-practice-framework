@@ -17,7 +17,7 @@ This is a draft template. It derives from a source that is itself a Draft, it ha
 | Downstream and companions | §20.11 (physical testing method, for facility components) · §30.1 (archive set) · §30.3 (credential handling) · §40.5 (roles and responsibilities) |
 | Review trigger | Change to §00.3, §10.1, or §10.2; a consumer probe that finds an undecidable field |
 | Limitations | Not legal advice; not an authorization; not a conformance or certification instrument; not tested in a native form tool |
-| Correction path | [Security and corrections](../../SECURITY.md): public GitHub issue for ordinary corrections; hello@robhunterworks.com for sensitive reports |
+| Correction path | [Security and corrections](../../SECURITY.md): public GitHub issue for ordinary corrections; GitHub private vulnerability reporting for sensitive reports |
 
 For a worked decision rather than a blank form, see the [fictional multi-party filled example](../../examples/multi-party-engagement/10-5-filled-example.md). It illustrates one component that is GO and another that remains NO-GO; it is not evidence of a real authorization or deployment.
 
