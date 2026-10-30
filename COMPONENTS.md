@@ -153,7 +153,7 @@ The register is the framework's front door: enter through a problem, find the co
 
 ## Corrections
 
-Report a broken link, unsafe implication, stale external source, unusable example, or contradiction through the repository's [security and correction route](SECURITY.md) (`hello@robhunterworks.com` for a sensitive report). The register is updated on component release, supersession, or withdrawal — not on a fixed calendar.
+Report a broken link, unsafe implication, stale external source, unusable example, or contradiction through the repository's [security and correction route](SECURITY.md) (GitHub private vulnerability reporting for a sensitive report). The register is updated on component release, supersession, or withdrawal — not on a fixed calendar.
 
 ---
 

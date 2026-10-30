@@ -1,5 +1,7 @@
 # Open Practice Framework
 
+*This repository: `penetration-testing-practice-framework`.*
+
 The Open Practice Framework (OPF) is a practitioner-built, inspectable implementation of the work **around** a penetration test: authority, preparation, technical methods, evidence, review, reporting, support, people, and improvement — and the links that make those parts a practice rather than a shelf of templates. It sits **beside** established testing and programme guidance. It is **not** an accreditation scheme, a replacement for those sources, a certification, or permission to test.
 
 Its value is in the decisions it makes easier to see and improve — not in the number of documents in the repository. Use the parts that help, question the parts that don't, and bring a better path back.
@@ -48,8 +50,19 @@ This repository contains no employer procedures, customer records, issue data, c
 
 ## Security and corrections
 
-Use GitHub issues for corrections to public material. Do not post credentials, customer details, restricted reports, or live exploit evidence. For a sensitive report, email **hello@robhunterworks.com** rather than opening a public issue. See [SECURITY.md](SECURITY.md).
+Use GitHub issues for corrections to public material. Do not post credentials, customer details, restricted reports, or live exploit evidence. For a sensitive report, use GitHub's private vulnerability reporting (the **Security** tab → **Report a vulnerability**) rather than opening a public issue. See [SECURITY.md](SECURITY.md).
 
 ---
 
 Copyright © 2026 Rob Hunter. Original material is released under the [MIT License](LICENSE).
+
+## Checks
+
+The repository check needs Python 3.9+ (standard library only) and, for PDF text, `pdftotext` from poppler-utils.
+
+```sh
+python3 .github/scripts/check_opf.py . --strict      # links, prohibited paths, public markers
+python3 .github/scripts/test_check_opf.py            # the checker's own planted-marker tests
+```
+
+To also check for terms you keep private, put them in a file **outside** the repository and run with `OPF_PRIVATE_TERMS=/path/to/terms.txt`. No private term is stored in this repository, hashed or plain.
