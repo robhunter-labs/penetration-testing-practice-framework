@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2245" width="1200" height="2245" role="img" aria-labelledby="t d">
+<title id="t">Penetration-test engagement: decisions, owners, and handoffs (provisional v0.1)</title>
+<desc id="d">Three-lane map of a penetration-test engagement. Left lane: target owner and authorizing authority. Middle lane: testing practice. Right lane: vulnerability management and local risk authority. Steps: 1 select the target; 2 intake; 3 name the engagement owner; 4 scope and rules of engagement, sent to the left lane where the accountable target or risk owner authorizes testing in writing (Q1); 5 confirm readiness and notify stakeholders; 6 test and capture evidence, with an urgent-condition route to local authority and a scope-change loop back to authorization; 7 review and finding decision by tester and qualified reviewer, where findings are accepted, rejected, merged, split, deferred for evidence, or reported inconclusive (Q2), with a disputed-finding loop back to testing; 8 report and closing conversation, where the target owner may dispute a finding (loop back to step 7) and where one tested instance does not set enterprise-wide remediation: broader patterns and critical or high conditions route to local stakeholders under local authority; 9 the testing practice hands accepted findings to the issue record (Q3); vulnerability management sets priority and deadline and assigns the target owner; the target owner remediates, and deferral or risk acceptance is decided by the local risk authority; 10 retest returns to the testing practice (Q4), with a loop back to remediation when not fixed or inconclusive, and the result updates the issue record; 11 the practice closes and archives the engagement record and feeds lessons back to selection, while issue closure stays with vulnerability management and the target owner. Each step names the record it should leave behind. No fixed timelines, tools, or organizations are implied.</desc>
+<defs>
+<style>
+.h{font:700 16px "Segoe UI",Helvetica,Arial,sans-serif;fill:#14213d}
+.t{font:14px "Segoe UI",Helvetica,Arial,sans-serif;fill:#1a1a1a}
+.tb{font:700 14px "Segoe UI",Helvetica,Arial,sans-serif;fill:#1a1a1a}
+.r{font:italic 13px "Segoe UI",Helvetica,Arial,sans-serif;fill:#3d3d3d}
+.lh{font:700 15px "Segoe UI",Helvetica,Arial,sans-serif;fill:#ffffff}
+.ls{font:13px "Segoe UI",Helvetica,Arial,sans-serif;fill:#ffffff}
+.pill{font:700 13px "Segoe UI",Helvetica,Arial,sans-serif;fill:#ffffff}
+.dpill{font:700 12px "Segoe UI",Helvetica,Arial,sans-serif;fill:#111111}
+.lab{font:13px "Segoe UI",Helvetica,Arial,sans-serif;fill:#1a1a1a}
+.lpb{font:700 14px "Segoe UI",Helvetica,Arial,sans-serif;fill:#9A2B20}
+.lp{font:14px "Segoe UI",Helvetica,Arial,sans-serif;fill:#9A2B20}
+.bA{fill:#ffffff;stroke:#7A4F00;stroke-width:1.6}
+.bB{fill:#ffffff;stroke:#1F4E79;stroke-width:1.6}
+.bC{fill:#ffffff;stroke:#5B3A8C;stroke-width:1.6}
+.bE{fill:#fffaf3;stroke:#B35400;stroke-width:2}
+.dec{stroke-width:3.4}
+.flow{stroke:#2b2b2b;stroke-width:2;fill:none;marker-end:url(#ah)}
+.loop{stroke:#B03A2E;stroke-width:2.4;stroke-dasharray:8 5;fill:none;marker-end:url(#ahl)}
+.esc{stroke:#B35400;stroke-width:2.6;fill:none;marker-end:url(#ahe)}
+</style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2b2b2b"/></marker>
+<marker id="ahl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B03A2E"/></marker>
+<marker id="ahe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B35400"/></marker>
+</defs>
+
+<rect x="0" y="0" width="1200" height="2245" fill="#ffffff"/>
+
+<!-- Title -->
+<text x="600" y="44" text-anchor="middle" style="font:700 26px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#14213d">Penetration-test engagement: decisions, owners, and handoffs</text>
+<text x="600" y="72" text-anchor="middle" class="t">Provisional public map · organization-neutral · roles, not people · each step names the record it leaves behind</text>
+<text x="600" y="94" text-anchor="middle" class="r">Not a deployment claim, a conformance standard, or permission to test. Owners, systems, and timelines are set locally.</text>
+
+<!-- Lanes -->
+<rect x="20" y="112" width="360" height="1905" fill="#F7F2E8"/>
+<rect x="420" y="112" width="360" height="1905" fill="#EAF1F8"/>
+<rect x="820" y="112" width="360" height="1905" fill="#F2EDF7"/>
+<rect x="20" y="112" width="360" height="60" fill="#7A4F00"/>
+<rect x="420" y="112" width="360" height="60" fill="#1F4E79"/>
+<rect x="820" y="112" width="360" height="60" fill="#5B3A8C"/>
+<text x="200" y="137" text-anchor="middle" class="lh">TARGET OWNER &amp; AUTHORITY</text>
+<text x="200" y="158" text-anchor="middle" class="ls">requester · system owner · risk owner</text>
+<text x="600" y="137" text-anchor="middle" class="lh">TESTING PRACTICE</text>
+<text x="600" y="158" text-anchor="middle" class="ls">practice lead · engagement owner · reviewer</text>
+<text x="1000" y="137" text-anchor="middle" class="lh">VULNERABILITY MANAGEMENT</text>
+<text x="1000" y="158" text-anchor="middle" class="ls">issue owner · local risk authority</text>
+
+<!-- Lane A note -->
+<text x="40" y="222" class="r" style="font-size:14px">Roles, not people. In a small team one</text>
+<text x="40" y="242" class="r" style="font-size:14px">person may hold several roles; the</text>
+<text x="40" y="262" class="r" style="font-size:14px">decision owner must still be visible.</text>
+
+<!-- Find-it-fast panel -->
+<rect x="832" y="190" width="336" height="470" rx="8" fill="#ffffff" stroke="#5B3A8C" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="846" y="218" class="h">FIND IT FAST</text>
+<text x="846" y="246" class="tb">Q1  Who authorizes testing?</text>
+<text x="870" y="266" class="t">Step 4, left lane: the accountable</text>
+<text x="870" y="284" class="t">target or risk owner.</text>
+<text x="846" y="312" class="tb">Q2  Where is a finding accepted?</text>
+<text x="870" y="332" class="t">Step 7: the qualified review decision.</text>
+<text x="846" y="360" class="tb">Q3  Where does testing hand off?</text>
+<text x="870" y="380" class="t">Step 9: finding → issue record.</text>
+<text x="846" y="408" class="tb">Q4  Where does a retest return?</text>
+<text x="870" y="428" class="t">Step 10, back in the testing lane.</text>
+<text x="846" y="462" class="h" style="font-size:15px">WHO DECIDES WHAT</text>
+<text x="846" y="486" class="tb">Testing practice:</text>
+<text x="846" y="506" class="t">method, evidence, finding decisions,</text>
+<text x="846" y="524" class="t">report content, retest result.</text>
+<text x="846" y="550" class="tb">Target owner &amp; local authority:</text>
+<text x="846" y="570" class="t">permission, fixes, deferral, risk</text>
+<text x="846" y="588" class="t">acceptance, priority, deadlines, closure.</text>
+<text x="846" y="618" class="r">No fixed timelines here: service</text>
+<text x="846" y="636" class="r">expectations are local bindings.</text>
+
+<!-- Row 0: Select -->
+<rect class="bB" x="432" y="190" width="336" height="118" rx="8"/>
+<text x="446" y="218" class="h">1  Select the target</text>
+<text x="446" y="240" class="t">Name the driver: obligation, asset risk,</text>
+<text x="446" y="258" class="t">change, prior result, or stakeholder need.</text>
+<text x="446" y="276" class="t">Selection is not authorization.</text>
+<text x="446" y="298" class="r">Record: selection rationale</text>
+
+<!-- Row 1: Request / Intake -->
+<rect class="bA" x="32" y="344" width="336" height="118" rx="8"/>
+<text x="46" y="372" class="h">Request &amp; target context</text>
+<text x="46" y="394" class="t">Requester or target owner describes the</text>
+<text x="46" y="412" class="t">system, purpose, contacts, constraints.</text>
+<text x="46" y="452" class="r">Record: request</text>
+<rect class="bB" x="432" y="344" width="336" height="118" rx="8"/>
+<text x="446" y="372" class="h">2  Intake</text>
+<text x="446" y="394" class="t">Practice accepts, queues, and schedules</text>
+<text x="446" y="412" class="t">the work and confirms the question the</text>
+<text x="446" y="430" class="t">test must help answer.</text>
+<text x="446" y="452" class="r">Record: engagement record opened</text>
+
+<!-- Row 2: Owner -->
+<rect class="bB" x="432" y="498" width="336" height="118" rx="8"/>
+<text x="446" y="526" class="h">3  Name the engagement owner</text>
+<text x="446" y="548" class="t">Assign an owner to coordinate scope,</text>
+<text x="446" y="566" class="t">testing, report, and follow-up. Others</text>
+<text x="446" y="584" class="t">may assist; a qualified peer reviews.</text>
+<text x="446" y="606" class="r">Record: owner in engagement record</text>
+
+<!-- Row 3: Scope / Authorize -->
+<rect class="bA dec" x="32" y="652" width="336" height="118" rx="8"/>
+<rect x="44" y="641" width="86" height="22" rx="11" fill="#FFE9A8" stroke="#333" stroke-width="1"/>
+<text x="87" y="656" text-anchor="middle" class="dpill">DECISION</text>
+<rect x="168" y="641" width="190" height="22" rx="11" fill="#111111"/>
+<text x="263" y="657" text-anchor="middle" class="pill">Q1 · WHO AUTHORIZES</text>
+<text x="46" y="684" class="h">Authorize testing</text>
+<text x="46" y="706" class="t">Accountable target or risk owner gives</text>
+<text x="46" y="724" class="t">written permission for this scope — or</text>
+<text x="46" y="742" class="t">narrows or refuses it. None = no test.</text>
+<text x="46" y="762" class="r">Record: authorization record</text>
+<rect class="bB" x="432" y="652" width="336" height="118" rx="8"/>
+<text x="446" y="680" class="h">4  Scope &amp; rules of engagement</text>
+<text x="446" y="702" class="t">Targets, environments, identities,</text>
+<text x="446" y="720" class="t">methods, exclusions, impact ceiling,</text>
+<text x="446" y="738" class="t">stop path. Sent for authorization.</text>
+<text x="446" y="760" class="r">Record: scope / rules-of-engagement record</text>
+
+<!-- Row 4: Readiness -->
+<rect class="bA" x="32" y="806" width="336" height="118" rx="8"/>
+<text x="46" y="834" class="h">Stakeholders notified</text>
+<text x="46" y="856" class="t">Target owner, operations, and monitoring</text>
+<text x="46" y="874" class="t">know the window and the stop contact.</text>
+<text x="46" y="914" class="r">Record: notification record</text>
+<rect class="bB" x="432" y="806" width="336" height="118" rx="8"/>
+<text x="446" y="834" class="h">5  Confirm readiness &amp; notify</text>
+<text x="446" y="856" class="t">Access, test data, monitoring, evidence</text>
+<text x="446" y="874" class="t">store, contacts, and stop path in place.</text>
+<text x="446" y="892" class="t">Gap → pause, or record a limitation.</text>
+<text x="446" y="914" class="r">Record: readiness check</text>
+
+<!-- Row 5: Test -->
+<text x="40" y="986" class="lpb">SCOPE-CHANGE LOOP</text>
+<text x="40" y="1006" class="lp">New target, technique, or impact</text>
+<text x="40" y="1024" class="lp">appears mid-test → stop that path and</text>
+<text x="40" y="1042" class="lp">return to step 4 for a new decision.</text>
+<rect class="bB" x="432" y="960" width="336" height="118" rx="8"/>
+<text x="446" y="988" class="h">6  Test &amp; capture evidence</text>
+<text x="446" y="1010" class="t">Domain method, hypotheses, safe actions.</text>
+<text x="446" y="1028" class="t">Capture target, identity, state, action,</text>
+<text x="446" y="1046" class="t">result, limits. Tool output ≠ finding.</text>
+<text x="446" y="1068" class="r">Record: evidence trail &amp; test notes</text>
+<rect class="bE" x="832" y="960" width="336" height="118" rx="8"/>
+<text x="846" y="988" class="h">Urgent-condition route</text>
+<text x="846" y="1010" class="t">Critical exposure mid-test: stop if</text>
+<text x="846" y="1028" class="t">needed and notify the agreed local</text>
+<text x="846" y="1046" class="t">authority now, not at report time.</text>
+<text x="846" y="1068" class="r">Record: urgent-notice log</text>
+
+<!-- Row 6: Review -->
+<text x="40" y="1132" class="lpb">DISPUTED-FINDING LOOP (owner)</text>
+<text x="40" y="1152" class="lp">New facts from the target owner go</text>
+<text x="40" y="1170" class="lp">back to review (step 7).</text>
+<rect class="bB dec" x="432" y="1114" width="336" height="118" rx="8"/>
+<rect x="444" y="1103" width="86" height="22" rx="11" fill="#FFE9A8" stroke="#333" stroke-width="1"/>
+<text x="487" y="1118" text-anchor="middle" class="dpill">DECISION</text>
+<rect x="548" y="1103" width="210" height="22" rx="11" fill="#111111"/>
+<text x="653" y="1119" text-anchor="middle" class="pill">Q2 · FINDING ACCEPTANCE</text>
+<text x="446" y="1146" class="h">7  Review &amp; finding decision</text>
+<text x="446" y="1168" class="t">Review evidence and draft report:</text>
+<text x="446" y="1186" class="t">accept, reject, merge, split, defer,</text>
+<text x="446" y="1204" class="t">or mark inconclusive. Keep the reason.</text>
+<text x="446" y="1224" class="r">Record: finding disposition record</text>
+<text x="840" y="1140" class="lpb">DISPUTED-FINDING LOOP (practice)</text>
+<text x="840" y="1160" class="lp">Tester and reviewer disagree → run a</text>
+<text x="840" y="1178" class="lp">bounded discriminating test (back to</text>
+<text x="840" y="1196" class="lp">step 6) or state the uncertainty.</text>
+
+<!-- Row 7: Report -->
+<rect class="bA" x="32" y="1268" width="336" height="118" rx="8"/>
+<text x="46" y="1296" class="h">Owner reviews the report</text>
+<text x="46" y="1318" class="t">Target owner asks questions and may</text>
+<text x="46" y="1336" class="t">dispute a finding with new facts.</text>
+<text x="46" y="1376" class="r">Record: acknowledgement or dispute</text>
+<rect class="bB" x="432" y="1268" width="336" height="118" rx="8"/>
+<text x="446" y="1296" class="h">8  Report &amp; closing conversation</text>
+<text x="446" y="1318" class="t">Deliver report with coverage and limits;</text>
+<text x="446" y="1336" class="t">explain findings for the tested instance.</text>
+<text x="446" y="1354" class="t">No enterprise-wide mandate is set here.</text>
+<text x="446" y="1376" class="r">Record: report version; coverage note</text>
+<rect class="bE dec" x="832" y="1268" width="336" height="118" rx="8"/>
+<rect x="844" y="1257" width="86" height="22" rx="11" fill="#FFE9A8" stroke="#333" stroke-width="1"/>
+<text x="887" y="1272" text-anchor="middle" class="dpill">DECISION</text>
+<text x="846" y="1300" class="h">Broader pattern or critical/high?</text>
+<text x="846" y="1322" class="t">One tested instance does not set</text>
+<text x="846" y="1340" class="t">enterprise-wide remediation. Route these</text>
+<text x="846" y="1358" class="t">to stakeholders under local authority.</text>
+<text x="846" y="1378" class="r">Record: escalation record</text>
+
+<!-- Row 8: Handoff -->
+<rect class="bB dec" x="432" y="1422" width="336" height="118" rx="8"/>
+<rect x="588" y="1411" width="170" height="22" rx="11" fill="#111111"/>
+<text x="673" y="1427" text-anchor="middle" class="pill">Q3 · HANDOFF POINT</text>
+<text x="446" y="1454" class="h">9  Hand off accepted findings</text>
+<text x="446" y="1476" class="t">Each accepted finding moves to the</text>
+<text x="446" y="1494" class="t">issue record with evidence pointer and</text>
+<text x="446" y="1512" class="t">report version — the testing handoff.</text>
+<text x="446" y="1532" class="r">Record: handoff record (finding → issue ID)</text>
+<rect class="bC" x="832" y="1422" width="336" height="118" rx="8"/>
+<text x="846" y="1450" class="h">Issue intake, priority &amp; deadline</text>
+<text x="846" y="1472" class="t">The issue owner records the finding and</text>
+<text x="846" y="1490" class="t">sets priority and deadline under local</text>
+<text x="846" y="1508" class="t">policy; assigns the accountable owner.</text>
+<text x="846" y="1530" class="r">Record: vulnerability / issue record</text>
+
+<!-- Row 9: Remediation -->
+<rect class="bA" x="32" y="1576" width="336" height="118" rx="8"/>
+<text x="46" y="1604" class="h">Partner-owned remediation</text>
+<text x="46" y="1626" class="t">Target owner fixes or mitigates, or</text>
+<text x="46" y="1644" class="t">seeks a deferral. The testing practice</text>
+<text x="46" y="1662" class="t">advises; it does not own fix or deadline.</text>
+<text x="46" y="1684" class="r">Record: fix evidence; retest request</text>
+<rect class="bC dec" x="832" y="1576" width="336" height="118" rx="8"/>
+<rect x="844" y="1565" width="86" height="22" rx="11" fill="#FFE9A8" stroke="#333" stroke-width="1"/>
+<text x="887" y="1580" text-anchor="middle" class="dpill">DECISION</text>
+<text x="846" y="1608" class="h">Deferral / risk acceptance</text>
+<text x="846" y="1630" class="t">Decided by the local risk authority under</text>
+<text x="846" y="1648" class="t">local policy, not by the testing practice.</text>
+<text x="846" y="1666" class="t">Outcome returns to the target owner.</text>
+<text x="846" y="1686" class="r">Record: risk decision record</text>
+
+<!-- Row 10: Retest -->
+<rect class="bB dec" x="432" y="1730" width="336" height="118" rx="8"/>
+<rect x="538" y="1719" width="220" height="22" rx="11" fill="#111111"/>
+<text x="648" y="1735" text-anchor="middle" class="pill">Q4 · RETEST RETURNS HERE</text>
+<text x="446" y="1762" class="h">10  Retest the original condition</text>
+<text x="446" y="1784" class="t">Fresh test of the condition behind the</text>
+<text x="446" y="1802" class="t">finding. A ticket or version change is</text>
+<text x="446" y="1820" class="t">not proof of a fix; say what differed.</text>
+<text x="446" y="1840" class="r">Record: retest result &amp; evidence</text>
+<rect class="bC" x="832" y="1730" width="336" height="118" rx="8"/>
+<text x="846" y="1758" class="h">Issue record updated</text>
+<text x="846" y="1780" class="t">Retest result attached; the issue owner</text>
+<text x="846" y="1798" class="t">decides status under local policy.</text>
+<text x="846" y="1838" class="r">Record: issue status history</text>
+<text x="40" y="1828" class="lpb">RETEST LOOP</text>
+<text x="40" y="1848" class="lp">Not fixed or inconclusive → back to</text>
+<text x="40" y="1866" class="lp">remediation; note what differed.</text>
+
+<!-- Row 11: Record -->
+<rect class="bB" x="432" y="1884" width="336" height="118" rx="8"/>
+<text x="446" y="1912" class="h">11  Record &amp; learn</text>
+<text x="446" y="1934" class="t">Close the engagement record; protect</text>
+<text x="446" y="1952" class="t">evidence under local retention rules.</text>
+<text x="446" y="1970" class="t">Lessons feed step 1, scoping, methods.</text>
+<text x="446" y="1992" class="r">Record: closed engagement record</text>
+<rect class="bC" x="832" y="1884" width="336" height="118" rx="8"/>
+<text x="846" y="1912" class="h">Local issue closure</text>
+<text x="846" y="1934" class="t">Owned by vulnerability management with</text>
+<text x="846" y="1952" class="t">the target owner, not the testing practice.</text>
+<text x="846" y="1992" class="r">Record: closure record</text>
+
+<!-- Main flow (testing lane) -->
+<path class="flow" d="M600 308 V342"/>
+<path class="flow" d="M600 462 V496"/>
+<path class="flow" d="M600 616 V650"/>
+<path class="flow" d="M600 770 V804"/>
+<path class="flow" d="M600 924 V958"/>
+<path class="flow" d="M600 1078 V1112"/>
+<path class="flow" d="M600 1232 V1266"/>
+<path class="flow" d="M600 1386 V1420"/>
+<path class="flow" d="M600 1848 V1882"/>
+<path class="flow" d="M1000 1848 V1882"/>
+
+<!-- Cross-lane handoffs -->
+<path class="flow" d="M368 403 H430"/>
+<path class="flow" d="M432 682 H370"/>
+<path class="flow" d="M368 712 H430"/>
+<path class="flow" d="M432 865 H370"/>
+<path class="flow" d="M432 1330 H370"/>
+<path class="flow" style="stroke-width:3.2" d="M768 1480 H830"/>
+<path class="flow" d="M1000 1540 V1558 H200 V1574"/>
+<text x="600" y="1553" text-anchor="middle" class="lab">assigned to target owner</text>
+<path class="flow" d="M368 1625 H830"/>
+<text x="600" y="1617" text-anchor="middle" class="lab">deferral request</text>
+<path class="flow" d="M368 1676 H600 V1728"/>
+<text x="490" y="1668" text-anchor="middle" class="lab">retest request</text>
+<path class="flow" d="M768 1775 H830"/>
+
+<!-- Escalation routes -->
+<path class="esc" d="M768 1000 H830"/>
+<path class="esc" d="M768 1300 H830"/>
+<path class="esc" d="M1000 1386 V1420"/>
+
+<!-- Loops -->
+<path class="loop" d="M432 992 H400 V748 H370"/>
+<path class="loop" d="M768 1170 H797 V1040 H770"/>
+<path class="loop" d="M200 1268 V1190 H430"/>
+<path class="loop" d="M432 1800 H200 V1696"/>
+
+<!-- Legend -->
+<rect x="20" y="2030" width="1160" height="200" rx="8" fill="#F5F5F5" stroke="#999" stroke-width="1"/>
+<text x="40" y="2058" class="h">HOW TO READ</text>
+<path class="flow" d="M40 2088 H98"/>
+<text x="112" y="2093" class="t">Flow or handoff (crossing a lane = change of owner)</text>
+<path class="loop" d="M40 2118 H98"/>
+<text x="112" y="2123" class="t">Loop: scope change, disputed finding, retest</text>
+<path class="esc" d="M40 2148 H98"/>
+<text x="112" y="2153" class="t">Urgent or escalation route to local authority</text>
+<rect x="620" y="2077" width="86" height="22" rx="11" fill="#FFE9A8" stroke="#333" stroke-width="1"/>
+<text x="663" y="2092" text-anchor="middle" class="dpill">DECISION</text>
+<text x="720" y="2093" class="t">Decision point (thick border)</text>
+<rect x="620" y="2107" width="86" height="22" rx="11" fill="#111111"/>
+<text x="663" y="2123" text-anchor="middle" class="pill">Q1–Q4</text>
+<text x="720" y="2123" class="t">Reader question answered at this step</text>
+<text x="620" y="2153" class="r">Record: …</text>
+<text x="720" y="2153" class="t">What the step leaves for a second reader</text>
+<text x="40" y="2190" class="r">Provisional v0.1 public derivative of a controlled engagement-flow diagram (v3.0). Not a deployment, conformance, or permission-to-test claim.</text>
+<text x="40" y="2210" class="r">Timelines, tools, systems of record, retention, and staffing are local bindings recorded in an adopter's profile.</text>
+</svg>

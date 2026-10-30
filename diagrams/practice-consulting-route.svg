@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">After the test: from the original tester as front door to a shared route</title>
+  <desc id="desc">Before, application owners direct follow-up questions to the tester who found the issue, even after that tester has started another test. After, the closing meeting identifies a shared consulting route and a separate formal retest or closure record. One on-duty tester answers consulting questions and gives the testing team technical peer review, with backup, peers, or a lead available when needed. Urgent extra support has named scope and staffing. New engagement intake is outside this consulting route.</desc>
+  <defs>
+    <marker id="orangeArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#c6734a"/></marker>
+    <marker id="tealArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#346a6e"/></marker>
+  </defs>
+  <rect width="1200" height="700" fill="#f2eee6"/>
+  <text x="48" y="53" fill="#172d34" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700">After the test, the work keeps arriving</text>
+  <text x="48" y="84" fill="#536365" font-family="Arial, Helvetica, sans-serif" font-size="17">The change is in routing and support, not a claimed productivity number.</text>
+
+  <rect x="38" y="112" width="522" height="528" rx="16" fill="#25333a"/>
+  <text x="65" y="152" fill="#e9cbb6" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2">OLD DEFAULT</text>
+  <text x="65" y="189" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Every question returns to the tester</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#ffffff">
+    <text x="78" y="260">What does the finding mean?</text>
+    <text x="78" y="315">Is this evidence enough?</text>
+    <text x="78" y="370">Who owns the fix?</text>
+    <text x="78" y="425">Can you join this call?</text>
+    <text x="78" y="480">Will you retest it?</text>
+  </g>
+  <g stroke="#c6734a" stroke-width="2.5" fill="none" marker-end="url(#orangeArrow)">
+    <path d="M308 255 L407 506"/><path d="M282 310 L407 506"/><path d="M270 365 L407 506"/><path d="M280 420 L407 506"/><path d="M250 475 L407 506"/>
+  </g>
+  <rect x="388" y="518" width="148" height="68" rx="10" fill="#bc6840"/>
+  <text x="462" y="545" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Original tester</text>
+  <text x="462" y="568" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="14">now on next test</text>
+  <text x="65" y="614" fill="#f0ded1" font-family="Arial, Helvetica, sans-serif" font-size="15">Technical and process questions collapse onto one person.</text>
+
+  <rect x="584" y="112" width="578" height="528" rx="16" fill="#ffffff"/>
+  <text x="610" y="152" fill="#a9562f" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2">EVOLVED ROUTE</text>
+  <text x="610" y="189" fill="#172d34" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">The right question reaches the right lane</text>
+
+  <rect x="610" y="211" width="526" height="64" rx="10" fill="#e5eeeb"/>
+  <text x="873" y="238" text-anchor="middle" fill="#254650" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">Closing meeting</text>
+  <text x="873" y="261" text-anchor="middle" fill="#254650" font-family="Arial, Helvetica, sans-serif" font-size="15">explains the finding and where each next action goes</text>
+  <path d="M873 276 V298 M735 298 H1005 M735 298 V314 M1005 298 V314" stroke="#346a6e" stroke-width="2.5" fill="none" marker-end="url(#tealArrow)"/>
+
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <rect x="610" y="323" width="250" height="80" rx="9" fill="#dceae6"/>
+    <text x="735" y="351" fill="#173b3f" font-size="17" font-weight="700">Consulting</text>
+    <text x="735" y="375" fill="#254650" font-size="15">shared route / office hours</text>
+    <rect x="876" y="323" width="260" height="80" rx="9" fill="#edf2ef"/>
+    <text x="1006" y="351" fill="#173b3f" font-size="17" font-weight="700">Retest or closure</text>
+    <text x="1006" y="375" fill="#254650" font-size="15">formal issue record</text>
+  </g>
+
+  <path d="M735 404 V419" stroke="#346a6e" stroke-width="2.5" marker-end="url(#tealArrow)"/>
+  <rect x="610" y="429" width="526" height="86" rx="9" fill="#d6e6e2"/>
+  <text x="873" y="455" text-anchor="middle" fill="#173b3f" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">One on-duty tester + named backup</text>
+  <text x="873" y="479" text-anchor="middle" fill="#254650" font-family="Arial, Helvetica, sans-serif" font-size="15">consulting questions · technical peer review for the team</text>
+  <text x="873" y="501" text-anchor="middle" fill="#254650" font-family="Arial, Helvetica, sans-serif" font-size="14">calls on peers or a lead when another view is needed</text>
+
+  <rect x="610" y="526" width="526" height="62" rx="9" fill="#f7e8db"/>
+  <text x="873" y="551" text-anchor="middle" fill="#88482b" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">Urgent exception: extra support</text>
+  <text x="873" y="574" text-anchor="middle" fill="#88482b" font-family="Arial, Helvetica, sans-serif" font-size="14">named scope · visible staffing · return to planned work</text>
+  <text x="610" y="615" fill="#536365" font-family="Arial, Helvetica, sans-serif" font-size="15">The original tester rejoins when their judgment is needed.</text>
+
+  <text x="48" y="672" fill="#536365" font-family="Arial, Helvetica, sans-serif" font-size="14">Conceptual practice-system illustration · not measured outcome data</text>
+</svg>

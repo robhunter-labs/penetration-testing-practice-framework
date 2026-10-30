@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 710" role="img" aria-labelledby="title desc">
+  <title id="title">Choose the consulting service shape from demand, support, and risk</title>
+  <desc id="desc">Work arrives from engagements across application teams, findings needing validation and closure, and follow-up questions. Capable issue owners, vulnerability management, clear intake, linked records, and automation can absorb work. Increased testing throughput, urgent cases, and after-hours demand can add pressure. Depending on observed conditions, a practice might use a shared route, one rotating on-duty tester with backup, or a dedicated service. Twenty-four-hour coverage is a separate decision. These are alternatives, not sequential stages or measured thresholds.</desc>
+  <rect width="1200" height="710" fill="#f2eee6"/>
+  <text x="48" y="56" fill="#172d34" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700">When is a rotation enough?</text>
+  <text x="48" y="87" fill="#536365" font-family="Arial, Helvetica, sans-serif" font-size="17">Choose coverage for the work actually arriving, not for a fixed team-size formula.</text>
+
+  <rect x="48" y="117" width="1104" height="142" rx="16" fill="#25333a"/>
+  <text x="74" y="151" fill="#e9cbb6" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2">WORK ARRIVING</text>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <rect x="72" y="168" width="337" height="66" rx="9" fill="#394a50"/>
+    <text x="240" y="196" fill="#ffffff" font-size="17" font-weight="700">Engagements and application teams</text>
+    <text x="240" y="219" fill="#e2e7e5" font-size="14">breadth and cadence</text>
+    <rect x="431" y="168" width="337" height="66" rx="9" fill="#394a50"/>
+    <text x="599" y="196" fill="#ffffff" font-size="17" font-weight="700">Findings needing follow-through</text>
+    <text x="599" y="219" fill="#e2e7e5" font-size="14">validation · remediation · closure</text>
+    <rect x="790" y="168" width="337" height="66" rx="9" fill="#394a50"/>
+    <text x="958" y="196" fill="#ffffff" font-size="17" font-weight="700">Questions and retest requests</text>
+    <text x="958" y="219" fill="#e2e7e5" font-size="14">amount and complexity differ</text>
+  </g>
+
+  <rect x="48" y="285" width="536" height="185" rx="16" fill="#dceae6"/>
+  <text x="74" y="323" fill="#173b3f" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">What absorbs the load?</text>
+  <g fill="#254650" font-family="Arial, Helvetica, sans-serif" font-size="17">
+    <text x="74" y="356">Capable issue owners and a strong VM partner</text>
+    <text x="74" y="387">Clear intake and linked case context</text>
+    <text x="74" y="418">Automation for routing and reconstruction</text>
+    <text x="74" y="448" font-size="14">VM = vulnerability management</text>
+  </g>
+
+  <rect x="616" y="285" width="536" height="185" rx="16" fill="#f2dfd0"/>
+  <text x="642" y="323" fill="#7b3e27" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">What adds pressure?</text>
+  <g fill="#6d3a27" font-family="Arial, Helvetica, sans-serif" font-size="17">
+    <text x="642" y="356">More testing throughput and candidate findings</text>
+    <text x="642" y="387">Urgent cases and multi-team dependencies</text>
+    <text x="642" y="418">Repeated interruption or after-hours demand</text>
+    <text x="642" y="448" font-size="14">Agentic tools can add throughput and triage work.</text>
+  </g>
+
+  <rect x="48" y="496" width="1104" height="154" rx="16" fill="#ffffff"/>
+  <text x="74" y="531" fill="#172d34" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Possible service shapes</text>
+  <text x="366" y="531" fill="#536365" font-family="Arial, Helvetica, sans-serif" font-size="15">Alternatives to test against demand—not stages on a ladder.</text>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <rect x="72" y="548" width="337" height="76" rx="9" fill="#edf2ef"/>
+    <text x="240" y="577" fill="#173b3f" font-size="17" font-weight="700">Shared route</text>
+    <text x="240" y="603" fill="#254650" font-size="14">where follow-up is manageable</text>
+    <rect x="431" y="548" width="337" height="76" rx="9" fill="#d6e6e2"/>
+    <text x="599" y="577" fill="#173b3f" font-size="17" font-weight="700">Rotating on-duty tester</text>
+    <text x="599" y="603" fill="#254650" font-size="14">one tester + backup and escalation</text>
+    <rect x="790" y="548" width="337" height="76" rx="9" fill="#e7e8e4"/>
+    <text x="958" y="577" fill="#173b3f" font-size="17" font-weight="700">Dedicated service</text>
+    <text x="958" y="603" fill="#254650" font-size="14">if observed demand warrants it</text>
+  </g>
+  <text x="48" y="687" fill="#536365" font-family="Arial, Helvetica, sans-serif" font-size="14">24/7 coverage is a separate risk and capacity decision · conceptual model, not measured service data</text>
+</svg>
