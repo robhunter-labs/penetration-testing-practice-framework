@@ -1,0 +1,32 @@
+name: Adaptation note
+description: Share how you adapted a component for your team, or where it didn't fit.
+title: "[Adaptation] "
+labels: ["adaptation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Knowing where a component didn't fit is as useful as a fix. Keep it general. No organization names, internal systems, or real engagement details are needed.
+  - type: input
+    id: component
+    attributes:
+      label: Component ID(s)
+      placeholder: "50.3"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Your context
+      description: Roughly, the kind of team and constraints (size, regulatory drivers, tooling) that shaped the change.
+  - type: textarea
+    id: change
+    attributes:
+      label: What you changed, and why
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened
+      description: Optional. What worked, what didn't, what you'd do differently.

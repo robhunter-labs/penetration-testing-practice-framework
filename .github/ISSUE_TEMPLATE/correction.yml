@@ -1,0 +1,34 @@
+name: Correction
+description: Something in the framework is wrong, outdated, unclear, or contradicts a cited source.
+title: "[Correction] "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep this accurate. Please don't include credentials, customer or employer details, restricted reports, or live exploit evidence. For anything sensitive, email hello@robhunterworks.com instead.
+  - type: input
+    id: component
+    attributes:
+      label: Component ID or file
+      description: For example 50.3, or a path like components/...
+      placeholder: "50.3"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong
+      description: Quote the passage if you can, and say what's incorrect or unclear.
+    validations:
+      required: true
+  - type: textarea
+    id: basis
+    attributes:
+      label: Basis
+      description: A source, standard, or experience that supports the correction. A link to a current edition helps.
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix
+      description: Optional. Proposed wording or change.
