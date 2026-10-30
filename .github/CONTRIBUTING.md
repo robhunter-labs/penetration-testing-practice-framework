@@ -1,4 +1,4 @@
-# Contributing to the Penetration-Testing Practice Framework
+# Contributing to the Open Practice Framework
 
 This framework was opened so other practitioners can question it, adapt it and make it better. Contributions of every size are welcome, from a one-word correction to a reworked component.
 
@@ -17,9 +17,13 @@ This framework was opened so other practitioners can question it, adapt it and m
 - **Say what's assumed.** If a change rests on a particular regulatory context, team size or tool, say so. The framework is one implementation to adapt, not a mandate.
 - **Be kind.** Critique the work, not the person.
 
+## Before you open a pull request
+
+Run the checks in the README's **Checks** section (`python3 .github/scripts/check_opf.py . --strict` and its test file). CI runs the same commands.
+
 ## Sensitive reports
 
-If you've found something that shouldn't be discussed in public, email **hello@robhunterworks.com** instead of opening an issue. See [SECURITY.md](../SECURITY.md).
+If you've found something that shouldn't be discussed in public, use GitHub's private vulnerability reporting (the **Security** tab → **Report a vulnerability**) instead of opening an issue. See [SECURITY.md](../SECURITY.md).
 
 ## Licensing
 

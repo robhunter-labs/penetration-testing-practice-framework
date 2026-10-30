@@ -14,7 +14,7 @@
   ],
   "lifecycle": "RELEASE",
   "collaboration_mode": "public",
-  "publication_authority": "Operator Actual",
+  "publication_authority": "Repository owner",
   "content_policy": {
     "allowed_prefixes": [
       ".github/",
@@ -27,7 +27,8 @@
       "LICENSE",
       "README.md",
       "SECURITY.md",
-      "COMPONENTS.md"
+      "COMPONENTS.md",
+      ".gitignore"
     ],
     "prohibited_globs": [
       "**/.DS_Store",
@@ -44,7 +45,6 @@
       "__pycache__",
       "_capsule",
       "_inbox",
-      "sha256:34d1958cea974c678fb62692142393df4251b0db245ba0c564642a1dc5d0371a",
       "node_modules"
     ],
     "prohibited_suffixes": [
@@ -56,13 +56,9 @@
     ],
     "local_only_markers": [
       "backup: local-only",
-      "sha256:27:796f414681374f257013c8ed4f51233e7492d7ca359aa9475f916d0e5c81ce48",
       "sensitivity: restricted",
       "source_state: WITHHELD",
       "source_state: OWNER_PRIVATE",
-      "sha256:14:c934b95ae7bc8f4e9850616984f761346357a3023767c8ef4db6d1e19814c57a",
-      "sha256:15:13045eb63293097bd8fbd9fe4bd7c069137468a5864a172546851b6b77b088b8",
-      "sha256:16:d33e8f621d6d69908dec83847c799b173a6ed04790033346e64c520d6145b439",
       "private release candidate",
       "private conversion note",
       "remove before public release",
@@ -70,7 +66,8 @@
     ],
     "max_file_bytes": 1048576,
     "binary_policy": "allow-profiled",
-    "explicit_staging_required": true
+    "explicit_staging_required": true,
+    "private_terms": "Sensitive terms are never stored in this repository, hashed or plain. .github/scripts/check_opf.py reads an optional list from a file outside the tree (OPF_PRIVATE_TERMS)."
   },
   "security_policy": {
     "default_branch_pr": "owner-direct",
@@ -78,7 +75,7 @@
     "signed_commits": "required",
     "secret_scanning": "unwitnessed",
     "push_protection": "unwitnessed",
-    "actions_sha_pinning": "not_applicable",
+    "actions_sha_pinning": "tag-pinned (SHA pinning pending)",
     "default_token_permissions": "none"
   },
   "automation_policy": {
