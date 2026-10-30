@@ -1,0 +1,111 @@
+{
+  "schema": "kingdom.repository-profile.v1",
+  "repository": {
+    "name": "robhunter-labs/penetration-testing-practice-framework",
+    "expected_remote": "https://github.com/robhunter-labs/penetration-testing-practice-framework.git",
+    "default_branch": "main"
+  },
+  "purpose": "Public, adaptable penetration-testing practice framework: 56 stable component identities, practitioner methods, operating guides, synthetic templates, native forms and decks, and accessible diagrams.",
+  "owner_node": "RobHunterLabs",
+  "steward": "RobHunterLabs",
+  "visibility": "public",
+  "audience": [
+    "PUBLIC"
+  ],
+  "lifecycle": "RELEASE",
+  "collaboration_mode": "public",
+  "publication_authority": "Operator Actual",
+  "content_policy": {
+    "allowed_prefixes": [
+      ".github/",
+      "diagrams/",
+      "components/",
+      "downloads/",
+      "examples/"
+    ],
+    "allowed_root_files": [
+      "LICENSE",
+      "README.md",
+      "SECURITY.md",
+      "COMPONENTS.md"
+    ],
+    "prohibited_globs": [
+      "**/.DS_Store",
+      "**/*RECEIPT*",
+      "**/evidence/**",
+      "**/raw-intake/**",
+      "**/runtime/**",
+      "_workbench/**",
+      "_design/**"
+    ],
+    "prohibited_components": [
+      ".git",
+      ".venv",
+      "__pycache__",
+      "_capsule",
+      "_inbox",
+      "sha256:34d1958cea974c678fb62692142393df4251b0db245ba0c564642a1dc5d0371a",
+      "node_modules"
+    ],
+    "prohibited_suffixes": [
+      ".env",
+      ".key",
+      ".p12",
+      ".pem",
+      ".tfstate"
+    ],
+    "local_only_markers": [
+      "backup: local-only",
+      "sha256:27:796f414681374f257013c8ed4f51233e7492d7ca359aa9475f916d0e5c81ce48",
+      "sensitivity: restricted",
+      "source_state: WITHHELD",
+      "source_state: OWNER_PRIVATE",
+      "sha256:14:c934b95ae7bc8f4e9850616984f761346357a3023767c8ef4db6d1e19814c57a",
+      "sha256:15:13045eb63293097bd8fbd9fe4bd7c069137468a5864a172546851b6b77b088b8",
+      "sha256:16:d33e8f621d6d69908dec83847c799b173a6ed04790033346e64c520d6145b439",
+      "private release candidate",
+      "private conversion note",
+      "remove before public release",
+      "controlled source:"
+    ],
+    "max_file_bytes": 1048576,
+    "binary_policy": "allow-profiled",
+    "explicit_staging_required": true
+  },
+  "security_policy": {
+    "default_branch_pr": "owner-direct",
+    "codeowners": "required",
+    "signed_commits": "required",
+    "secret_scanning": "unwitnessed",
+    "push_protection": "unwitnessed",
+    "actions_sha_pinning": "not_applicable",
+    "default_token_permissions": "none"
+  },
+  "automation_policy": {
+    "mode": "manual",
+    "cloud_deployment": "none",
+    "unattended_push": "disabled"
+  },
+  "retention_and_rollback": "Signed Git history and reviewed revert; private source drafts and workbench stay outside this repository.",
+  "incident_contact": "Repository owner through GitHub",
+  "exceptions": [
+    {
+      "rule": "binary_policy",
+      "scope": "downloads/*.xlsx",
+      "reason": "Three small, owner-authored native framework worksheets/examples require editable spreadsheet format; private/internal payload scans and native-read checks are separate release gates.",
+      "added": "2026-10-22"
+    },
+    {
+      "rule": "binary_policy",
+      "scope": "downloads/*.pptx",
+      "reason": "Two small, owner-authored training/meeting decks require editable presentation format; matching PDF and transcript companions provide reader access.",
+      "added": "2026-10-22"
+    },
+    {
+      "rule": "binary_policy",
+      "scope": "downloads/*.pdf",
+      "reason": "Two PDF equivalents accompany native decks for readers without PowerPoint; rendered page and metadata checks are separate release gates.",
+      "added": "2026-10-22"
+    }
+  ]
+}
