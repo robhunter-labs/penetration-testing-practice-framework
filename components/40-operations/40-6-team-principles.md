@@ -9,7 +9,7 @@
 | **Public ID / type** | §40.6 · Team operating principles + decision aid |
 | **Intended reader** | A penetration-testing practitioner, lead, or someone standing up or reviewing a pen-test practice who wants the *behavioral* bar for the work, separate from method, mechanics, or competence records. |
 | **First useful decision** | "What does good look like for how this team operates — and what must *we* decide locally for each principle to mean something here?" |
-| **Status** | Release candidate — read, adapt, and review locally before use; not an attestation. |
+| **Status** | Published framework component; local adoption is a separate decision. |
 | **Applicability** | Adapt to the team. Nothing here overrides formal employment rules, safety or legal obligations, client terms, or an organization's own values framework — those take precedence. |
 
 ---
@@ -195,4 +195,4 @@ At a team working session: read the six principles, argue with them, and for eac
 - **Limitations.** Organization-neutral and behavioral by design; it prescribes no tools, products, cadences, hierarchy, staffing level, or employment rules, and it does not assert that any team meets this standard. Illustrative references to external methodologies and frameworks point to primary sources that should be verified at time of use.
 - **External references.** Industry methodologies and frameworks (e.g. PTES, OWASP testing guidance, MITRE ATT&CK, PCI DSS) are first-class references to consult directly, not restated here as authority.
 - **Correction path.** [Adopter-defined] — record who maintains this, how a change is proposed, and when it is revisited.
-- **Upstream / downstream links.** [To reconcile at integration] — companion working agreement, method library, scoping and rules-of-engagement controls, competence record, onboarding/offboarding, and any practice self-assessment.
+- **Upstream / downstream links.** Companion working agreement (§40.7), method library (§20.1), scoping and rules-of-engagement controls (§10.1, §10.2), competence record (§40.8), onboarding and offboarding (§40.1, §40.2), and the practice self-assessment (§60.2).
