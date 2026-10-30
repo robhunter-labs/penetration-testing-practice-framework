@@ -75,7 +75,7 @@
     "signed_commits": "required",
     "secret_scanning": "unwitnessed",
     "push_protection": "unwitnessed",
-    "actions_sha_pinning": "tag-pinned (SHA pinning pending)",
+    "actions_sha_pinning": "required",
     "default_token_permissions": "none"
   },
   "automation_policy": {
