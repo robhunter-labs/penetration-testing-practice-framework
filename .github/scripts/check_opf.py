@@ -1,88 +1,120 @@
 #!/usr/bin/env python3
 """Open Practice Framework repo check.
 
-Fails on: a retired legacy name anywhere, a local-only marker or
-prohibited path component from .github/REPOSITORY_PROFILE.json, or a broken
-relative link.
+Usage:
+  python3 .github/scripts/check_opf.py [ROOT] [--strict]
 
-Sensitive terms are never stored in plaintext. A profile entry may be
-  "sha256:<length>:<hex>"  -> marker: sha256 of the casefolded term, matched as a substring
-  "sha256:<hex>"           -> component: sha256 of the casefolded path component
-The checker hashes every casefolded window of <length> characters (and every
-path component) and compares. Plain entries are matched as plain substrings.
+Fails on:
+  - a broken relative link in a Markdown file;
+  - a prohibited path component or a public local-only marker listed in
+    .github/REPOSITORY_PROFILE.json;
+  - a file type the checker cannot read;
+  - a term from an optional private list (see below).
+
+Private terms are never stored in this repository, hashed or plain. To check
+for them, keep a list OUTSIDE the tree and point the checker at it:
+  OPF_PRIVATE_TERMS=/path/outside/repo/terms.txt python3 .github/scripts/check_opf.py .
+One term per line; blank lines and lines starting with # are ignored. A term
+matches case-insensitively anywhere in a file's text, including across line
+wraps and across the text runs inside Office files.
+
+PDF text needs `pdftotext` (poppler-utils). Without it, PDFs are reported as
+unscanned: a warning by default, a failure with --strict.
 """
-import hashlib, json, os, re, subprocess, sys, zipfile
+import html, os, re, shutil, subprocess, sys, zipfile
 
-ROOT = sys.argv[1] if len(sys.argv) > 1 else "."
 SELF = ".github/scripts/check_opf.py"
 PROFILE = ".github/REPOSITORY_PROFILE.json"
-ALLOW_LEGACY = set()
-# Retired framework name (4 chars), allowed nowhere.
-LEGACY = (4, "ca91303abfb72d5ca36e1b2112e5e22446329f5ff8721707a45127dd7fdb409c")
+SKIP_DIRS = {".git", "__pycache__", ".venv", "node_modules"}
+TEXT_EXT = (".md", ".json", ".svg", ".txt", ".yml", ".yaml", ".py", ".csv", ".html", ".toml", ".xml", ".sh")
+OFFICE_EXT = (".xlsx", ".pptx", ".docx")
 LINK = re.compile(r'(?:\]\(|href="|src=")([^)"\s]+)')
-
-
-def _h(s):
-    return hashlib.sha256(s.encode("utf-8")).hexdigest()
+TAG = re.compile(r"<[^>]+>")
+SPACE = re.compile(r"\s+")
 
 
 def load_policy(root):
-    plain, hashed, comp_plain, comp_hashed = [], {}, set(), set()
+    """Public markers and prohibited components from the repo profile."""
+    import json
+    markers, comps = [], set()
     path = os.path.join(root, PROFILE)
     if os.path.exists(path):
-        policy = json.load(open(path, encoding="utf-8"))["content_policy"]
-        for m in policy.get("local_only_markers", []):
-            parts = m.split(":")
-            if m.startswith("sha256:") and len(parts) == 3 and parts[1].isdigit():
-                hashed.setdefault(int(parts[1]), set()).add(parts[2])
-            else:
-                plain.append(m.casefold())
-        for c in policy.get("prohibited_components", []):
-            (comp_hashed.add(c[7:]) if c.startswith("sha256:") else comp_plain.add(c.casefold()))
-    return plain, hashed, comp_plain, comp_hashed
+        with open(path, encoding="utf-8") as fh:
+            policy = json.load(fh).get("content_policy", {})
+        markers = [m.casefold() for m in policy.get("local_only_markers", [])]
+        comps = {c.casefold() for c in policy.get("prohibited_components", [])}
+    return markers, comps
 
 
-def window_hit(text, length, digests):
-    if len(text) < length:
-        return False
-    for i in range(len(text) - length + 1):
-        if _h(text[i:i + length]) in digests:
-            return True
-    return False
+def load_private_terms(root):
+    """Optional private terms, read from a file that must live outside ROOT."""
+    path = os.environ.get("OPF_PRIVATE_TERMS")
+    if not path:
+        return []
+    real, top = os.path.realpath(path), os.path.realpath(root)
+    if real == top or real.startswith(top + os.sep):
+        sys.exit("refusing: OPF_PRIVATE_TERMS must point outside the repository")
+    with open(real, encoding="utf-8") as fh:
+        return [l.strip().casefold() for l in fh if l.strip() and not l.lstrip().startswith("#")]
 
 
-def scan(root):
-    plain, hashed, comp_plain, comp_hashed = load_policy(root)
-    bad, links = [], 0
+def flat(text):
+    """Casefold and collapse whitespace so a term wrapped across lines still matches."""
+    return SPACE.sub(" ", text).casefold()
+
+
+def file_texts(path, name, warn):
+    """Return the readable text of a file, or None if the checker can't read it."""
+    if name.endswith(OFFICE_EXT):
+        with zipfile.ZipFile(path) as z:
+            parts = [z.read(n).decode("utf-8", "replace") for n in z.namelist() if n.endswith((".xml", ".rels"))]
+        # Strip tags and join, so a term split across PowerPoint/Word text runs is whole again.
+        return [html.unescape(TAG.sub("", p)) for p in parts] + parts
+    if name.endswith(".pdf"):
+        if not shutil.which("pdftotext"):
+            warn.append(f"unscanned PDF (install poppler-utils for pdftotext): {path}")
+            return []
+        r = subprocess.run(["pdftotext", path, "-"], capture_output=True, text=True)
+        if r.returncode != 0:
+            return None
+        return [r.stdout]
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return [fh.read()]
+    except UnicodeDecodeError:
+        return None
+
+
+def scan(root, strict=False):
+    markers, comps = load_policy(root)
+    private = load_private_terms(root)
+    bad, warn, links = [], [], 0
     for dp, dn, fn in os.walk(root):
-        dn[:] = [d for d in dn if d != ".git"]
+        dn[:] = [d for d in dn if d not in SKIP_DIRS]
         for f in fn:
             p = os.path.join(dp, f)
             rel = os.path.relpath(p, root).replace(os.sep, "/")
-            for part in rel.split("/"):
-                cf = part.casefold()
-                if cf in comp_plain or _h(cf) in comp_hashed:
-                    bad.append(f"prohibited component: {rel}")
-            if rel not in ALLOW_LEGACY and rel != SELF and window_hit(rel.casefold(), *LEGACY[:1], {LEGACY[1]}):
-                bad.append(f"legacy name in filename: {rel}")
+            if any(part.casefold() in comps for part in rel.split("/")):
+                bad.append(f"prohibited component: {rel}")
+            if any(t in flat(rel) for t in private):
+                bad.append(f"private term in path: {rel}")
             if rel in (SELF, PROFILE):
                 continue
-            texts = []
-            if f.endswith((".md", ".json", ".svg", ".txt", ".yml", ".yaml", ".py", ".csv", ".html")) or ("/" not in rel and "." not in f):
-                texts.append(open(p, encoding="utf-8", errors="replace").read())
-            elif f.endswith((".xlsx", ".pptx", ".docx")):
-                z = zipfile.ZipFile(p)
-                texts += [z.read(n).decode("utf-8", "replace") for n in z.namelist() if n.endswith((".xml", ".rels"))]
-            elif f.endswith(".pdf"):
-                texts.append(subprocess.run(["pdftotext", p, "-"], capture_output=True, text=True).stdout)
+            texts = file_texts(p, f, warn)
+            if texts is None:
+                bad.append(f"unscanned file type: {rel}")
+                continue
             for t in texts:
                 for i, line in enumerate(t.splitlines(), 1):
                     cf = line.casefold()
-                    if rel not in ALLOW_LEGACY and window_hit(cf, LEGACY[0], {LEGACY[1]}):
-                        bad.append(f"legacy name: {rel}:{i}")
-                    if any(m in cf for m in plain) or any(window_hit(cf, n, d) for n, d in hashed.items()):
+                    if any(m in cf for m in markers):
                         bad.append(f"local-only marker: {rel}:{i}")
-            if f.endswith(".md"):
+                    if any(term in cf for term in private):
+                        bad.append(f"private term: {rel}:{i}")
+                whole = flat(t)
+                if any(m in whole for m in markers + private) and not any(b.startswith(("local-only marker: " + rel + ":", "private term: " + rel + ":")) for b in bad):
+                    bad.append(f"marker split across lines or text runs: {rel}")
+            if f.endswith(".md") and texts:
                 for m in LINK.finditer(texts[0]):
                     tgt = m.group(1).split("#")[0]
                     if not tgt or re.match(r"^[a-z]+:", tgt) or tgt.startswith("/"):
@@ -90,11 +122,18 @@ def scan(root):
                     links += 1
                     if not os.path.exists(os.path.normpath(os.path.join(dp, tgt))):
                         bad.append(f"broken link: {rel} -> {m.group(1)}")
-    return bad, links
+    if strict:
+        bad += warn
+        warn = []
+    return bad, links, warn
 
 
 if __name__ == "__main__":
-    bad, links = scan(ROOT)
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    root = args[0] if args else "."
+    bad, links, warn = scan(root, strict="--strict" in sys.argv)
+    for w in warn:
+        print("WARN", w)
     for b in bad:
         print("FAIL", b)
     print(f"checked {links} relative links; {len(bad)} problem(s)")
