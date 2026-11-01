@@ -10,7 +10,7 @@ The register is the framework's front door: enter through a problem, find the co
 |---|---|
 | **No.** | Section number: folder, then position (e.g. 30.5). Other documents cite a component by number and name, never by filename. |
 | **Component** | Public title. |
-| **Type** | Guide, Method, Template, Workbook (XLSX), Deck (PPTX + PDF), Diagram (SVG), Catalogue entry, or Register. |
+| **Type** | Guide, Method, Template, Workbook (XLSX), Deck (PPTX + PDF), Diagram (SVG), Catalogue entry, Register, Reference, or Annex. |
 | **Path** | Open the component directly. `downloads/` holds native files; `diagrams/` holds SVGs; everything else is Markdown under `components/` or the repository root. |
 | **Reader job** | The one problem the component helps a reader solve. |
 | **Status** | **Published** means the component is available in this repository. It does not mean an organization adopted or validated it. |
@@ -121,16 +121,18 @@ The register is the framework's front door: enter through a problem, find the co
 
 | No. | Component | Type | Path | Reader job | Status |
 |---|---|---|---|---|---|
+| 90.0 | Section 90 Glossary | Reference | [components/90-extensions/90-0-glossary.md](components/90-extensions/90-0-glossary.md) | The shared vocabulary for the AI and R&D extensions, in reading order. | Published |
 | 90.1 | Agentic AI Operating Framework | Guide | [components/90-extensions/90-1-ai-operating-framework.md](components/90-extensions/90-1-ai-operating-framework.md) | Where an AI agent may act in a human-led practice (AI-as-capability extension). | Published |
 | 90.2 | AI Tool Operating Procedure — Template | Template | [components/90-extensions/90-2-ai-tool-procedure.md](components/90-extensions/90-2-ai-tool-procedure.md) | A blank procedure for operating a specific AI testing tool. | Published |
 | 90.3 | R&D Build & Readiness | Guide | [components/90-extensions/90-3-rd-readiness.md](components/90-extensions/90-3-rd-readiness.md) | Decide when an R&D capability is ready to use. | Published |
-| 90.4 | AI Leadership Levers & Dials | Guide | [components/90-extensions/90-4-ai-leadership-levers.md](components/90-extensions/90-4-ai-leadership-levers.md) | Leadership questions for adopting AI in testing, with measurement first. | Published |
+| 90.4 | AI Leadership Levers | Guide | [components/90-extensions/90-4-ai-leadership-levers.md](components/90-extensions/90-4-ai-leadership-levers.md) | Leadership questions for adopting AI in testing, with measurement first. | Published |
+| 90.5 | Validation Measurement Annex | Annex | [components/90-extensions/90-5-validation-measurement-annex.md](components/90-extensions/90-5-validation-measurement-annex.md) | Defined measures, denominators and a sampling method for validating AI-generated findings at volume. | Published (Draft v0.1) |
 
 ---
 
 ## Count and denominator
 
-56 active components — **4** start-here & authority · **6** engagement setup · **16** technical methods · **5** evidence & reporting · **11** operations & people · **8** support & assurance · **2** learning & stewardship · **4** versioned extensions. (4 + 6 + 16 + 5 + 11 + 8 + 2 + 4 = 56.) All 56 have a public component here; §20.14 is intentionally catalogue-only.
+58 components — **4** start-here & authority · **6** engagement setup · **16** technical methods · **5** evidence & reporting · **11** operations & people · **8** support & assurance · **2** learning & stewardship · **6** versioned extensions. (4 + 6 + 16 + 5 + 11 + 8 + 2 + 6 = 58.) All 58 are published; §90.5 is a draft offered for comment. All 58 have a public component here; §20.14 is intentionally catalogue-only.
 
 ## Native downloads
 

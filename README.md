@@ -25,7 +25,7 @@ A qualified person authorizes, plans, performs, reviews, and is accountable for 
 
 **AI appears only as two distinct, versioned extensions:**
 - **AI as a target** — testing an AI/LLM system (the AI/LLM method, §20.13).
-- **AI as a testing capability** — an agent or tool that assists a human-led practice (§90.1, §90.2, §90.4).
+- **AI as a testing capability** — an agent or tool that assists a human-led practice (§90.1–§90.4, with a shared [glossary](components/90-extensions/90-0-glossary.md) in §90.0 and a draft [validation measurement annex](components/90-extensions/90-5-validation-measurement-annex.md) in §90.5).
 
 Either extension must say where an agent may act, what it may read and send, how actions and evidence are recorded, who validates a finding, and where the work returns to a person. Claims about speed, quality, cost, or staffing need observed measurement; enthusiasm is not a method. A reader can understand and improve the human-led practice without first accepting any AI roadmap.
 
@@ -35,7 +35,7 @@ Either extension must say where an agent may act, what it may read and send, how
 
 ## What is in this release
 
-- **[56 active components](COMPONENTS.md)** across authority, engagement design, technical methods, evidence, operations, support, learning, and AI/R&D extensions. The register gives each component's job and direct path. §20.14 is deliberately a catalogue entry, not a distributed tactical workbook.
+- **[58 components](COMPONENTS.md)** across authority, engagement design, technical methods, evidence, operations, support, learning, and AI/R&D extensions. The register gives each component's job and direct path. §20.14 is deliberately a catalogue entry, not a distributed tactical workbook.
 - **[A synthetic API engagement walkthrough](examples/api-engagement/README.md)** connects authority, scope, method, evidence, review, reporting, and retest in one paper example. It records no real test execution or observed outcome.
 - **[§50.3 — Penetration Testing Consulting Guidebook](components/50-support/50-3-consulting-guidebook.md)** explains how a team gives post-test technical questions, retest, closure, escalation, and rotation a reliable home. Its companion essay, [*The Leverage Between Penetration Tests*](https://robhunterworks.com/writing/leverage-between-tests/), explains the experience behind the pattern. §50.3 is one support component, not the framework's front door.
 - **[Conceptual diagrams](diagrams)** include an engagement flow and two consulting-service models. They illustrate decisions, not measured outcomes or staffing formulas.
