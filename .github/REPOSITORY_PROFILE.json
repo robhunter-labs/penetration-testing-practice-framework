@@ -5,7 +5,7 @@
     "expected_remote": "https://github.com/robhunter-labs/penetration-testing-practice-framework.git",
     "default_branch": "main"
   },
-  "purpose": "Public, adaptable penetration-testing practice framework: 56 stable component identities, practitioner methods, operating guides, synthetic templates, native forms and decks, and accessible diagrams.",
+  "purpose": "Public, adaptable penetration-testing practice framework: 58 stable component identities, practitioner methods, operating guides, synthetic templates, native forms and decks, and accessible diagrams.",
   "owner_node": "RobHunterLabs",
   "steward": "RobHunterLabs",
   "visibility": "public",
