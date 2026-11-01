@@ -3,15 +3,16 @@
 > Framework component for adaptation. Publication does not authorize testing, certify conformance, or establish that an organization has adopted this practice.
 
 **Component:** adaptable operating record  
-**Reader:** testing-tool owner, qualified operator, engagement lead, validator, or reviewer
+**Reader:** testing-tool owner, qualified operator, engagement lead, validator, or reviewer  
+**Vocabulary:** [Section 90 glossary](90-0-glossary.md)
 
 ## What this template is for
 
-Copy this record for **one actual AI-assisted or agentic testing capability in one materially consistent operating posture**. It turns a program-level decision into instructions an operator can follow: what the configured system is, where it runs, what it may touch, who may use it, what a human must verify, where results go, how it stops, and what change requires a fresh decision.
+Copy this record for **one actual AI-assisted or agentic testing capability, set up one way** (one posture: the same components, versions, reach and bounds). It turns a program-level decision into instructions an operator can follow: what the configured system is, where it runs, what it may touch, who may use it, what a human must verify, where results go, how it stops, and what change requires a fresh decision.
 
 This blank form grants **no permission** to use a tool or test a target. A completed form does not replace local tool readiness, engagement authorization, scope and rules of engagement, or review of a reported finding. The adopting organization supplies those authorities and the systems of record. The human-led penetration-testing method remains the baseline; this is an optional capability extension.
 
-Use §90.1 for the AI testing operating model and §90.3 for the capability-readiness decision. This procedure remains tool-specific: an adopter must name the exact tool, version, permissions, environments, operators, and stop conditions before using it.
+Use §90.1 for the AI testing operating model and §90.3 for the capability-readiness decision. **When to fill it in:** draft it during §90.3 safety evaluation, complete it before Delivery Authorization (which names it), and keep it current while the posture is in use. This procedure remains tool-specific: an adopter must name the exact tool, version, permissions, environments, operators, and stop conditions before using it.
 
 **How to fill it:** Replace every `[LOCAL]` with an evidence-backed answer, or write `not applicable` with a reason. Do not paste secrets, live tokens, customer data, or internal targets into a public copy. The local filled record belongs in the adopter's controlled store, not in this public repository. A vendor claim is a source to assess, not proof that this deployment works as claimed.
 
@@ -23,7 +24,8 @@ Use §90.1 for the AI testing operating model and §90.3 for the capability-read
 | Capability and intended use | `[LOCAL]` |
 | **Testing path** (can propose or perform tests/findings) or **support path** (no finding output) | `[LOCAL]` |
 | Tool/model/orchestrator version and configured components | `[LOCAL]` |
-| Autonomy classification and rationale under the local AI operating model | `[LOCAL]` |
+| Configuration digest and what it covers: model identifier and snapshot, system-prompt or policy hash, tool manifest hash, orchestrator version, retrieval sources, adapter versions | `[LOCAL]` |
+| Autonomy tier under §90.1 §6, with the observable criteria that place it | `[LOCAL]` |
 | Approved target and engagement classes; exclusions | `[LOCAL]` |
 | Local tool-readiness/authorization record and conditions | `[LOCAL]` |
 | Technical custodian and stop/revoke authority | `[LOCAL]` |
@@ -51,6 +53,8 @@ Use scoped, revocable credentials and the adopter's credential-handling method. 
 | Targets and network reach | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
 | Identities and credentials | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
 | Tools, actions, writes and persistence | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
+| Writing and running its own code (generated exploits or scripts can bypass a tool allowlist) | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
+| Starting sub-agents, parallel runs and fan-out | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
 | Data, memory, logs and output | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
 | Rate, actions, cost and runtime | `[LOCAL]` | `[LOCAL]` | `[LOCAL]` |
 
@@ -58,23 +62,25 @@ Use scoped, revocable credentials and the adopter's credential-handling method. 
 **Setup sequence, configuration check, logging and stop test:** `[LOCAL]`  
 **Human pre-authorization points and emergency stop path:** `[LOCAL]`
 
-The tool's general operating approval is not the engagement's permission. For each run, the operator checks the current scope/RoE, exact target, identities, tool version, allowed actions, impact ceiling, evidence destination, validators and stop contacts. An out-of-scope, destructive, irreversible, production-impacting or otherwise reserved action waits for the *specific* local authority it requires; no completed form grants it by implication.
+Negative-test evidence means proof that the tool was actually blocked when it tried something forbidden, not a statement that it was told not to. The tool's general operating approval is not the engagement's permission. For each run, the operator checks the current scope/RoE, exact target, identities, tool version, allowed actions, impact ceiling, evidence destination, validators and stop contacts. An out-of-scope, destructive, irreversible, production-impacting or otherwise reserved action waits for the *specific* local authority it requires; no completed form grants it by implication.
 
 ## 4. Per-engagement run card
 
 ```text
 Engagement / target / environment:
 Scope and rules-of-engagement reference:
-Exact tool posture and configuration digest or version:
+Exact tool posture and configuration digest (a version label alone is not enough):
 Authorized operator and validating human:
 Allowed accounts, data, tools, actions and exclusions:
 Time, request/action and cost limits:
 Run-specific credentials (reference only) and expiry/revoke route:
 Communication, deconfliction and stop contacts:
-Pre-run scope, control, logging, egress and stop checks:
+Expected candidate volume, validator hours and backlog threshold (§90.1 §9.4):
+Pre-run scope, control, logging, egress and stop checks (including how fast a stop takes effect and what happens to actions in flight):
 Operating sequence (no secrets):
 Evidence, logs and output location:
-Post-run reconciliation, cleanup, credentials and anomaly review:
+Side-effect ledger: accounts, files, data, persistence or configuration the tool created or changed on the target:
+Post-run reconciliation against the ledger, cleanup, credentials and anomaly review:
 Exceptions, interruptions and disposition:
 ```
 
@@ -86,13 +92,15 @@ If the capability produces candidate findings, record the path from tool output 
 
 | Stage | Local decision and record |
 |---|---|
-| Candidate | Tool output, exact target/state, actions, provenance, evidence, uncertainty and safety notes: `[LOCAL]` |
-| Human validation | Qualified person, reproduction or other causal support, affected scope, false-positive challenge and rationale: `[LOCAL]` |
+| Candidate | Tool output, exact target/state, actions, provenance, evidence, the evidence state reached (§20.13), the tool's proposed severity, and safety notes: `[LOCAL]` |
+| Grouping | How duplicates and related candidates are merged without losing a step a chain depends on; where merged and suppressed candidates are kept: `[LOCAL]` |
+| Human validation | Qualified person, own reproduction or independent replay, affected scope, false-positive challenge, severity re-derived from evidence with any change from the tool's severity recorded, and rationale. For a chain: evidence state per step, impact capped at the weakest proven step: `[LOCAL]` |
+| Capacity | Triage order, validator capacity, backlog threshold and maximum age for unvalidated high-consequence candidates (§90.1 §9.4): `[LOCAL]` |
 | Review | Independent/peer review conditions, disputed result, severity/impact decision and approval: `[LOCAL]` |
 | Delivery | Required report fields, remediation guidance, system-of-record reference and trace to evidence: `[LOCAL]` |
 | Correction | Withdrawal/correction trigger, prior recipients and accountable communication route: `[LOCAL]` |
 
-Every delivered finding needs a human decision. Any sampling of *intermediate* tool output, if permitted locally, must be specified and justified without erasing the final finding bar. Do not copy a validation-depth claim from another tool or infer that an opaque agent's confidence score is ground truth. Critical or other high-consequence conditions need the stricter review required by the local program and evidence, not a universal number asserted by this blank form.
+Every delivered finding needs a human decision. Sampling, if permitted locally, means directly reproducing only a defined subset of eligible candidates under §90.1 §8.2 and §90.4 lever 1; it never samples the human decision on a delivered finding. Do not copy a validation-depth claim from another tool or infer that an opaque agent's confidence score is ground truth. Critical or other high-consequence conditions need the stricter review required by the local program and evidence, not a universal number asserted by this blank form.
 
 For a **support-path** tool, mark finding-pipeline fields not applicable and describe how its output is checked before a tester relies on it. A support classification is not a loophole if it actually proposes tests, makes target changes, or creates finding candidates.
 
@@ -105,6 +113,7 @@ For a **support-path** tool, mark finding-pipeline fields not applicable and des
 | Egress, credential, scope, target and logging anomaly response | `[LOCAL]` |
 | Stop, suspend, revoke, preserve evidence and incident route | `[LOCAL]` |
 | Run logs, test evidence, memory/cache, credential references and retention | `[LOCAL]` |
+| Machine-readable copy of this record, if kept (composition fields may reuse the CycloneDX ML-BOM structure) | `[LOCAL]` |
 | Customer-facing correction when a delivered claim proves wrong | `[LOCAL]` |
 
 Treat target-origin content as untrusted data, not operator instructions. Pin or otherwise identify decision-bearing components; note material changes and rerun the relevant readiness checks. A failed stop, egress, scope or evidence control is a reason to suspend the affected operation and preserve what happened, not to silently rely on the output.
@@ -122,3 +131,7 @@ Before findings-producing use, the adopter should be able to point to evidence t
 | Review, change and expiry triggers | `[LOCAL]` |
 
 **Change trigger:** Reassess when a model, orchestrator, prompt/policy, tool, adapter, retrieval source, memory behavior, credential, network path, target class, autonomy, validation method, provider term or cost behavior changes materially. Record what changed, which evidence remains valid, what must be rerun, and who made the new decision. A cosmetic edit should not force a full technical requalification; a material authority or behavior change cannot be called cosmetic.
+
+## Version notes
+
+- **2026-11 revision.** After independent review: plain-language posture wording and a fill-in point relative to §90.3; the configuration digest's contents listed; rows for code execution, sub-agents and concurrency, expected volume, validator capacity, backlog threshold, grouping, and a side-effect ledger; severity re-derivation and per-step chain evidence in validation; the sampled object stated consistently with §90.1 and §90.4.

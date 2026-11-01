@@ -20,7 +20,7 @@
 |---|---|
 | **Document** | 90.3 |
 | **Status** | Published framework component; local adoption is a separate decision. |
-| **Type** | Standard |
+| **Type** | T2 — Standard |
 | **Maintainer** | Framework maintainers |
 | **Local approval authority** | Defined by the adopting organization |
 | **Review trigger** | At least annually and on material capability, autonomy, threat, evidence, deployment, or authority change |
@@ -50,6 +50,8 @@ The boundary is:
 
 Readiness stages are not repeated approval ceremonies. A sandbox is an environment, not a stage. A demo is evidence, not authorization.
 
+For a concrete picture first, read the fictional bounded run in §7.4. Terms are defined in the [Section 90 glossary](90-0-glossary.md).
+
 ## 1. Purpose and scope
 
 This standard defines a proportionate path for evaluating AI-assisted, tool-using, or agentic penetration-testing capability. Conventional automation or advisory tools may be comparators or support-path candidates; their inclusion here does not turn every script or prompt into a controlled AI program.
@@ -77,7 +79,10 @@ It does not require every script, prompt, note, or disposable experiment to beco
 | **Intended-authority envelope** | The explicit limit on the identities, actions, tools, targets, data, network reach, persistence, time, and cost delegated to a capability. |
 | **Delivery Authorization** | The recorded decision that a declared findings-producing capability and posture may enter bounded engagement use under operating controls. |
 | **Evaluation bench** | A separated set of targets, cases, answer keys, measures, and scoring logic used to test a candidate. |
-| **Ground truth** | Evidence independent of the candidate that establishes what should be found, refused, or changed. |
+| **Ground truth** | Evidence independent of the candidate that establishes what should be found, refused, or changed. An **answer key** (or oracle) records it for a bench; a **denominator** is the set a rate is counted over. |
+| **Pre-register** | Record the acceptance, rejection and comparison rules before seeing the results. |
+| **Relying consumer** | The person or process that will actually use the capability's output, and whose decision the evaluation serves. |
+| **Verification depth** | How far a candidate's evidence reached, recorded as two parts shared with §20.13: **repeatability** (*Observed*, then *Reproduced*, where independent replay counts) and **impact** (*Demonstrated impact* or not). For evaluation only, this standard adds a pre-state, *asserted*: the candidate says so and nothing has been observed. |
 | **Material change** | A change that can alter capability, authority, risk, evidence validity, or operating behavior. |
 
 ## 3. Operating principles
@@ -134,9 +139,9 @@ A heavier lab, full automation, broad inventory, or permanent platform must be e
 
 ### 5.1 One useful containment pattern—and what it cannot promise
 
-This guide describes two network states: **A**, isolated evaluation with simulated or blocked external services; and **B**, a separately reviewed, logged, allowlisted connection to a named nonproduction environment. An adopter may implement those states with different technology, but should preserve the decision they expose. State A tests behavior under isolation. A State-A disposition does **not** certify State-B behavior or grant a live-target route. State B needs its own data-flow, network, target-owner, privacy and deconfliction decisions where applicable. A system owner's “nonproduction” attestation is useful context, not independent proof that no production dependency or data can be reached.
+This standard describes two network states: **A**, isolated evaluation with simulated or blocked external services; and **B**, a separately reviewed, logged, allowlisted connection to a named nonproduction environment. An adopter may implement those states with different technology, but should preserve the decision they expose. State A tests behavior under isolation. A State-A disposition does **not** certify State-B behavior or grant a live-target route. State B needs its own data-flow, network, target-owner, privacy and deconfliction decisions where applicable. A system owner's “nonproduction” attestation is useful context, not independent proof that no production dependency or data can be reached.
 
-A particular type-2 hypervisor, two-VM, build-as-code and managed-host setup is **one local implementation**, not a portable recipe. A host with real credentials and corporate reach makes guest escape consequential. A local design should record what the host can reach, what the candidate can reach, how the egress detector is self-tested, where evidence persists after a snapshot revert, and which events ground the experiment. A smaller host-only synthetic proof can be right for an early decision; a mature two-environment apparatus is earned when its distinct safety or reproducibility value is demonstrated. Neither setup is described as containment guaranteed.
+Whatever technology implements those states, record what the host can reach, what the candidate can reach, how the egress detector is self-tested, where evidence persists after a reset, and which observed events ground the experiment. A host that holds real credentials or organizational reach makes an escape consequential. A small, host-only synthetic proof can be right for an early decision; a fuller two-environment apparatus is earned when its distinct safety or reproducibility value is shown. Neither is described as guaranteed containment.
 
 ## 6. Safety evaluation
 
@@ -191,7 +196,7 @@ The envelope is a *specification and a detectable comparison*, not by itself a p
 
 ### 6.2 Composition evidence at the lowest useful object
 
-The program shall be able to identify the deployable or decision-bearing unit that is evaluated and later authorized. It should inherit valid upstream SBOM, ML-BOM, provenance, signature, or vendor evidence when available.
+The program shall be able to identify the deployable or decision-bearing unit that is evaluated and later authorized. It should inherit valid upstream SBOM (software bill of materials), ML-BOM (the same for models, datasets and their lineage), provenance, signature, or vendor evidence when available.
 
 This standard does not require a manual, program-wide living BOM for every experiment. Composition depth shall increase when the candidate is materially modified, broadly reused, distributed, granted privileged or autonomous action, exposed to sensitive data, or used to generate accepted findings.
 
@@ -206,21 +211,32 @@ Before the decision-bearing run, record:
 - the actual consumer and decision;
 - the candidate identity and comparison set;
 - target strata and what each stratum proves;
-- ground truth and how it is protected from the candidate;
+- ground truth and how it is protected from the candidate, including from training-data contamination: public deliberately vulnerable applications and capture-the-flag material are likely in model training data, so a recall claim needs held-out or newly built fixtures;
+- for chains, seeded multi-step paths with an answer key for each step;
 - accepted output schema and abstention behavior;
 - pass, fail, and stop thresholds;
 - positive and negative cases;
-- repeatability or replay rule;
+- repeatability or replay rule, including how many runs, and whether a result is reported as found in *k of n* runs or as best of *n*;
 - treatment of false positives, false negatives, unsupported claims, and unsafe actions; and
 - how uncertainty and untested coverage will be reported.
 
 ### 7.2 Measures
 
-Measure the failure modes that matter to the mission. For a discovery capability this will normally include precision, recall or another missed-coverage measure, false-positive rate, verification depth, reproducibility, unsafe-action rate, abstention, cost, and operator burden.
+Measure the failure modes that matter to the mission. For a discovery capability this will normally include the measures below. Each needs a stated denominator and unit; the draft annex §90.5 gives definitions.
 
-No single score shall decide alone. The decision record shall preserve material contradictions—for example, high discovery with unsafe action reach, low false-positive rate with poor recall, or strong synthetic performance with an unmeasured real-environment gap.
+- **Precision**, reported per triage band (the higher of the tool's and the human triage severity) and separately for chains and single findings, so a strong aggregate cannot hide weak results at the top.
+- **False discovery rate** (1 − precision). Penetration testing rarely has a defined set of true negatives, so a classical false-positive rate is usually undefined and is not used here.
+- **Recall** or another missed-coverage estimate, against a living answer key.
+- **Verification depth** reached by accepted findings.
+- **Validator minutes per accepted finding**, and **yield** (accepted findings ÷ candidates).
+- **Severity inflation**: how often the tool's severity is higher than the validated severity.
+- **Duplicate rate**: candidates that merge into another.
+- **Run-to-run stability**: how much the candidate set changes across repeated identical runs.
+- **Reproducibility, unsafe-action rate, abstention, and cost.**
 
-Keep synthetic, deliberately vulnerable, and authorized nonproduction results **separate**. A synthetic suite can show whether cases are found under known conditions; it may be a poor predictor of a different application's architecture, data or controls. A nonproduction proof adds realism but only within that environment's actual authority and observable truth. Do not blend them into one flattering headline. Precision, recall or false-positive/false-negative rates require a living, independent answer key and a stated denominator; where the answer key is incomplete or a detector fails its self-test, report `unknown` rather than a manufactured zero. Report abstentions and untested cases alongside successes.
+No single score shall decide alone. The decision record shall preserve material contradictions—for example, high discovery with unsafe action reach, low false discovery rate with poor recall, or strong synthetic performance with an unmeasured real-environment gap.
+
+Keep synthetic, deliberately vulnerable, and authorized nonproduction results **separate**. A synthetic suite can show whether cases are found under known conditions; it may be a poor predictor of a different application's architecture, data or controls. A nonproduction proof adds realism but only within that environment's actual authority and observable truth. Do not blend them into one flattering headline. Precision, false discovery rate, recall and miss rates require a living, independent answer key and a stated denominator; where the answer key is incomplete or a detector fails its self-test, report `unknown` rather than a manufactured zero. Report abstentions and untested cases alongside successes.
 
 For a comparison or adopt-versus-build decision, fix the candidates, target strata, primary metric, safety stop, cost model and decision margin *before* reading the results. No single architecture—one agent, planner/executor, specialist agents or a deterministic pipeline—wins by name. A specific score formula and adapter limits are a local bench design; a public adopter must specify and verify its own measurement contract rather than inherit numbers without the corresponding oracle.
 
@@ -232,7 +248,7 @@ An evaluation may say “not observed” or “insufficient evidence.” It shal
 
 ### 7.4 A bounded first run (fictional)
 
-A team wants to know whether a tool can identify a known authorization weakness without acting outside scope. It records the candidate version and configured model/tool stack, chooses a local deliberately vulnerable API fixture with an independent answer key, and locks one positive case, one negative case, a target-origin prompt-injection attempt, a prohibited network destination and a stop condition. In State A, the operator proves the egress detector detects a known-bad attempt before relying on it, then runs the candidate under observation. The reviewer compares raw requests and target state with the answer key, records false claims and missed cases, and signs a bounded **continue/change/stop** disposition. Nothing about that run permits connecting the tool to an organizational application or counting its output as an engagement finding. A later State-B nonproduction proof and Delivery Authorization are separate decisions.
+A team wants to know whether a tool can identify a known authorization weakness without acting outside scope. It records the candidate version and configured model/tool stack, chooses a newly built, held-out deliberately vulnerable API fixture with an independent answer key, and locks one positive case, one negative case, a target-origin prompt-injection attempt, a prohibited network destination and a stop condition. In State A, the operator proves the egress detector detects a known-bad attempt before relying on it, then runs the candidate under observation. The reviewer compares raw requests and target state with the answer key, records false claims and missed cases, and signs a bounded **continue/change/stop** disposition. Nothing about that run permits connecting the tool to an organizational application or counting its output as an engagement finding. A later State-B nonproduction proof and Delivery Authorization are separate decisions.
 
 ## 8. Adopt, adapt, build, or stop
 
@@ -259,13 +275,13 @@ Delivery Authorization is the one framework decision that transfers a findings-p
 
 The record shall identify:
 
-1. the capability and exact operating posture authorized;
+1. the capability and exact operating posture authorized, including its configuration digest;
 2. the testing path and permitted engagement classes;
 3. the autonomy tier under §90.1;
 4. the operating procedure under §90.2;
 5. the approving role and its local authority basis;
 6. the evidence and residual risks relied upon;
-7. required operators, validation, monitoring, data, and environment controls;
+7. required operators, validation, monitoring, data, and environment controls, and the expected validation load at production volume (candidates per engagement and validator hours);
 8. prohibited uses and additional-authorization triggers;
 9. material-change, review, expiry, suspension, and revocation conditions; and
 10. the rollback or containment path.
@@ -334,3 +350,7 @@ Evidence that this standard is operating may include:
 - measured R&D lead time and governance burden without hiding safety failures.
 
 Document presence establishes only that the control is defined. It does not establish that a capability is safe, effective, authorized, or operating.
+
+## Version notes
+
+- **2026-11 revision.** After independent review: a pointer to the worked example and the [glossary](90-0-glossary.md); pre-registration, relying consumer, answer key, denominator and verification depth defined; the implementation-specific lab paragraph replaced with a technology-neutral one; measures defined, with precision by severity band, false discovery rate, validator minutes per accepted finding, yield, severity inflation, duplicate rate and run-to-run stability; training-data contamination and chain answer keys added to the evaluation contract; expected validation load added to Delivery Authorization. Section 6.0 keeps its number so existing references stay stable.

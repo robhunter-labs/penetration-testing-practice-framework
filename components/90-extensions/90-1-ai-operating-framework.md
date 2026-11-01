@@ -2,6 +2,25 @@
 
 > Framework component for adaptation. Publication does not authorize testing, certify conformance, or establish that an organization has adopted this practice.
 
+## At a glance
+
+Terms used here are defined in the [Section 90 glossary](90-0-glossary.md).
+
+Ask one question first:
+
+> **Can this capability generate, change, validate, prioritize, or substantively support a finding?**
+
+- **Yes:** it is on the testing path and enters the authority, tier, validation, evidence, and operating-control cascade.
+- **No:** it is on the support path and remains governed by applicable development, data, access, records, and acceptable-use controls.
+
+Then govern three independent axes:
+
+1. **Output trust:** Is the finding supported and reproducible?
+2. **Action containment:** What may the capability do, to what, with which identity and limits?
+3. **Agent integrity:** Is the running system still the system that was evaluated, and can hostile input redirect it?
+
+A passing answer on one axis cannot compensate for failure on another.
+
 ## Reader headlines
 
 **Primary audience:** Penetration testers, engagement leads, AI-tool owners, technical reviewers, and program leaders accountable for findings produced with AI-assisted or agentic capability.
@@ -10,7 +29,7 @@
 
 **Intended outcome:** Every AI-enabled engagement has a declared path, autonomy tier, operating posture, validation rule, accountable human, evidence trail, and correction route proportionate to the capability's real agency and consequence.
 
-**This document defines:** The testing-versus-support seam, execution-principal model, three governance axes, autonomy tiers, methodology transparency, finding validation, operating authorization, guardrails, evidence, incident handling, and the handoff from capability readiness.
+**This document defines:** The testing-versus-support seam, three governance axes, autonomy tiers, methodology transparency, finding validation (including severity, attack chains and validation capacity), operating authorization, guardrails, evidence, incident handling, and the handoff from capability readiness.
 
 ## Document administration
 
@@ -35,23 +54,6 @@ This document governs AI used to perform or substantively shape penetration test
 
 An assessment of an AI system as the *target* may also use an agentic testing tool. The target methodology and this tool-operating framework then both apply; neither replaces the other.
 
-## At a glance
-
-Ask one question first:
-
-> **Can this capability generate, change, validate, prioritize, or substantively support a finding?**
-
-- **Yes:** it is on the testing path and enters the authority, tier, validation, evidence, and operating-control cascade.
-- **No:** it is on the support path and remains governed by applicable development, data, access, records, and acceptable-use controls.
-
-Then govern three independent axes:
-
-1. **Output trust:** Is the finding supported and reproducible?
-2. **Action containment:** What may the capability do, to what, with which identity and limits?
-3. **Agent integrity:** Is the running system still the system that was evaluated, and can hostile input redirect it?
-
-A passing answer on one axis cannot compensate for failure on another.
-
 ## 1. Purpose and scope
 
 This framework applies when AI participates in authorized penetration-testing execution or in the decision-bearing finding pipeline.
@@ -73,7 +75,10 @@ It does not authorize:
 |---|---|
 | **AI-assisted testing** | A human-directed testing activity in which AI recommends or produces bounded material for human use. |
 | **Agentic testing** | Testing in which software plans or executes a multi-step action loop with delegated tools or authority. |
-| **Execution principal** | A workload acting through identities, credentials, tools, data paths, and permissions; governed by what it can do, not by its conversational interface. |
+| **Execution principal** | The capability treated as a non-human workload identity: it acts through identities, credentials, tools, data paths, and permissions, and is governed by what it can do, not by its conversational interface (§10.1). |
+| **Posture** | One specific configuration and deployment of the composite system: components and versions, where it runs, what it may reach, which identities it holds, and how it is bounded. |
+| **Candidate** | A proposed finding, including the tool's own severity, before a qualified human has decided it. |
+| **Full validation** | A qualified human establishes affected scope, behavior and impact from evidence they examined directly, whether from their own reproduction or from an independent replay (see the [glossary](90-0-glossary.md)). The human decides; reviewing the tool's narrative is not full validation. |
 | **Testing path** | AI use that can affect finding substance or the evidence relied upon for a finding. |
 | **Support path** | AI use that assists administration or workflow without affecting finding substance. |
 | **Finding substance** | The vulnerability claim, affected scope, exploitability, impact, severity, evidence, or decision to communicate the finding. |
@@ -144,6 +149,8 @@ Tier measures action autonomy, not the authority to decide what is published. A 
 | **2 — Agent-led** | The system performs substantial multi-step testing while a human supervises and validates | Authorizes run, monitors, validates findings, handles judgment and communication | Delivery Authorization; per-engagement approval; calibrated validation; coverage assurance; stronger containment/integrity controls |
 | **3 — High-autonomy** | The system performs most of the testing loop with limited synchronous direction | Approves boundaries and remains responsible for every finding and stop decision | Tier-2 controls plus explicit high-autonomy decision, stronger monitoring, independent review, and additional local authority as consequence requires |
 
+Words such as "substantial" and "most" are judged against observable behavior. Record, for the authorized posture: how often a human must approve (each action, each phase, or each run); whether the system may write and run its own code; whether it may exploit or act after exploitation; whether it may start sub-agents or run in parallel; and the longest period it may run without a human checkpoint. Those answers, not the product description, place the tier.
+
 Classification shall use the highest material behavior available in the authorized posture, not the behavior demonstrated in a friendly example. A material autonomy increase requires reclassification and may require return to readiness evaluation.
 
 Record the tier actually authorized and used **per engagement**. One capability can run in different modes across engagements; its general product label is not the engagement's classification. An adopter's model-risk or enterprise AI risk rank is a separate classification and must not be inferred from this autonomy tier.
@@ -173,17 +180,19 @@ For a targeted security-control assessment, assess conformance against the decla
 
 ### 8.1 Fixed principle
 
-A qualified human shall decide whether every finding is accepted for delivery. AI may assist the work; it shall not be the accountable publication authority.
+A qualified human shall decide whether every finding is accepted for delivery. AI may assist the work; it shall not be the accountable publication authority. Human decision is not the same as full manual reproduction of every intermediate tool suggestion; it is the accountable judgment that the evidence supports the claim.
 
 A finding shall demonstrate affected scope, reproducible evidence, and security impact appropriate to the methodology. A label, vulnerability identifier, similarity match, or model assertion alone is not proof of exploitability.
 
 ### 8.2 Minimum validation rules
 
+- The tool's severity is a claim. A qualified human shall derive severity from the evidence at triage, and any change from the tool's severity shall be recorded with its reason. Downgrades are tracked as a measure (§90.5).
+- Consequence for validation and sampling eligibility is the **triage band**: the higher of the tool's proposed severity and the human triage severity, until full validation settles it. A candidate that forms a step in an attack chain takes the chain's consequence (§8.5).
 - Critical or otherwise highest-consequence findings shall receive full qualified-human validation.
 - The first use of a material capability posture against a new target class shall receive full validation.
 - Disputed, ambiguous, integrity-affected, special-scope, or safety-relevant findings shall receive full validation.
 - Findings from a methodologically non-conformant or opaque posture shall receive full validation.
-- A local sampling rule may apply only after a calibrating body of full validation supports it and §90.4 binds the rate, scope, owner, and rollback trigger.
+- A local sampling rule may apply only after a calibrating body of full validation supports it and §90.4 binds the rate, scope, owner, and rollback trigger. Calibration and sampling are done per stratum: posture × target class × vulnerability class × triage band (the higher of the tool's severity and the human triage severity). A calibrating body is a recorded, randomly selected set of fully validated candidates from one stratum, large enough to bound the failure rate at the level the adopter declares (§90.5 gives a method). A failure is any candidate where the reduced-depth decision on whether it is real, or on its severity band, would differ from full validation. What is sampled is direct reproduction of eligible candidates, chosen at random within the stratum; the human decision on every delivered finding is never sampled.
 - Sampling never transfers accountability to the system and never waives evidence or peer-review requirements.
 
 Finding validation and review of the **capability itself** are different jobs. Per-engagement validation asks whether a finding is real and supported. Independent or risk-based capability review asks whether the composite system, method, controls, and performance remain sound. An adopter shall bind both jobs to its own review authorities and cadence; a good finding does not prove the tool safe, and a reviewed tool does not make every finding correct.
@@ -192,19 +201,30 @@ Finding validation and review of the **capability itself** are different jobs. P
 
 Finding validation asks whether reported findings are real. Coverage assurance asks what the capability missed.
 
-The program shall use proportionate parallel testing, seeded cases, ground-truth benchmarks, historical regression sets, or another independent method to evaluate false negatives. Reported findings and coverage evidence shall not be blended into a single score that hides a material weakness.
+The program shall use proportionate parallel testing, seeded cases, ground-truth benchmarks, historical regression sets, or another independent method to evaluate false negatives. Where two independent methods are run on the same scope, the overlap between what each found supports an estimate of what both missed (a capture–recapture estimate, §90.5 §3); state its assumptions. A missing or dead answer key is reported as `unknown`, not as zero misses. Reported findings and coverage evidence shall not be blended into a single score that hides a material weakness.
 
 ### 8.4 Finding states
 
 At minimum, records shall distinguish:
 
 1. machine-proposed or candidate;
-2. human-validated or rejected;
-3. accepted for engagement delivery;
-4. published or otherwise communicated; and
-5. corrected, withdrawn, or superseded.
+2. machine-rejected or suppressed by the capability (kept, not deleted, so misses stay visible);
+3. merged into another candidate, or marked duplicate, with the link preserved;
+4. not reviewed: no capacity (with the reason and the candidate's age);
+5. human-validated or rejected;
+6. accepted for engagement delivery;
+7. published or otherwise communicated; and
+8. corrected, withdrawn, or superseded.
+
+Each candidate also carries the evidence it reached, using the §20.13 vocabulary, recorded as two parts: **repeatability** (*Observed*, then *Reproduced*, where independent replay counts as reproduction) and **impact** (*Demonstrated impact* or not). Anything beyond that is *Possible, not tested*. The claim shall not exceed what both parts support. State 4 is a recorded state, not a silent drop.
 
 A clean-looking final report shall not erase the decision and correction trail.
+
+### 8.5 Attack chains
+
+When a capability proposes a chain, record it as a chain, not only as separate candidates. For each step, record the action, the evidence, and its repeatability and impact. The weakest proven step is the step lowest on either part; the chain's claimed impact shall not exceed it, and an unproven step makes the rest of the chain *Possible, not tested*. Merging duplicates shall not remove a step that a chain depends on.
+
+Proving a chain in a live environment can mean re-running exploitation. That is testing, inside the engagement's authority, window and safety limits; a chain that needs an action outside them stays a hypothesis for owner triage. A system becoming relevant to a chain's impact does not bring it into scope.
 
 ## 9. Authorization and operating checks
 
@@ -231,6 +251,7 @@ The engagement authorization shall declare:
 - targets, exclusions, accounts, data, tools, techniques, and window;
 - permitted and prohibited actions;
 - validating human and engagement lead;
+- expected candidate volume, declared validator hours, and the backlog threshold for §9.4;
 - validation and peer-review plan;
 - transparency or communication requirement;
 - deconfliction, stop, and incident contacts; and
@@ -242,11 +263,21 @@ Tool authorization shall not expand engagement scope, and engagement authorizati
 
 Material changes shall be evaluated against §90.3. A change may be handled at the affected component when it does not alter shared behavior or risk. Program-wide reapproval is not required for an inconsequential local change, but a version label alone shall not conceal a changed model, tool, authority, data path, or decision behavior.
 
+### 9.4 Validation capacity and backpressure
+
+A capability can produce candidates faster than qualified people can validate them. Before a findings-producing run, the engagement shall declare the expected candidate volume (from evaluation or prior runs, or `unknown`) and the validator hours available.
+
+- When unvalidated candidates exceed the declared backlog threshold, the run shall be slowed, paused, or narrowed. Validation shall not be thinned to keep pace.
+- An unvalidated candidate at the highest consequence shall not wait beyond a locally declared maximum age; it is escalated through the engagement's real-time route.
+- Candidates left unvalidated at the end of an engagement are recorded as such, with the reason, and are not delivered as findings or counted as coverage.
+
+Capacity figures and maximum ages are local levers (§90.4), not defaults set by this framework.
+
 ## 10. Operating guardrails
 
 ### 10.1 Least agency and action safety
 
-The system shall receive only the identities, tools, permissions, network paths, data, persistence, time, and cost needed for the authorized objective. Irreversible, destructive, production-touching, third-party, or high-impact actions require explicit human pre-authorization where the local authority model permits them at all.
+Govern the capability as an execution principal. The system shall receive only the identities, tools, permissions, network paths, data, persistence, time, and cost needed for the authorized objective. Irreversible, destructive, production-touching, third-party, or high-impact actions require explicit human pre-authorization where the local authority model permits them at all.
 
 ### 10.2 Scope enforcement
 
@@ -260,7 +291,9 @@ Network destinations and telemetry shall be declared. An uncontrolled egress pat
 
 ### 10.4 Runtime integrity
 
-The program should use proportionate signatures, hashes, pinned manifests, isolated execution, tool allowlists, protected policies, prompt-injection defenses, output validation, external logs, and integrity canaries. Controls shall cover the decision-bearing composite system, not only the base model.
+The program should use proportionate signatures, hashes, pinned manifests, isolated execution, tool allowlists, protected policies, output validation, external logs, and integrity canaries. No current in-model defense reliably stops prompt injection, so design controls that bound impact assuming injection succeeds: enforce limits outside the model, at identity, network, tool and action boundaries. Controls shall cover the decision-bearing composite system, not only the base model.
+
+Pin model snapshots where the provider allows it. Where a hosted provider can change the model behind the same endpoint name, treat that endpoint as a source of uncontrolled change: record the identifier the provider reports for each run and treat an unexplained behavior shift as a material-change trigger.
 
 ### 10.5 Evidence and records
 
@@ -284,9 +317,9 @@ The engagement result may count as program output when it satisfies the same aut
 
 Individual or team credit shall reflect accountable work and shall not reward unvalidated volume. An adopter may use effort, responsibility, complexity, or another locally approved model. Any weight or sampling parameter belongs in §90.4, not in this durable framework.
 
-For contractor-delivered work, performance credit and payment are different decisions. Document the actual testing, validation, and delivery responsibilities, and apply the governing contract or statement of work. Do not treat an agent-led run as a full manual engagement for invoicing solely because the final report looks similar.
+**For adopters that use contractors:** performance credit and payment are different decisions. Document the actual testing, validation, and delivery responsibilities, and apply the governing contract or statement of work. Do not treat an agent-led run as a full manual engagement for invoicing solely because the final report looks similar.
 
-Measures should include quality, coverage, correction, operator burden, time returned, cost, unsafe or refused actions, and the work AI did not perform. The program shall not use finding count, engagement count, or tool utilization alone as proof of value.
+Measures should include quality, coverage, correction, operator burden, time returned, cost, unsafe or refused actions, and the work AI did not perform. Under volume, also measure the validation queue: its depth, the age of unvalidated candidates by triage band, and time to validate by triage band. The draft annex §90.5 defines these measures with their denominators. The program shall not use finding count, engagement count, or tool utilization alone as proof of value.
 
 ## 12. Incident response and correction
 
@@ -325,7 +358,7 @@ Before placing a tailored version In Force, the adopter shall bind:
 | Authority | Which program and engagement authorities permit AI-assisted or agentic testing? |
 | Enterprise interfaces | Which AI, model-risk, security, privacy, legal, data, procurement, records, and provider systems own related decisions? |
 | Tier treatment | What additional review, monitoring, or authority applies to each autonomy tier? |
-| Validation | What counts as qualified validation, critical/highest consequence, first-of-kind, and calibrating evidence? |
+| Validation | What counts as qualified validation, critical/highest consequence, first-of-kind, and calibrating evidence? What validation capacity and maximum age apply (§9.4)? |
 | Coverage assurance | Which independent methods and cadence reveal misses? |
 | Tool custody | Where do approved procedures, manifests, authorizations, exceptions, and retirement records live? |
 | Incident and correction | Who can stop use, revoke access, investigate, correct findings, and notify relying parties? |
@@ -349,3 +382,7 @@ Evidence that this framework is operating may include:
 - independent review proportionate to autonomy and consequence.
 
 Document presence or a successful demonstration does not establish operating effectiveness, comprehensive threat coverage, or safe deployment.
+
+## Version notes
+
+- **2026-11 revision.** After independent review: "At a glance" moved to the top; "posture", "candidate" and "full validation" defined, with a shared [glossary](90-0-glossary.md); tool severity treated as a claim a person re-derives; machine-rejected, merged and duplicate states added, with evidence states shared with §20.13; attack-chain records (§8.5) and validation capacity and backpressure (§9.4) added; sampling object stated once; observable tier criteria, hosted-model drift and injection-assumed containment added. No floor was weakened.
