@@ -8,7 +8,7 @@ Two definitions used throughout. A *fixture* is a deliberately designated test t
 
 **Authorization comes first, and this guide cannot grant it.** Rooting or jailbreaking a device, trusting an interception certificate, bypassing a client-side control, and reaching a backend are test techniques that belong only to a device you own or are assigned and to a target inside a written scope and rules of engagement (§10.1/10.2/10.3). A ready rig is not permission to test anything, and — per the mobile method (§20.4) — a ready rig is not evidence that any application has been tested.
 
-**Where this sits.** §20.4 is the mobile *method* (what to test and how to judge it); this document is the *environment* it runs on. §40.3 (workstation and field kit) and §40.10 (managed test rig) own the host and rig baseline; this guide covers the mobile-device-specific layer that sits on top of them. Resolve the exact public titles and links of adjacent documents at integration rather than assuming any candidate is released.
+**Where this sits.** §20.4 is the mobile *method* (what to test and how to judge it); this document is the *environment* it runs on. §40.3 (workstation and field kit) and §40.10 (managed test rig) own the host and rig baseline; this guide covers the mobile-device-specific layer that sits on top of them.
 
 ---
 
@@ -204,7 +204,7 @@ Record the *class* of problem and the first checks, not a one-environment fix:
 - **§10.1/10.2/10.3** bind a real engagement's scope and rules. This guide cannot authorize device modification, interception, backend access, or evidence collection outside them.
 - **§90.2 / §90.3** govern tool-specific operating records and research/evaluation posture; a commercial platform or a new tool is not silently satisfied by this environment baseline.
 
-Resolve the public titles and links of these documents at integration rather than assuming a candidate is released.
+The [component register](../../COMPONENTS.md) gives each document's current title and path.
 
 ---
 

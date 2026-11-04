@@ -36,7 +36,7 @@ The register is the framework's front door: enter through a problem, find the co
 |---|---|---|---|---|---|
 | 00.1 | Document Hierarchy & Control | Guide | [components/00-start-here/00-1-document-control.md](components/00-start-here/00-1-document-control.md) | Keep one current, traceable version of each standing document, and decide what belongs under control. | Published |
 | 00.2 | Framework Component Register | Register | [COMPONENTS.md](COMPONENTS.md) | This document: find any component, its job, type, and status. | Published |
-| 00.3 | Authority to Operate | Guide | [components/00-start-here/00-3-authority-to-operate.md](components/00-start-here/00-3-authority-to-operate.md) | Define the authority a testing service needs, and what stays the adopter's to grant. | Published |
+| 00.3 | Authority to Test | Guide | [components/00-start-here/00-3-authority-to-operate.md](components/00-start-here/00-3-authority-to-operate.md) | Define the authority a testing service needs, and what stays the adopter's to grant. | Published |
 | 00.4 | Innovation & Capability Charter | Guide | [components/00-start-here/00-4-capability-charter.md](components/00-start-here/00-4-capability-charter.md) | Name the capabilities a practice commits to building and maintaining. | Published |
 
 ### Engagement setup
@@ -69,7 +69,7 @@ The register is the framework's front door: enter through a problem, find the co
 | 20.13 | Method — AI/LLM | Method | [components/20-methods/20-13-ai-llm.md](components/20-methods/20-13-ai-llm.md) | Test an AI/LLM system as a target (AI-as-target extension). | Published |
 | 20.14 | Tactical Testing Checklists | Catalogue entry | [components/20-methods/20-14-tactical-checklists-catalogue.md](components/20-methods/20-14-tactical-checklists-catalogue.md) | **Catalogue-only — no workbook distributed.** Explains the role of a tactical coverage workbook and directs adopters to maintain their own. | Published |
 | 20.15 | Threat-Informed Testing & CTI | Guide | [components/20-methods/20-15-threat-informed.md](components/20-methods/20-15-threat-informed.md) | Shape test design with threat intelligence without claiming a running CTI engine. | Published |
-| 20.16 | Threat Modeling | Guide | [components/20-methods/20-16-threat-modeling.md](components/20-methods/20-16-threat-modeling.md) | Build a threat model that feeds the engagement method. | Published |
+| 20.16 | Threat Modeling | Guide | [components/20-methods/20-16-threat-modeling.md](components/20-methods/20-16-threat-modeling.md) | Build a threat model that feeds the engagement method. | Published (Draft review) |
 
 ### Evidence & reporting
 
@@ -103,7 +103,7 @@ The register is the framework's front door: enter through a problem, find the co
 |---|---|---|---|---|---|
 | 50.1 | Coordinated Vulnerability Disclosure | Guide | [components/50-support/50-1-coordinated-disclosure.md](components/50-support/50-1-coordinated-disclosure.md) | Run a disclosure process with clear boundaries. | Published |
 | 50.2 | Quick Reaction Force — Urgent Response | Guide | [components/50-support/50-2-urgent-response.md](components/50-support/50-2-urgent-response.md) | Route an urgent retest or support surge without claiming a standing QRF. | Published |
-| 50.3 | Penetration Testing Consulting Guidebook | Guide | [components/50-support/50-3-consulting-guidebook.md](components/50-support/50-3-consulting-guidebook.md) (repository root) | Give post-test technical questions, retest, closure, escalation, and rotation a reliable home. | Published |
+| 50.3 | Penetration Testing Consulting Guidebook | Guide | [components/50-support/50-3-consulting-guidebook.md](components/50-support/50-3-consulting-guidebook.md) | Give post-test technical questions, retest, closure, escalation, and rotation a reliable home. | Published |
 | 50.4 | Closing Meeting — Deck | Deck (PPTX + PDF) | [downloads/50-4-closing-meeting-deck.pptx](downloads/50-4-closing-meeting-deck.pptx) (+ `.pdf`) | A closing-meeting template deck, with a PDF equivalent. | Published |
 | 50.5 | Audit & External Request Handling | Guide | [components/50-support/50-5-audit-handling.md](components/50-support/50-5-audit-handling.md) | Handle an audit or external information request safely. | Published |
 | 50.6 | Attestation & Audit Summary — Template | Template | [components/50-support/50-6-attestation-summary.md](components/50-support/50-6-attestation-summary.md) | Summarize what testing occurred for an assurance reader. | Published |
@@ -132,15 +132,15 @@ The register is the framework's front door: enter through a problem, find the co
 
 ## Count and denominator
 
-58 components — **4** start-here & authority · **6** engagement setup · **16** technical methods · **5** evidence & reporting · **11** operations & people · **8** support & assurance · **2** learning & stewardship · **6** versioned extensions. (4 + 6 + 16 + 5 + 11 + 8 + 2 + 6 = 58.) All 58 are published; §90.5 is a draft offered for comment. All 58 have a public component here; §20.14 is intentionally catalogue-only.
+58 components: **4** start-here & authority · **6** engagement setup · **16** technical methods · **5** evidence & reporting · **11** operations & people · **8** support & assurance · **2** learning & stewardship · **6** versioned extensions. (4 + 6 + 16 + 5 + 11 + 8 + 2 + 6 = 58.) All 58 are published. Three carry draft status: §10.5 is a draft template, §20.16 is open for review, and §90.5 is a draft offered for comment. §20.14 is intentionally catalog-only: its page is public, but no workbook is distributed.
 
 ## Native downloads
 
 | No. | File(s) | Note |
 |---|---|---|
 | 10.4 | [downloads/10-4-scoping-requirements-form.xlsx](downloads/10-4-scoping-requirements-form.xlsx), [downloads/10-4-scoping-requirements-example.xlsx](downloads/10-4-scoping-requirements-example.xlsx) | Blank fillable form + worked synthetic example. |
-| 50.4 | [downloads/50-4-closing-meeting-deck.pptx](downloads/50-4-closing-meeting-deck.pptx), [downloads/50-4-closing-meeting-deck.pdf](downloads/50-4-closing-meeting-deck.pdf) | Deck + PDF equivalent for readers without PowerPoint. |
-| 40.11 | [downloads/40-11-consulting-training-deck.pptx](downloads/40-11-consulting-training-deck.pptx), [downloads/40-11-consulting-training-deck.pdf](downloads/40-11-consulting-training-deck.pdf) | Deck + PDF equivalent. |
+| 50.4 | [downloads/50-4-closing-meeting-deck.pptx](downloads/50-4-closing-meeting-deck.pptx), [downloads/50-4-closing-meeting-deck.pdf](downloads/50-4-closing-meeting-deck.pdf), [downloads/50-4-closing-meeting-deck-transcript.md](downloads/50-4-closing-meeting-deck-transcript.md) | Deck + PDF equivalent for readers without PowerPoint, plus a text transcript of the slides and presenter notes. |
+| 40.11 | [downloads/40-11-consulting-training-deck.pptx](downloads/40-11-consulting-training-deck.pptx), [downloads/40-11-consulting-training-deck.pdf](downloads/40-11-consulting-training-deck.pdf), [downloads/40-11-consulting-training-deck-transcript.md](downloads/40-11-consulting-training-deck-transcript.md) | Deck + PDF equivalent, plus a text transcript of the slides and presenter notes. |
 | 40.5 | [downloads/40-5-raci-matrix.xlsx](downloads/40-5-raci-matrix.xlsx) | Editable decision-rights matrix. |
 | 10.6 | [diagrams/10-6-engagement-flow.svg](diagrams/10-6-engagement-flow.svg) | SVG diagram (text, accessible); must agree with §20.1. |
 | 20.14 | *(none — catalogue-only)* | No workbook is distributed; adopters maintain their own checklists. |

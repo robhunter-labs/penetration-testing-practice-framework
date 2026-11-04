@@ -2,7 +2,7 @@
 
 > Framework component for adaptation. Publication does not authorize testing, certify conformance, or establish that an organization has adopted this practice.
 
-This is an organization-neutral framework component. It is not an accreditation bar, permission to test, or evidence that any adopter operates these practices. Domain guides and templates named here are not represented as public until released and linked from an exact public index.
+This is an organization-neutral framework component. It is not an accreditation bar, permission to test, or evidence that any adopter operates these practices. The [component register](../../COMPONENTS.md) lists which domain guides and templates are published and their status.
 
 ## What this component helps a team do
 
@@ -16,7 +16,7 @@ Use one coherent method to connect a permitted test to a defensible result witho
 
 The answers should be proportional to the engagement. A small, bounded retest need not produce a large design dossier. A complex system with several trust boundaries needs more than a checklist and a broad asset name.
 
-This component is the umbrella. It does not replace the web, API, network, database, mobile, physical, secure-code, AI-target, or other tactical methods; the public library should link each available guide by version and mark missing domains plainly. It does not own vulnerability-management policy, incident response, legal authorization, risk acceptance, or another team's system of record.
+This component is the umbrella. It does not replace the web, API, network, database, mobile, physical, secure-code, AI-target, or other tactical methods; the [component register](../../COMPONENTS.md) links each published domain method and shows its status. It does not own vulnerability-management policy, incident response, legal authorization, risk acceptance, or another team's system of record.
 
 ## Choose the entry that matches your job
 
@@ -130,9 +130,9 @@ The domain methods provide the technical depth. Existing industry material shoul
 
 The public index should make status obvious. A released guide is not the same as a private draft; an illustrative template is not a requirement; an old tool recipe should not silently remain current. Report errors and update the smallest affected component, with a visible version note when a reader's decision would change.
 
-## Next extension: AI-infused testing
+## AI extensions
 
-The baseline above describes a human-led practice. It applies whether a tester uses manual tools, scripts, scanners, or no AI at all. Two separate future-facing questions belong beside it:
+The baseline above describes a human-led practice. It applies whether a tester uses manual tools, scripts, scanners, or no AI at all. Two separate questions belong beside it, each answered by its own versioned extension (§20.13 for AI as a target; §90.1–§90.5 for AI as a testing capability):
 
 1. **AI as a target:** what changes when the system under test uses models, retrieval, agent tools, generated content, or automated decisions? A target-specific method must address those attack surfaces without assuming every engagement contains them.
 2. **AI as a testing capability:** what may an assisted or agentic tool read, propose, execute, capture, and send? What local authorization, isolation, monitoring, evidence, data handling, validation, and stop controls make that use defensible?
