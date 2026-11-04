@@ -128,7 +128,7 @@ Mark each applicable row **PASS**, **LIMITED**, **NOT RUN**, or **FAIL**, with t
 - **§40.1** uses this profile and its observed checks to onboard a tester; **§40.2** closes the tester's grants, equipment, and duties at exit.
 - **§10.1/10.2/10.3** bind a real engagement's scope and rules. This workstation guide cannot authorize testing, traffic routes, field access, or evidence collection outside them.
 - **§20.9/20.10/20.11** own wireless, network-access-control, and physical testing methods and specialized competency.
-- **§30.1/30.2/30.3/30.4/30.5** govern archive, evidence storage, credentials, testing operational security, and reporting in their respective jobs. Resolve their public titles and links at integration rather than assuming a candidate is released.
+- **§30.1/30.2/30.3/30.4/30.5** govern archive, evidence storage, credentials, testing operational security, and reporting in their respective jobs.
 - **§90.3** governs research/evaluation posture; **§90.2** is the tool-specific operating record. Neither is silently satisfied by a workstation baseline.
 
 This guide retains a distinctive job: a host/guest/network/evidence control model plus portable equipment custody and an inspectable acceptance record. It deliberately does not prescribe a specific hardware architecture, a dated product purchase list, an exact regulatory crosswalk, legal assertions, or product-version claims as universal instructions. An adopter must fill the records against a real or synthetic profile and check the adjacent documents, technical and currentness claims, rights and attribution, and accessibility before relying on it. No adoption, certification, or production use is claimed.

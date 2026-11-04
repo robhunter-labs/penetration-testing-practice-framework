@@ -10,7 +10,7 @@ Threat modeling asks where a target's *design* may fail before the test is steer
 
 This is threat modeling **as a penetration-testing method**. It can use an existing architecture or secure-design model, but does not replace the organization that owns product design, the software-development lifecycle, or its risk decisions. It does not authorize a new test. It does not establish a vulnerability until the test and human review support that conclusion.
 
-Use the common framework [§20.1](20-1-method-framework.md) for the full engagement and finding decision. Use [§10.3](../10-engagement/10-3-scoping-map.md) to carry model-derived test needs into scope and rules of engagement. These are planned integration links until the full public set is assembled and checked.
+Use the common framework [§20.1](20-1-method-framework.md) for the full engagement and finding decision. Use [§10.3](../10-engagement/10-3-scoping-map.md) to carry model-derived test needs into scope and rules of engagement.
 
 ## When to use it—and how much
 
@@ -106,4 +106,4 @@ An adopter binds its own authorization, depth triggers, reviewer roles, evidence
 
 ## Public-release limitations
 
-This is a draft, not a released standard or proof that any organization operates this method. Its worked example is synthetic. Catalog names and mappings require a separate current-primary-source check before use. Framework links, reader use, accessibility, and rights review remain open.
+This public draft is offered for review and adaptation, not as a certification standard or proof that any organization operates this method. Its worked example is synthetic. Catalog names and mappings require a separate current-primary-source check before use. Review of framework links, reader use, accessibility, and rights remains open.

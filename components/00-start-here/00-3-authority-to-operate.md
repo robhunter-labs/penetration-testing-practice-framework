@@ -95,7 +95,7 @@ Keep the program authority, engagement authorization, scope changes, additional 
 
 ## Two quick cases
 
-**In scope, but not yet permitted:** The agreed API target exposes an adjacent production tenant. The tester can reach it using the same account. The tenant is absent from the signed target list. The tester records the discovery and seeks a scope decision; access does not extend authority.
+**Reachable, but not in scope:** The agreed API target exposes an adjacent production tenant. The tester can reach it using the same account. The tenant is absent from the signed target list. The tester records the discovery and seeks a scope decision; access does not extend authority.
 
 **Program-approved capability, extra decision still needed:** The practice is authorized to perform physical security assessments. A covert entry at a particular facility has no per-site authorization or confrontation/safety plan. The team can continue unrelated authorized testing, but cannot start that physical action.
 

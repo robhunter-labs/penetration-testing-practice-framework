@@ -27,7 +27,7 @@
 
 ## Where this fits
 
-§20.1 defines the common engagement method. §20.16, when adopted, produces boundaries, invariants, high-risk paths, hypotheses, test prerequisites, and expected evidence. This map translates those outputs and the applicable domain method into §10.1 scope and §10.2 rules-of-engagement inputs. §10.4 carries the corresponding intake questions. These ID links must be resolved against the released public register at integration; a named component is not automatically available or approved.
+§20.1 defines the common engagement method. §20.16, when adopted, produces boundaries, invariants, high-risk paths, hypotheses, test prerequisites, and expected evidence. This map translates those outputs and the applicable domain method into §10.1 scope and §10.2 rules-of-engagement inputs. §10.4 carries the corresponding intake questions. Each section number resolves in the [component register](../../COMPONENTS.md); a published component is not automatically approved for local use.
 
 An adopter's scoping guide, intake form, scope statement, and rules-of-engagement record remain separate controlled objects. This map tells them what to pull; it does not prescribe their system or format.
 
@@ -83,7 +83,7 @@ Every scoped surface should resolve these questions:
 
 ## 4. Surface map
 
-For each selected surface, consult the **released public register** for a current domain method and its status. A row here is a scoping prompt, not evidence that a corresponding guide is released or complete. If no usable domain guide exists, use the authorized umbrella method and a qualified subject-matter reviewer to derive the needed questions, mark the method gap and limits, and do not claim domain-method coverage. The examples below are prompts, not exhaustive taxonomies. The mobile row in particular is not a claim of a complete mobile method.
+For each selected surface, consult the [component register](../../COMPONENTS.md) for a current domain method and its status. A row here is a scoping prompt, not evidence that a corresponding guide is released or complete. If no usable domain guide exists, use the authorized umbrella method and a qualified subject-matter reviewer to derive the needed questions, mark the method gap and limits, and do not claim domain-method coverage. The examples below are prompts, not exhaustive taxonomies. The mobile row in particular is not a claim of a complete mobile method.
 
 | Surface | Distinct scope objects | Important identities, boundaries, and invariants | Typical prerequisites and constraints | Material effort and evidence drivers |
 |---|---|---|---|---|
@@ -211,4 +211,4 @@ The presence of a completed scoping form is not sufficient evidence that the sco
 
 ## Adoption, review, and correction boundary
 
-This map does not grant permission to test, certify coverage, or prescribe a universal depth or effort formula. Connect it to the public versions of §00.3 (authority), §20.1 (method), §10.1 (scope), §10.2 (rules of engagement), §10.4 (intake), the selected domain guide, and §20.16 (threat model) where adopted. If AI is used by the tester, also resolve §90.1's actual release status and local approval boundary. Recheck this map when a domain method, target class, safety constraint, or evidence expectation changes. The release package must provide a concrete correction/contribution route and the current ID resolver.
+This map does not grant permission to test, certify coverage, or prescribe a universal depth or effort formula. Connect it to the public versions of §00.3 (authority), §20.1 (method), §10.1 (scope), §10.2 (rules of engagement), §10.4 (intake), the selected domain guide, and §20.16 (threat model) where adopted. If AI is used by the tester, also resolve §90.1's local approval boundary. Recheck this map when a domain method, target class, safety constraint, or evidence expectation changes. Corrections go through the repository's [security and correction route](../../SECURITY.md); the [component register](../../COMPONENTS.md) resolves each section number.

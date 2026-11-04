@@ -41,7 +41,7 @@ A passing answer on one axis cannot compensate for failure on another.
 | **Local approval authority** | Defined by the adopting organization |
 | **Review trigger** | At least semiannually and on material model, tool, autonomy, validation, threat, data, or operating change |
 
-Organization-specific offices, systems, defaults, and open approvals from the originating practice have been replaced with adopter bindings; this framework is a design input, not a claim of operating effectiveness.
+The adopter supplies its own offices, systems, defaults, and approvals. This framework is a design input, not a claim of operating effectiveness.
 
 > [!CAUTION]
 > This framework grants no authority to test, deploy a tool, process data, connect to a model, or publish a finding. Local use requires program authority, a valid Delivery Authorization where applicable, an adopted per-tool procedure, and engagement-specific authorization.

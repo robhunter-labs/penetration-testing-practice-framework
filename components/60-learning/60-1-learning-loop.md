@@ -69,6 +69,6 @@ Look for repeated friction, but do not make a fixed count the definition of a th
 - **Before the test:** §10.1–10.4 frame the engagement and collect locally approved scope facts; §00.3 and §10.2 retain authorization authority. This guide grants none.
 - **During the test:** §20.1 and a relevant domain method such as §20.3 govern the selected work. A live safety or scope issue takes their stop/escalation route, not a future-retro queue.
 - **After the test:** §30.1 keeps the protected engagement record; §30.5 governs report review and correction. §60.1 may propose a change to either, but cannot rewrite their evidence or approval history.
-- **Practice stewardship:** §00.1 and the public component index §00.2 will identify released versions and correction paths; §40.9 may provide a signal, not proof of causation. These links must resolve to actual released counterparts before this guide is released.
+- **Practice stewardship:** §00.1 and the [component register](../../COMPONENTS.md) (§00.2) identify released versions and correction paths; §40.9 may provide a signal, not proof of causation.
 
 The framework's presence is not evidence that any adopter runs this loop. An adopter should describe what it has implemented, what remains a proposal, and what local law, contract, privacy, or organizational policy changes the route. This guide's own technical and process assumptions should be revisited when those sources or a real consumer challenge them.
