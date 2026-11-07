@@ -15,7 +15,9 @@ This framework was opened so other practitioners can question it, adapt it and m
 - **Keep component identities stable.** Components are cited by section number and name (for example §30.5, Report Standard & Template), and the links between them depend on their paths. Change content freely, but don't renumber, merge, or delete a component without discussing it first.
 - **Cite, don't copy.** Link to established guidance (NIST, OWASP, PTES, CREST, MITRE, PCI SSC) and describe how it's applied. Don't paste large passages from those sources.
 - **Say what's assumed.** If a change rests on a particular regulatory context, team size or tool, say so. The framework is one implementation to adapt, not a mandate.
-- **Be kind.** Critique the work, not the person.
+- **Be kind.** Critique the work, not the person. The [code of conduct](CODE_OF_CONDUCT.md) applies everywhere in the project.
+
+How proposals are decided, and how maintenance widens over time, is in [GOVERNANCE.md](GOVERNANCE.md). Notable changes are recorded in the [change log](../CHANGELOG.md).
 
 ## Before you open a pull request
 

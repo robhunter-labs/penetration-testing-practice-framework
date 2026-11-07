@@ -28,7 +28,9 @@
       "README.md",
       "SECURITY.md",
       "COMPONENTS.md",
-      ".gitignore"
+      ".gitignore",
+      "CHANGELOG.md",
+      "CITATION.cff"
     ],
     "prohibited_globs": [
       "**/.DS_Store",
