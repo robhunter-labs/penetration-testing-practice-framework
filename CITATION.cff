@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you cite the Open Practice Framework, please cite it as below. Cite the commit or release you used, since components change."
+title: "Open Practice Framework"
+abstract: "A practitioner-built, adaptable implementation of the work around a penetration test: authority, preparation, technical methods, evidence, review, reporting, support, people, and improvement."
+type: software
+authors:
+  - family-names: Hunter
+    given-names: Rob
+repository-code: "https://github.com/robhunter-labs/penetration-testing-practice-framework"
+url: "https://robhunterworks.com/writing/open-the-practice/"
+license: MIT
+keywords:
+  - penetration testing
+  - security testing practice
+  - offensive security
+  - AI-assisted testing
+version: 1.0.0
+date-released: 2026-11-07
