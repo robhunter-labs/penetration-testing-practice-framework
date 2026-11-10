@@ -80,9 +80,12 @@ Pre-run scope, control, logging, egress and stop checks (including how fast a st
 Operating sequence (no secrets):
 Evidence, logs and output location:
 Side-effect ledger: accounts, files, data, persistence or configuration the tool created or changed on the target:
-Post-run reconciliation against the ledger, cleanup, credentials and anomaly review:
+Off-target resource ledger: accounts, keys, storage, compute or listener endpoints the tool created or acquired off the target, each with owner and expiry:
+Post-run reconciliation against both ledgers, cleanup, credentials and anomaly review:
 Exceptions, interruptions and disposition:
 ```
+
+Reconcile both ledgers from records the tool cannot edit, and check credential revocation and resource removal separately: revoking a key does not remove what was created with it. MITRE ATLAS makes both points for external resources an AI agent creates: cleanup and inventory reconciliation that run independently of the agent, and revocation and removal verified separately ([AML.M0043, ATLAS data release 2026.10](https://github.com/mitre-atlas/atlas-data/blob/main/dist/v6/ATLAS-2026.10.yaml)).
 
 The local procedure should link to a reproducible setup and run instruction, but public examples must not contain a working attack command against a real target or embedded credentials. A change of target or engagement resets the run card, even when the general tool procedure remains current.
 
@@ -134,4 +137,5 @@ Before findings-producing use, the adopter should be able to point to evidence t
 
 ## Version notes
 
+- **2026-11-10.** Added a run-card line for resources the tool creates off the target, and the reconciliation sentence after the run card.
 - **2026-11 revision.** After independent review: plain-language posture wording and a fill-in point relative to §90.3; the configuration digest's contents listed; rows for code execution, sub-agents and concurrency, expected volume, validator capacity, backlog threshold, grouping, and a side-effect ledger; severity re-derivation and per-step chain evidence in validation; the sampled object stated consistently with §90.1 and §90.4.

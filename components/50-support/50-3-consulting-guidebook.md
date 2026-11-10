@@ -129,6 +129,12 @@ Before promising a retest or starting its local clock, verify the original issue
 
 The closing readout shall give the application or service owner a route they can use after the tester moves on. Explain what was demonstrated, what remains untested, the possible footprint beyond the tested instance, who owns broader remediation, which evidence a fix should produce, how formal retest or closure is requested, and where later questions go. Name relevant architecture, secure-development, vulnerability-management, business, or third-party partners when they carry the next action.
 
+The readout should also say:
+
+- which severity is the practice's validated rating;
+- that priority and deadlines are set by the program that owns remediation and not by the report (§30.5); and
+- who will be told if a rating changes at retest or by erratum, since a deadline may rest on it.
+
 The finding author should participate where their technical judgment is needed; they should not become the only durable entrance. Follow-up material should repeat the same routes and boundaries stated in the meeting. The consulting guide, closing readout, and actual intake system must agree.
 
 ## 5. Staff and hand off the rotation

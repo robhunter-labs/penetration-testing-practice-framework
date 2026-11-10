@@ -45,6 +45,9 @@ The AI extensions reuse a small set of terms. Each term is defined here, in the 
 | **Validation capacity** | The qualified validator hours available for an engagement or period, compared with the candidates a run is expected to produce. |
 | **Backpressure** | Slowing, pausing or narrowing a run when unvalidated candidates exceed the declared backlog threshold (§90.1 §9.4). |
 | **Ground truth / answer key (oracle)** | Independent knowledge of what should be found, refused or changed. A *living* answer key is current and checked; a *stale* one has not been checked since the target or method changed; a *dead* one no longer reflects reality or failed its self-test. Results that depend on a dead key are `unknown`. |
+| **Oracle (check)** | A check whose answer comes from outside the model, read by code the tool did not write and cannot change: a sanitizer report, a callback confirmed to come from the target, a planted flag, or execution a browser confirms (§90.1 §8.6). Distinct from an answer key, which says what should be found. Some passages also use *oracle* for an answer key (row above; §90.3 §2), and a *living oracle* (§90.4) is a living answer key; elsewhere in Section 90, *oracle* means this check. |
+| **Merge / group** | A *merge* says two candidates are the same exposure: the same weakness at the same affected instance. A *group* keeps distinct affected instances that share a root cause or a fix under one unique issue, each with its own evidence or marked inferred (§90.5 §1). |
+| **Validation package** | One versioned record per candidate, in six parts (claim, oracle output, replay, controls, expected difference, retest), each labeled *observed*, *asserted*, *decided* or `unknown`, on which a qualified person rules (§90.1 §8.7). The label says where a part came from; the evidence state says how far the evidence reached. |
 | **False positive / miss; coverage assurance** | A reported candidate that is not real versus a real issue the capability did not report; coverage assurance is the separate job of estimating misses. |
 | **Material change** | Any change that can alter behavior, authority, risk or the validity of earlier evidence, and so requires re-evaluation. |
 | **Floor vs lever** | A rule no local setting can waive, versus a local setting chosen within it (§90.4). |
@@ -60,4 +63,6 @@ The AI extensions reuse a small set of terms. Each term is defined here, in the 
 
 ## Version notes
 
+- **2026-11-10.** Added *merge / group* and *validation package*.
+- **2026-11-08.** Added *oracle (check)*.
 - **2026-11 — new.** Added as the shared vocabulary for Section 90 after independent review found key terms used before, or without, definition.

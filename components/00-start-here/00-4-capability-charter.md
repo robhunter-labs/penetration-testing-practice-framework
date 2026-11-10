@@ -63,6 +63,8 @@ Complete this locally for a *testing* capability. It is not a universal approval
 
 An independent challenge should be proportionate to the consequence and strong enough to reject the candidate. The operator should not be the sole witness to a claim that the tool is safe or its findings sound. A changed model, connector, permission, action policy, data path, or target class can invalidate the original decision; re-evaluate what changed rather than silently inheriting approval.
 
+A control named on the card is recorded as operating for a route only where a test has shown that route passes through it (§90.3 §6.1); for any other route it is recorded as declared.
+
 ## Two changes of lane
 
 *Fictional examples; neither describes an operational deployment.*

@@ -2,7 +2,7 @@
 
 > Framework component for adaptation. Publication does not authorize testing, certify conformance, or establish that an organization has adopted this practice.
 
-This worksheet records **how** an authorized penetration test may be performed. §10.1 records **what** is in scope; §00.3 describes the authority that must exist behind both. A completed worksheet is not permission to test. The adopting organization must supply its own authorized signatories, policies, legal and safety review, record system, and approval process before use.
+This worksheet records **how** an authorized penetration test may be performed. §10.1 records **what** is in scope, the same split PTES draws between scope and rules of engagement ([PTES, Pre-engagement Interactions](https://pentest-standard.readthedocs.io/en/latest/preengagement_interactions.html), community mirror); §00.3 describes the authority that must exist behind both. A completed worksheet is not permission to test. The adopting organization must supply its own authorized signatories, policies, legal and safety review, record system, and approval process before use.
 
 **Reader and task:** A working tester and authorized risk/asset owner use one copy per engagement to settle execution conditions and preserve who decided them. A reviewer later uses the same record to test whether activity stayed within permission. Name a maintainer, connect the copy to the signed scope, and record decisions before execution. A blank field means *unsettled*, not “the tester may choose.” Where a section genuinely does not apply, write **N/A and why**; do not leave an ambiguous blank. If a condition changes, pause the affected activity, obtain the necessary decision, and version the record. The choices below are prompts, **not universal defaults**.
 
@@ -30,10 +30,11 @@ This worksheet records **how** an authorized penetration test may be performed. 
 | What data may be created, viewed, copied, or retained? What must be synthetic? | |
 | What is the test window, time zone, blackout period, and required notice? | |
 | Are production, externally exposed nonproduction, shared infrastructure, or third-party systems involved? What additional approvals are required? | |
+| Where does testing run from: onsite, offsite, a VPN or dedicated connection, or rented infrastructure? Who controls those systems, and how are they prepared and cleaned? | |
 | What rate limits, lockout thresholds, or resource-consumption limits apply? | |
 | How are credentials issued, rotated/revoked, and protected after the test? | |
 
-The scope should name the targets; this section binds the **operating conditions**. For example, “the API” is not enough to decide whether a second tenant, a downstream provider, or production data may be used. If the test depends on a policy exception or change window, cite the approval and expiry rather than assuming the exception exists.
+The scope should name the targets; this section binds the **operating conditions**. For example, “the API” is not enough to decide whether a second tenant, a downstream provider, or production data may be used. If the test depends on a policy exception or change window, cite the approval and expiry rather than assuming the exception exists. Where testing runs from is a decision too: an onsite and an offsite position see different things, and rented servers or outside networks carry their own data-handling risk ([NIST SP 800-115 §6.4.2](https://csrc.nist.gov/pubs/sp/800/115/final)). [CREST Defensible Penetration Test §10](https://www.crest-approved.org/wp-content/uploads/2022/12/CREST-Defensible-Penetration-Test-v5-2.pdf) also expects the report to state the location of the assessment.
 
 ## 3 · Techniques, proof depth, and exclusions
 
@@ -52,6 +53,18 @@ The scope should name the targets; this section binds the **operating conditions
 **Maximum permissible proof by activity:** Record the observation that is enough to support a conclusion, the stopping point, and who must decide if more is needed. Link each material §3 decision to its proof limit: ____________. An excluded technique does not become permitted because a tool can perform it. An unlisted target does not become in scope because it is reachable.
 
 **Scope-change trigger:** A new asset, identity, technique, impact level, data class, or third-party boundary requires review against §00.3 and a revised scope/RoE decision before that part of testing proceeds. **Change approver and record path:** ____________. The tester cannot self-approve an expanded authority boundary.
+
+**Proof without extraction (an option to select):** Where a target holds regulated or personal data, the parties may agree that access is shown without the data being viewed, copied, or kept. PTES describes this as proving "that the vault door was opened without taking any of the money", for example a screenshot of a database schema and file permissions, or a file listing with the contents unopened, as long as no personal data shows in the file names themselves ([PTES, Pre-engagement Interactions, "Disclosure of Sensitive Information"](https://pentest-standard.readthedocs.io/en/latest/preengagement_interactions.html#disclosure-of-sensitive-information), community mirror).
+
+If selected, record here:
+
+- the data classes it covers;
+- the proof forms accepted (such as permissions, record counts, or object names); and
+- who decides when a claim needs more.
+
+The limit: this shows the tester reached the store with the permissions recorded. It does not show that content could be read or removed (field encryption, row-level control, or egress monitoring could still intervene), or what the data is. An impact that depends on either stays unverified, and the report says so (§30.5).
+
+Where reading must be shown, agree a planted synthetic record. If real content appears in the act of proving, the §6 stop condition applies. Names, counts, and schemas can be sensitive in their own right, so the accepted proof is still evidence handled under §30.1.
 
 ## 4 · AI and agentic-tool declaration (conditional; mark N/A if neither applies)
 
@@ -96,6 +109,36 @@ No technique is permitted merely because it appears in a checklist. The local au
 | Test-traffic source/identifier and security-operations deconfliction record | |
 
 **Stop conditions to tailor:** unexpected harm or instability; contact with an unapproved system or person; discovery of live sensitive data outside the agreed proof; expired permission; a third-party boundary; or suspected real incident. The tester records the minimal observation, stops the affected action, and uses the named path. “Notify later” is not a substitute for a stop-and-decide path.
+
+**Two discoveries to plan for before the window:** evidence of a prior compromise, and material that may be unlawful to hold or view. Both are stop conditions with the same order:
+
+1. stop the affected action;
+2. leave what was found where it is;
+3. keep the tester's own record; and
+4. escalate to the named contact and to counsel for the testing organization.
+
+Record with the contacts above who the named contact is in each case, how counsel is reached during the window, and a channel to both that does not run through the affected environment; anything not recorded is unsettled. In both cases, work on the affected systems resumes only on the recorded decision of the person named above to authorize resumption.
+
+- *Prior compromise* (signs that another party already has access). Do not remove, clear, or modify logs or the other party's artifacts, do not investigate past the minimal observation, and hold the tester's own cleanup (§7) on those systems until the incident owner decides. Preserve the tester action log (§30.1) for the affected systems and period so responders can tell tester activity from the other party's.
+
+  PTES has the testing team save and hash its record of actions and times and provide it to the client, who decides how to respond ([PTES, Post Exploitation, "Protect the Client"](https://pentest-standard.readthedocs.io/en/latest/post_exploitation.html#protect-the-client), community mirror). The adopter's incident process owns the response from there.
+
+- *Material that may be unlawful to hold or view.* Do not open it further, screenshot, copy, download, move, or delete it, and do not describe its content outside the escalation route. Record only where it is and when and how it was met. §30.1's rule to keep an original capture does not apply: no capture of the content is made or archived. If a copy may already sit on a tester system or in tool output, leave that system as it is, do not delete or forward anything, and tell counsel.
+
+  PTES advises notifying law enforcement before the customer and not taking direction from the customer ([PTES, Pre-engagement Interactions, "Disclosure of Sensitive Information"](https://pentest-standard.readthedocs.io/en/latest/preengagement_interactions.html#disclosure-of-sensitive-information), community mirror); that is one source's view, reported here and not adopted. Whether to report, who reports, to whom, and how soon are legal decisions that vary by jurisdiction. This worksheet records the route and leaves those decisions to counsel; it is not legal advice.
+
+**After a stop, and at a handoff:** asking work to stop is not the same as the work having stopped. A scan already launched, a queued or scheduled job, or a session left open can keep acting after the tester pauses. Record three things separately: the stop was requested, it was acknowledged, and its outcome was observed.
+
+Before resumption, or when the work passes to another tester, leave a note that answers six questions:
+
+1. what actions were sent, and under whose authority;
+2. what the target or another system accepted;
+3. what is known to have finished;
+4. what is still uncertain;
+5. what is still scheduled, retrying, or able to act, including sessions and credentials that remain valid; and
+6. what would clean up or undo each change (§7).
+
+An uncertain outcome should be checked before the action is retried, from the tester's own logs or with the asset owner where touching the target again is not yet authorized, so the same change is not made twice. Resumption after a stop is decided by the person named above; whoever picks the work up confirms, before acting, that scope, window, and authority still hold. §90.1 §10.6 carries the matching record for an agent-led run.
 
 ## 7 · Evidence, review, reporting, and close-out
 

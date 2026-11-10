@@ -182,7 +182,7 @@ For a targeted security-control assessment, assess conformance against the decla
 
 A qualified human shall decide whether every finding is accepted for delivery. AI may assist the work; it shall not be the accountable publication authority. Human decision is not the same as full manual reproduction of every intermediate tool suggestion; it is the accountable judgment that the evidence supports the claim.
 
-A finding shall demonstrate affected scope, reproducible evidence, and security impact appropriate to the methodology. A label, vulnerability identifier, similarity match, or model assertion alone is not proof of exploitability.
+A finding shall demonstrate affected scope, reproducible evidence, and security impact appropriate to the methodology. A label, vulnerability identifier, similarity match, or model assertion alone is not proof of exploitability. A validator working from fluent tool output watches for automation bias: excessive deference to automated systems, such as judging their output to be of higher quality than other sources without justification ([NIST AI 600-1 §2.7](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)).
 
 ### 8.2 Minimum validation rules
 
@@ -225,6 +225,67 @@ A clean-looking final report shall not erase the decision and correction trail.
 When a capability proposes a chain, record it as a chain, not only as separate candidates. For each step, record the action, the evidence, and its repeatability and impact. The weakest proven step is the step lowest on either part; the chain's claimed impact shall not exceed it, and an unproven step makes the rest of the chain *Possible, not tested*. Merging duplicates shall not remove a step that a chain depends on.
 
 Proving a chain in a live environment can mean re-running exploitation. That is testing, inside the engagement's authority, window and safety limits; a chain that needs an action outside them stays a hypothesis for owner triage. A system becoming relevant to a chain's impact does not bring it into scope.
+
+### 8.6 Where automated checks run out
+
+An oracle the tool cannot write to works best when the target leaves a mark that code can read: a crash a sanitizer reports, a callback confirmed to come from the target and carrying a one-time token, a flag planted for the test, or a script a headless browser confirms ran. Such a mark can move a candidate's repeatability to *Reproduced* and support its impact; it does not settle impact on its own (§8.4). A sanitizer crash shows memory corruption, not exploitability, and a script running in a test browser does not show it runs in a victim's context. Each mark is sharper with a negative control, such as a patched copy where the same action has to fail.
+
+Three kinds of claim rarely leave a clean mark:
+
+- **Chains.** Every step can be real and the chain still fail, or work only in an order the test never tried. Evidence is per step, then end to end (§8.5). In one study of 13 open-source LLM-based automated penetration-testing frameworks, only about one in six samples completed the chained-exploitation challenge ([Hackers or Hallucinators?, §5.6.1, Table 17](https://arxiv.org/abs/2604.05719)).
+- **Authorization logic.** The oracle is two or more identities and a comparison, and it is only as good as the test's model of who should see what.
+- **Impact and reachability.** A result against one host or a replica is not yet a finding in an environment. Whether a path reaches the target through that environment's segmentation and identity rules is a separate question, and a system becoming relevant to a chain does not bring it into scope (§8.5).
+
+Live environments the practice does not control weaken every oracle: there is often no patched copy to compare against, outbound callbacks may be blocked, and timing is noisy.
+
+An oracle that does not fire shows nothing. The claim shall stay at what other evidence supports (§8.4), and the oracle's part shall be recorded as `unknown`, not as a pass or a false positive.
+
+### 8.7 The validation package
+
+A validator can rule only on what reaches them. One way to hand over a candidate is a validation package: one versioned record per candidate, in six parts, each marked with where it came from. It is a pattern to tailor, set out in [*Proof Outside the Model*, §07](https://robhunterworks.com/writing/proof-outside-the-model/), and a proposal: whether it shortens review has not been measured (§90.5 §8).
+
+| Part | What it holds |
+|---|---|
+| **1. Claim** | One sentence: the weakness, where it is, and what it allows. The tool's severity is recorded as the tool's (§8.2). |
+| **2. Oracle output** | What a check outside the model observed (§8.6), or "no oracle", which leaves the claim at what other evidence supports (§8.4). |
+| **3. Replay** | The exact request or script; the build or environment it ran against; the test identity, with credentials by reference (§30.3); the authorization it ran under; what it changed and cleaned up; and what sensitive data the evidence holds and how it is redacted. |
+| **4. Controls** | The baseline (the legitimate request the claim should differ from); a negative control, built so the effect must not appear; and a positive control, built so the check must fire, behind any "not vulnerable" result. |
+| **5. Expected difference** | What the validator should see if the claim holds, what they would see if it does not, and what would leave it unknown, all recorded before the replay runs. |
+| **6. Retest** | The same check, kept for after the fix. It looks for the expected refusal, not only a different response, and names the build it ran against. |
+
+**Provenance.** Each part should carry one label:
+
+- *observed* (read from the target by an oracle, or by the validator in their own reproduction);
+- *asserted* (stated by the tool);
+- *decided* (ruled by a person); or
+- `unknown` (nothing could check it).
+
+*Proof Outside the Model* reserves *observed* for an oracle; this framework also counts the validator's own reproduction, in line with *full validation* (§2).
+
+As a tool emits a package:
+
+- the claim, the replay and the expected difference are *asserted*;
+- the oracle output and the controls are *observed* only where a check returned a result, and otherwise `unknown`; and
+- the retest is *asserted* until run through the retest route (§50.3 §3.4).
+
+The ruling is *decided*. A model's confidence, or a second model agreeing with it, can order the queue; neither earns *observed*. `unknown` is a result with a reason, not a blank to fill. The label says where a part came from. It is separate from the evidence state in §8.4, which says how far the evidence reached.
+
+**Four questions.** Ask them of every package, and record each answer on its own, because a single pass mark can hide which one failed:
+
+1. Did it run?
+2. Is the reasoning right?
+3. Could someone else rerun it from the package alone?
+4. Can a person act on it?
+
+**Ruling.** The validator's ruling is one of four: *accepted*; *false positive*; *not enough evidence*; or *deferred to a named owner*. The first three are §20.1's accept, reject, and defer for more evidence or report as inconclusive; the fourth hands a question the validator cannot settle, such as whether a behavior is intended, to an owner recorded with the open question.
+
+Accepted and false positive are the two sides of state 5 in §8.4. *Accepted* here means validated (state 5); acceptance for delivery is state 6. The other two leave the candidate in state 1 with the ruling, reason and any named owner recorded. It still counts in the backlog and maximum age (§9.4).
+
+Merging, grouping and splitting are deduplication decisions (§90.5 §1), not rulings on whether a claim is real. *Not enough evidence* is not a false positive and should not be counted as one (§90.5 §2). A candidate nobody has reviewed has no ruling.
+
+Each ruling should record its reason, for a dismissal as much as for an acceptance, with the person and the version of the package it was made on. If the evidence in any part changes, the ruling is reopened, not carried forward.
+
+The script in a package comes from the tool, so a person reads it before running it, and replay against a live target is testing under the same authority as any other test (see *independent replay* in the [glossary](90-0-glossary.md)). A complete package is a better input to the decision in §8.1. It is not the decision.
 
 ## 9. Authorization and operating checks
 
@@ -273,6 +334,8 @@ A capability can produce candidates faster than qualified people can validate th
 
 Capacity figures and maximum ages are local levers (§90.4), not defaults set by this framework.
 
+Where a candidate is escalated before validation finishes, what the receiving program does is its decision; the item carries a "not yet validated" label and a named validator, and is not a delivered finding.
+
 ## 10. Operating guardrails
 
 ### 10.1 Least agency and action safety
@@ -310,6 +373,62 @@ For each run, preserve enough information to reconstruct:
 - incidents, corrections, and final disposition.
 
 Evidence shall follow applicable engagement-retention and disclosure rules. This framework does not create a competing record system.
+
+**Integrity of agent-produced evidence.** A capability that can rewrite its own records can, by error or under injected instruction (§5.3), change the evidence a validator later relies on. Two proportionate controls address this:
+
+1. The authoritative run log should be written to a store that the capability's own identity cannot modify or delete, so that the account of what it did does not rest on files it wrote.
+2. A cryptographic digest of each raw evidence artifact should be computed outside the model, by the harness or the receiving store, and recorded in that log at capture, with the algorithm named, and re-checked before the artifact is relied on for validation and again at archival (§30.1).
+
+A mismatch is an integrity concern under §5.3.
+
+OWASP APTS (v0.1.0) states both as requirements for autonomous testing platforms ([Auditability](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/5_Auditability/README.md); [Reporting](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/8_Reporting/README.md)):
+
+- APTS-AR-020, the agent runtime has no permission to write, modify, or delete the authoritative audit trail;
+- APTS-AR-010, all evidence is hashed with SHA-256 or stronger and the algorithm is recorded with the hash; and
+- APTS-RP-005, each finding's evidence carries its hash so a reviewer can verify it independently.
+
+APTS also requires hash-chained, append-only logs at its first tier (APTS-AR-012) and recommends RFC 3161 trusted timestamps at its third (APTS-AR-013). This framework does not ask for either; an adopter may take them up where consequence warrants.
+
+The limit: a matching digest shows that an artifact has not changed since the digest was recorded. It does not show that the artifact was accurate when captured, which remains the validator's question (§8), and a digest kept where the capability could rewrite it shows little (§40.3 makes the same point for evidence handoff).
+
+### 10.6 Interruption, stop, and handoff
+
+The §90.2 run card records how fast a stop takes effect and what happens to actions in flight. This section covers what the run record should hold once a stop, a pause, or a change of operator has happened. The OWASP APTS requirements cited below (v0.1.0) bind an autonomous testing platform; they are cited as published practice for the same moments, not as obligations of this framework.
+
+**Three points.** Declare what a stop means at each:
+
+- before an action is sent, when the orchestration can still withhold it;
+- while it is in flight, when the target or another system may already have accepted it; and
+- after it finishes, when what remains is cleanup.
+
+Cleanup is a further action on the target, inside the engagement's authority, and can fail on its own.
+
+**Three statements.** Keep *stop requested*, *stop acknowledged*, and *outcome observed* apart.
+
+- A stop that was not acknowledged shall not be recorded as delivered. An unacknowledged stop is a failed stop (§12): use enforcement outside the tool, such as revoking its credentials or network path (§10.4).
+- An action whose outcome was not observed shall be recorded as `unknown`, not as "did not happen". An `unknown` action is checked before any retry, so the same change is not made twice: against the run log and side-effect ledger (§90.2 §4) first, and against the target only where the stop authority allows that contact.
+
+APTS states the first rule for its kill switch: "An unacknowledged kill instruction MUST NOT be treated as delivered" ([APTS-HO-008](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/3_Human_Oversight/README.md#apts-ho-008-immediate-kill-switch-with-state-dump)).
+
+**What can outlive a stop.** Queued or scheduled actions, automatic retries, sub-agents and child processes, open sessions, credentials that are still valid, and resources the tool created off the target, which outlast a revoked credential unless removed separately (§90.2 §4). [APTS-SC-009](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/2_Safety_Controls/README.md#apts-sc-009-kill-switch) allows operations already dispatched to complete, then requires spawned processes and child agents to be terminated, temporary credentials revoked, and scheduled or queued actions cancelled.
+
+The practice's record should let the next person see which of these were confirmed stopped and which were not. That record should be written as the run goes: each tool call is logged before it is sent and updated with its outcome, in the run record §10.5 requires.
+
+**Handoff.** When a run passes to another operator, at a shift change or after a stop, the handoff record should carry:
+
+- the run's state and autonomy tier;
+- who now holds stop authority;
+- pending approvals, which the incoming operator reviews again and does not inherit;
+- open escalations and integrity concerns;
+- candidates awaiting validation, with the backlog against its threshold (§9.4);
+- sessions, credentials, and tools still active; and
+- cleanup still owed.
+
+The incoming operator is one the per-tool procedure already permits (§9.1, §13) and the run card names (§90.2 §4). The test of the record is whether the incoming operator can pick the run up from it without reading the full run transcript.
+
+[APTS-HO-019](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/3_Human_Oversight/README.md#apts-ho-019-247-operational-continuity-and-shift-handoff), a SHOULD-level requirement for continuous operation, asks for a structured handoff of "active engagement state, pending approvals, open escalations, and suppression-rule status" and for stale approvals to expire; its informative Shift Handoff Template is one format. [APTS-HO-009](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/3_Human_Oversight/README.md#apts-ho-009-multi-operator-kill-switch-authority-and-handoff) requires a multi-operator platform to define who holds kill-switch authority and to handle shift handoffs; its verification items check that authority transfers at a handoff and that each transfer is logged.
+
+**Resumption.** After a stop for a stop condition or incident (§12), resuming is a decision by the authority named in the engagement's rules of engagement (the rules-of-engagement worksheet, component 10.2, §6; §00.3 §5); an operator's own pause resumes within the run card. In both cases, before the run continues, re-confirm scope, window, and identities, and that the posture is the one authorized (§9.3). After a pause longer than its session timeout, [APTS-HO-006](https://github.com/OWASP/APTS/blob/0c2b7d05371bcbb006aa5d3799c820f6944d65df/standard/3_Human_Oversight/README.md#apts-ho-006-graceful-pause-mechanism-with-state-preservation) requires a platform to re-establish connections and re-validate scope before continuing.
 
 ## 11. Attribution, credit, and performance measures
 
@@ -385,4 +504,5 @@ Document presence or a successful demonstration does not establish operating eff
 
 ## Version notes
 
+- **2026-11-10.** Added §8.6 (where automated checks run out), §8.7 (the validation package), a §9.4 paragraph on candidates escalated before validation finishes, integrity of agent-produced evidence in §10.5, and §10.6 (interruption, stop, and handoff); §8.1 gained an automation-bias caution.
 - **2026-11 revision.** After independent review: "At a glance" moved to the top; "posture", "candidate" and "full validation" defined, with a shared [glossary](90-0-glossary.md); tool severity treated as a claim a person re-derives; machine-rejected, merged and duplicate states added, with evidence states shared with §20.13; attack-chain records (§8.5) and validation capacity and backpressure (§9.4) added; sampling object stated once; observable tier criteria, hosted-model drift and injection-assumed containment added. No floor was weakened.

@@ -126,7 +126,7 @@ The register is the framework's front door: enter through a problem, find the co
 | 90.2 | AI Tool Operating Procedure — Template | Template | [components/90-extensions/90-2-ai-tool-procedure.md](components/90-extensions/90-2-ai-tool-procedure.md) | A blank procedure for operating a specific AI testing tool. | Published |
 | 90.3 | R&D Build & Readiness | Guide | [components/90-extensions/90-3-rd-readiness.md](components/90-extensions/90-3-rd-readiness.md) | Decide when an R&D capability is ready to use. | Published |
 | 90.4 | AI Leadership Levers | Guide | [components/90-extensions/90-4-ai-leadership-levers.md](components/90-extensions/90-4-ai-leadership-levers.md) | Leadership questions for adopting AI in testing, with measurement first. | Published |
-| 90.5 | Validation Measurement Annex | Annex | [components/90-extensions/90-5-validation-measurement-annex.md](components/90-extensions/90-5-validation-measurement-annex.md) | Defined measures, denominators and a sampling method for validating AI-generated findings at volume. | Published (Draft v0.1) |
+| 90.5 | Validation Measurement Annex | Annex | [components/90-extensions/90-5-validation-measurement-annex.md](components/90-extensions/90-5-validation-measurement-annex.md) | Defined measures, denominators and a sampling method for validating AI-generated findings at volume. | Published (Draft v0.2) |
 
 ---
 

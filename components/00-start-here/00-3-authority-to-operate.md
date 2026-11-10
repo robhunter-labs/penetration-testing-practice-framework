@@ -70,6 +70,8 @@ Some activities need a distinct owner or narrower conditions. Examples include d
 
 The additional decision belongs to the role with authority over that consequence. This does **not** mean every minor update to a testing method needs that role's approval. Record the trigger, decision, evidence, constraints, and expiration in the engagement package. If a planned action crosses the boundary during testing, pause that action until the record catches up.
 
+Legal review is one of these decisions. Record whether the role with legal authority reviewed the testing plan, and what the review covered. [NIST SP 800-115 §6.6](https://csrc.nist.gov/pubs/sp/800/115/final) leaves legal involvement to the organization's discretion, but recommends that legal advisors always be involved for intrusive tests such as penetration testing.
+
 Physical testing is a clear example: a general application-testing mandate is not permission to enter a facility. A per-site authorization and safety/confrontation plan are necessary for that mode. The physical method (§20.11) describes how to carry out work *after* those conditions are met.
 
 ## 5. Due care during execution
@@ -98,6 +100,23 @@ Keep the program authority, engagement authorization, scope changes, additional 
 **Reachable, but not in scope:** The agreed API target exposes an adjacent production tenant. The tester can reach it using the same account. The tenant is absent from the signed target list. The tester records the discovery and seeks a scope decision; access does not extend authority.
 
 **Program-approved capability, extra decision still needed:** The practice is authorized to perform physical security assessments. A covert entry at a particular facility has no per-site authorization or confrontation/safety plan. The team can continue unrelated authorized testing, but cannot start that physical action.
+
+## When an outside supplier does the testing
+
+Some adopters buy testing instead of running it, or as well as running it. This framework is written for the practice that performs the work, and it does not own procurement. This section names the interface: what stays with the adopter when a supplier tests, and which components the adopter can hold the supplier's work against.
+
+[CREST's *A Guide to Penetration Testing* (2022)](https://www.crest-approved.org/wp-content/uploads/2023/04/A-Guide-to-Penetration-Testing-2022.pdf) is written mainly for the buying side. CREST is a not-for-profit body that accredits testing companies as its members, and the guide says it highlights CREST benefits where relevant (Part 1), so read its supplier advice alongside the adopter's own criteria.
+
+Supplier selection runs through the adopter's procurement process; the guide's Part 3 (Preparation), step 7, *Select suitable suppliers*, covers it, and this framework adds no criteria of its own.
+
+| Interface | What stays with the adopter | Where to look |
+|---|---|---|
+| **Authority** | A contract makes a supplier available. It does not authorize a test. The adopter's roles still make the program, engagement and consequence decisions in §1 to §4, and the supplier's testers are named as authorized operators in the engagement record (§3). | §1 to §4; §10.1; §10.2 |
+| **Oversight** | Name an adopter-side owner for each engagement who can stop it, receives escalations, and checks delivery against the agreed scope. Agree before work starts what evidence, coverage statement and report the supplier delivers; §30.1 and §30.5 can serve as that specification where the supplier accepts them. | CREST Guide Part 4 (Testing), step 4, *Establish a management assurance framework*: ideally the client establishes and controls it, and responsibility for the systems and data, "and any assurance about them", rests with the client's organization. |
+| **Deconfliction** | The verification route in §6 should work for a supplier's activity too. Before the first test action, the adopter's responders, or the named contact where notice is limited (§10.3 §3), have the engagement identifier, the window, the supplier's source addresses and a supplier contact who can be reached during testing. | §6; §10.2 (contacts and deconfliction record); §30.4; CREST Guide Part 4, step 3, *Produce scope statements* (scope information reaches operations staff who "may mistakenly report testing activities as actual attacks") and step 5, *Implement management control processes*. |
+| **Exit** | At the end of the engagement or the relationship, supplier access and credentials are closed out, and the handling of adopter data on supplier systems is confirmed by someone able to attest to it. | §30.3; §40.2 |
+
+A supplier's accreditation or signed code of conduct is evidence the adopter may weigh at selection, under its own criteria. It does not stand in for the engagement record. Evaluating whether the arrangement is working belongs with the effectiveness prompt in §40.9 §10.
 
 ## Adoption and interfaces
 

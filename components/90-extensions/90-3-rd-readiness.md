@@ -194,6 +194,14 @@ An observed envelope exceedance stops the current run. It is not deferred to a l
 
 The envelope is a *specification and a detectable comparison*, not by itself a preventive control. Enforce limits at the network, identity, tool, policy and action layers that actually govern behavior, then verify those controls under a known-bad attempt. If an observed action violates the intended envelope at screening, safety evaluation, or bounded proof, stop there; do not postpone the breach until Delivery Authorization.
 
+A control counts for a route once that route has been shown to pass through it before the effect. A control can be present in configuration, policy, or documentation and still be missing from one of the routes that produces the effect.
+
+List the known routes to each consequential effect, for example a direct tool call, a sub-agent, generated code, and a retry or recovery step, and run the known-bad attempt on each, reading the result from the receiving side and not from the candidate's own account. A warning, or a check that runs after the effect, is not a block.
+
+MITRE catalogues the weakness: a protection mechanism that is in active use but that "the developer has not applied" in some code path ([CWE-693](https://cwe.mitre.org/data/definitions/693.html)), and access checks that are not performed every time a resource is accessed ([CWE-638](https://cwe.mitre.org/data/definitions/638.html)). [*Declared, Not Wired*](https://robhunterworks.com/writing/declared-not-wired/) works one synthetic four-route example.
+
+Two limits stay in the record: the list of routes is only as complete as the search that produced it, and a control that sits on the route can still decide wrongly.
+
 ### 6.2 Composition evidence at the lowest useful object
 
 The program shall be able to identify the deployable or decision-bearing unit that is evaluated and later authorized. It should inherit valid upstream SBOM (software bill of materials), ML-BOM (the same for models, datasets and their lineage), provenance, signature, or vendor evidence when available.
@@ -302,6 +310,19 @@ A material change shall step the candidate back to the earliest readiness state 
 
 Delivery Authorization shall be suspendable and revocable. Operational use shall not continue while a material safety or authority question is unresolved.
 
+### 10.1 Retirement
+
+Retirement is a decision with steps, recorded like any other. A capability that has only stopped being used still holds credentials, data and access. When a capability or posture is retired, the role bound to retire it (§90.1 §14) should first confirm that no open engagement, queued run or pending retest depends on it, then work through four things and record the result, including anything not done:
+
+- **Credentials.** Revoke the standing keys that only this capability or posture uses, including model-provider and service credentials, and confirm the revocation took effect. Where a key is shared with a posture that stays in use, rotate it and record that. Remove the capability's access to engagement credential entries in the secret store; those credentials are rotated, revoked and disposed under §30.3, not by this step.
+- **Data.** List where prompts, logs, memory, caches, retrieval stores and artifacts persist, including with a provider. Keep what the records schedule or a legal hold requires, and dispose of the rest as a reviewed, logged decision (§30.1). Confirm provider-side deletion against the provider's actual terms, or record it as unconfirmed.
+- **Access.** Remove the capability's identities, network paths, egress allowances and operator grants, and check that no scheduled job, integration or downstream workflow still calls it.
+- **Records.** Record the retirement in the §90.2 §7 decision field, revoke the Delivery Authorization or record that it had already expired (§9 item 9), and keep the readiness and run records that explain the findings the capability supported (§11).
+
+Retirement does not by itself correct or withdraw those findings. If the reason for retiring challenges them, §90.1 §12 applies.
+
+The NIST AI RMF, written for AI systems generally, asks for processes to decommission and phase out AI systems "safely and in a manner that does not increase risks or decrease the organization's trustworthiness" ([NIST AI 100-1, GOVERN 1.7, p. 23](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)) and lists decommissioning among the mechanisms of a post-deployment monitoring plan (MANAGE 4.1, p. 33). Its Generative AI Profile names data retention requirements, data leakage after decommissioning, and dependencies between upstream and downstream systems among the factors to consider ([NIST AI 600-1, GV-1.7-002, p. 17](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)).
+
 ## 11. Required records
 
 The readiness record should be as small as possible while preserving the decision:
@@ -353,4 +374,5 @@ Document presence establishes only that the control is defined. It does not esta
 
 ## Version notes
 
+- **2026-11-10.** Added the route check to §6.1 and a new §10.1 (retirement).
 - **2026-11 revision.** After independent review: a pointer to the worked example and the [glossary](90-0-glossary.md); pre-registration, relying consumer, answer key, denominator and verification depth defined; the implementation-specific lab paragraph replaced with a technology-neutral one; measures defined, with precision by severity band, false discovery rate, validator minutes per accepted finding, yield, severity inflation, duplicate rate and run-to-run stability; training-data contamination and chain answer keys added to the evaluation contract; expected validation load added to Delivery Authorization. Section 6.0 keeps its number so existing references stay stable.
