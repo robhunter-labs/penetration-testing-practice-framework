@@ -81,6 +81,24 @@ Every scoped surface should resolve these questions:
 | Coverage and uncertainty | What cannot be tested, what assumptions remain, and how will the limitation be communicated? |
 | Change triggers | What target, scope, authorization, or safety change requires re-scoping? |
 
+**Detection and response as a declared objective.** Whether the defenders notice and respond is a different question from whether a weakness exists, and an engagement answers it only when it is scoped to. PTES lists the target's ability to detect and respond, from information gathering through data exfiltration, as things a test can benchmark, and advises collecting time information so that a detection can be matched to what the tester was doing ([PTES, Pre-engagement Interactions, "Capabilities and Technology in Place"](https://pentest-standard.readthedocs.io/en/latest/preengagement_interactions.html#capabilities-and-technology-in-place), community mirror).
+
+Where the relying decision includes it, state it under Objective and settle:
+
+- which stages, identities, and surfaces are measured;
+- whether a block on the tester's source ends the measurement (PTES, ["Dealing with Shunning"](https://pentest-standard.readthedocs.io/en/latest/preengagement_interactions.html#dealing-with-shunning), community mirror, notes that shunning fits some tests and not others);
+- how the tester action log (§30.1) will be matched to the defenders' alert and response records, which needs agreed access; and
+- who in the monitoring and incident function is told in advance.
+
+Limiting that notice departs from §30.4's default, so record it as a decision of that function's owner. Name a contact there, listed with the deconfliction and 24-hour contacts in §10.2 §6, who:
+
+- holds the window and source addresses;
+- is reachable throughout the window;
+- can confirm or halt the test; and
+- discloses the test before any response reaches outside parties or disruptive containment.
+
+Report per stage as detected, responded to, or not observed, with times; the result describes those defenders on those days against the techniques used. Where the objective is not declared, report defender detection as untested.
+
 ## 4. Surface map
 
 For each selected surface, consult the [component register](../../COMPONENTS.md) for a current domain method and its status. A row here is a scoping prompt, not evidence that a corresponding guide is released or complete. If no usable domain guide exists, use the authorized umbrella method and a qualified subject-matter reviewer to derive the needed questions, mark the method gap and limits, and do not claim domain-method coverage. The examples below are prompts, not exhaustive taxonomies. The mobile row in particular is not a claim of a complete mobile method.

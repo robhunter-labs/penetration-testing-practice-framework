@@ -437,6 +437,15 @@ Each example ends by sending the question and its result into the practice's les
 
 The adopter chooses its cadence. A pattern that works for many practices: operational measures read by the team at a short cadence to catch problems early; the full set with targets, trends, and open questions reviewed by practice leadership at a longer cadence; and the measure set *itself* — which measures still support a decision, which should be retired, which definitions caused disputes — reviewed at least annually, or whenever services, systems, or partner responsibilities change. Do not report against a target that has not been confirmed for the current cycle; report the trend and say the target is under review. Do not trend a provisional value against final ones.
 
+**Effectiveness prompt.** At the review of the measure set, also ask the question no single measure answers: is the program meeting the objectives it was set up for? [CREST's *A Guide to Penetration Testing* (2022)](https://www.crest-approved.org/wp-content/uploads/2023/04/A-Guide-to-Penetration-Testing-2022.pdf) gives a usable prompt list in Part 5 (Follow up), step 4, *Evaluate penetration testing effectiveness*.
+
+- For tests: whether objectives were met; whether sufficient weaknesses were identified, and in a sensible timeframe; a review of a sample of the exploitations undertaken; and a comparison of results with external benchmarks.
+- For the program: benchmarking against similar organizations, and whether value for money is being obtained from service providers.
+
+Part 6 adds a maturity scale from 1 (least effective) to 5 (most effective), assessed for each of the guide's 22 program steps. Treat all of these as prompts, not measures.
+
+"Sufficient weaknesses" is a judgment against scope and depth, not a finding-count target (§7.3). An external benchmark is usable only where its definitions match the adopter's, and this measurement guide supplies none (§14). A maturity score built from questionnaire answers describes the program as answered; whether a control operated is §60.2's question. Record the answer with the evidence looked at and what was not examined, and send any resulting change through §60.1.
+
 ## 11. Optional AI support
 
 An adopter may use automation or AI to help gather records, reconcile sources, draft a narrative from already-computed numbers, or flag records that fail data-quality checks. Each of these remains subject to the same register: the source, the computation, and the human who accepted the result must be inspectable. A model's summary of a trend is not an interpretation of record.

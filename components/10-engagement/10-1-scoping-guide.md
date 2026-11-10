@@ -26,6 +26,12 @@ Begin the scoping conversation with the requester or risk owner, someone who kno
 
 Do not turn “we want everything” into an unbounded promise. Decompose it into decisions about surfaces and coverage, then show the owner the time, access, and consequence tradeoffs.
 
+The reverse case needs the same care. An owner who asks for one application may not know what surrounds it, so before the scope is fixed the testing representative should describe the attack surface relevant to the request: the named target, and the indirect routes to it, such as the hosting and management layer, the identity provider, connected interfaces, and the build or update path. The owner then chooses breadth knowing what is left out, and what is left out is recorded `OUT` with its reason (below), not left unmentioned.
+
+[CREST Defensible Penetration Test §9.1 and §9.1.1](https://www.crest-approved.org/wp-content/uploads/2022/12/CREST-Defensible-Penetration-Test-v5-2.pdf) (pp. 13 to 14) says the scoping phase "must present guidance on the full attack surface", and its example has the provider describe the direct and indirect vulnerabilities that could be assessed before a scope is agreed in discussion with the client. In that example a test of the whole environment and a test of one function's authorization could both fall within scope, so long as the provider gave guidance on the likely vulnerabilities.
+
+The description is the tester's informed view at scoping, not an inventory. It can miss what nobody has yet found, and describing a surface neither brings it into scope nor settles who can authorize it.
+
 ## Name the boundary at the resolution the question requires
 
 The right unit of scope is the smallest unit whose change would alter authorization, test design, or the meaning of the result. A host or domain may be enough for one question and far too broad for another. Move from a named property to its components, then to the workflow and user context, then to relevant trust and dependency boundaries. These are *levels of resolution*, not a universal five-level maturity score or a required minimum for every engagement.

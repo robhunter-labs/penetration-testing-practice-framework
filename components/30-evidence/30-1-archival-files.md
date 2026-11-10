@@ -24,6 +24,7 @@ Organize by engagement, then by record class. The adopter chooses the folder sch
 | Tool configuration | Scope/session config notes, custom payloads/wordlists (or versioned reference), tool versions, authenticated-session capture method |
 | Captured project files | The proxy/tooling project file(s) — see *Sensitive material and secrets* below |
 | Tool output & logs | Scan output (machine + human readable), raw DAST, script logs with timestamps, packet captures (unintended third-party data redacted), all raw output that informs a finding |
+| Tester action log | A chronological, timestamped record of what testers did: date and time, tester (for an agent, the agent and the person accountable for the run), testing system, target, tool, command or action, any change made to a target and whether it was reversed, and a comment. It is the audit trail that lets the adopter tell tester activity apart from a real adversary's ([NIST SP 800-115 §7.4.1](https://csrc.nist.gov/pubs/sp/800/115/final); [PTES, Post Exploitation](https://pentest-standard.readthedocs.io/en/latest/post_exploitation.html), community mirror). The log stays here, with any secrets in it handled under §30.3; the report carries a timeline drawn from it, with the log available on request ([CREST Defensible Penetration Test §10](https://www.crest-approved.org/wp-content/uploads/2022/12/CREST-Defensible-Penetration-Test-v5-2.pdf)). |
 | Evidence / screenshots | One set per finding, in report order, named for what each demonstrates; the **original uncropped capture kept alongside any annotated version** |
 | Findings working notes | Reasoning, reproduction, candidate severity rationale, references; and **findings considered but not reported, with the reason** (false positive / out of scope / accepted / duplicate) |
 | Final report | Delivered report + source, severity distribution, per-finding severity vectors, attack-chain evidence (in the report, or a separate rider when a multi-step chain cannot be shown inline), and the link from each finding to its tracking ID |
@@ -51,6 +52,8 @@ Some records hold exactly the sensitive content a finding is about — a respons
 
 When an autonomous or agentic tool performed work, archive additionally: tool identity (name, version, capability tier, model-inventory reference); a **cleartext-secret scan** of logs and output before archival (per [§30.3](30-3-credential-handling.md)); session/run logs as the authoritative record behind any narration; the input configuration/prompts/scope as run; the raw pre-validation output; the **validation plan applied and its outcomes** (what was reproduced, by whom, what escalated); and the lead's sign-off on validation completeness with a reviewer co-sign.
 
+Where validation packages are used (§90.1 §8.7), archive each package at the version its ruling was made on, with the ruling and its reason. Where the run recorded digests of its evidence (§90.1 §10.5), archive them with the artifacts they cover, and record the result of re-checking them at archival. A redacted or extracted copy carries its own digest and a link to the original's.
+
 ## Sign-off and the authorization gap
 
 Closeout records **two sign-offs**: the engagement lead (archive populated, redaction done, README complete) and an independent reviewer (completeness spot-checked, redaction confirmed). A one-person practice separates the *roles in the decision* and obtains an independent reviewer elsewhere when one is required and unavailable; it does not pretend a second reviewer exists. An action taken outside the rules of engagement is **paused, recorded, escalated, and classified under the adopter's own criteria** — closeout is blocked until that is resolved, and report or archive wording never cures an unauthorized action.
@@ -58,6 +61,21 @@ Closeout records **two sign-offs**: the engagement lead (archive populated, reda
 ## Retention and disposal (adopter sets the clock)
 
 Map each record class to the adopter's retention schedule and apply the longest applicable; a legal hold overrides and suspends disposal. **Disposal at end of retention is a reviewed decision, not an automatic deletion**, and is logged. Note the two clocks that the credential guide defines: a live secret is disposed at the retest-window close, while the archived artifact that references it follows the records schedule — disposing the secret does not delete the archive.
+
+When disposal is approved, the log should say how it was done, in terms a later reviewer can weigh. [NIST SP 800-88 Rev. 2](https://csrc.nist.gov/pubs/sp/800/88/r2/final) (September 2025), §3.1, pp. 8 to 11, defines three sanitization methods:
+
+- **Clear** applies logical techniques to all user-addressable storage, for protection against simple, non-invasive recovery through the interface a user has.
+- **Purge** applies physical or logical techniques that make recovery infeasible using state-of-the-art laboratory techniques, and leaves the media potentially reusable.
+- **Destroy** makes recovery infeasible by the same measure and leaves the media unable to store data.
+
+For each medium disposed of or released for reuse, record the method, the technique and tool, who verified the result, and the date; Rev. 2 §4.6, pp. 25 to 26, lists these among the fields of its certificate of sanitization.
+
+These terms describe whole media. Deleting one engagement's files from shared storage that stays in service is none of the three; log it as logical deletion. Working copies on workstations and rigs are removed at closeout under §40.3 §5. Which method a data class needs is the adopter's decision, and an assessed organization may set its own sanitization requirements for the assessor ([NIST SP 800-115 §7.4.4](https://csrc.nist.gov/pubs/sp/800/115/final)).
+
+Two limits:
+
+1. For cloud or other logical storage, where the practice cannot reach the physical media, Rev. 2 §3.1.2 notes that cryptographic erase may be the only viable purge technique.
+2. Copies the practice does not control, such as provider backups or a recipient's delivered report, are outside what its own sanitization reaches; the disposal record should say so.
 
 ## Reader test before adoption
 

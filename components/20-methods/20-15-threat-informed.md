@@ -37,6 +37,14 @@ A small practice can begin with a controlled table and a human analyst; a store/
 
 The urgent door must work on a human CTI report or issue-owner escalation even when no engine exists. Otherwise the blueprint would require its own unbuilt prerequisite to handle the very event it is meant to address.
 
+**What the portfolio door starts from.** Which systems are tested, and how often, is the adopting organization's decision. The practice consumes it as an input and should record where it came from.
+
+[NIST SP 800-115 §6.2](https://csrc.nist.gov/pubs/sp/800/115/final) bases that prioritization on "system categorization, expected benefits, scheduling requirements, and applicable regulations where assessment is a requirement", and points to two facts per system: its impact rating and when it was last assessed (pp. 6-1 to 6-2). Its example is a useful check on any ranking: a moderate-impact system that is overdue may need to go before a high-impact system whose last assessment is still inside the acceptable timeframe.
+
+SP 800-115 is written for US federal agencies and uses their categorization scheme as its example; an adopter elsewhere substitutes its own criticality scheme and required intervals. A threat signal can then move a target forward within that order; it does not replace the order.
+
+Where the adopter has no categorization or interval for a system, record `unknown`. A backlog ordered by who asked first is then a stated limitation of the plan, not a risk ranking. The delivery measure in §40.9 §6 counts against the plan this input produces and says nothing about whether the plan held the right systems.
+
 ## Priority decision, without false precision
 
 P0–P3 style labels are common. An adopter may keep such labels, but the thresholds are local decisions and the label is **a work-routing cue, not a vulnerability severity or test result**. A useful record includes: reported behavior/technology; source and age; match to version/configuration; internet or business exposure; exploitation evidence; asset owner; uncertainty; proposed action; human decision; scope/authority reference; and reconsideration trigger. A missing inventory match can mean *unknown*, not “not exposed.”

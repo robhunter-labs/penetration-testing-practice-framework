@@ -31,6 +31,8 @@ Default to non-production, isolated, segmented environments. **Egress is default
 
 Maintain a pre-registered inventory of the team's testing systems and source address ranges, shared with the monitoring/incident function and refreshed. Before an alert on that inventory becomes an incident, defenders self-verify against the inventory and the standing authorization. Engagement-level deconfliction is unchanged: notify the customer, stakeholders, and the monitoring/incident function before an engagement and whenever detection is likely. **A register is evidence of intent, not integrity, and attribution support is not an exemption from containment** — a tool still has to be contained, not merely identifiable.
 
+Where detection is a declared objective (§10.3 §3), notice may be limited to a named contact in that function by its owner's recorded decision.
+
 ## Credentials and secrets
 
 Held in the controlled secret store, referenced not cleartext — the [credential handling guide (§30.3)](30-3-credential-handling.md) is authoritative for storage, transit, rotation, and disposal, including the two-clock model. Tooling credentials are scoped, time-bound, and revocable; agentic credentials carry a rotation cadence and a named owner; captured customer/session tokens are revoked at closeout.

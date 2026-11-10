@@ -17,12 +17,13 @@ The attack surface has four parts, and a given engagement may contain only some 
 
 Use this with the umbrella method framework (§20.1), the local engagement authorization, the scope and rules-of-engagement records (§10.1 / §10.2), evidence-handling and reporting requirements, and the threat-modeling component (§20.16) where a model is built. Credential handling follows §30.3; tester-endpoint and tooling OpSec follow §30.4 / §40.3 / §40.10.
 
-**Out of scope here (other methods own these):**
+**Out of scope here (other methods, or evaluations outside this framework, own these):**
 
 - The ordinary API attack surface around an AI endpoint (REST/GraphQL/WebSocket authorization, authentication, resource bounds) — the API method (§20.3). AI-specific risks layer on top.
 - The data-store surface behind a vector store or retrieval corpus when it runs on a standard engine — the database method (§20.7).
 - The host, container, and cloud surface that serves the model — the infrastructure and cloud methods.
 - **AI used as a *testing capability*** (an assisted or agentic tool performing the testing) — the AI-assisted and agentic testing operating framework (§90.1). That framework and this one are siblings: one governs the tool doing the testing, the other tests the AI being assessed. When an agentic tool is used to assess an AI target, both apply.
+- Responsible-AI evaluation as its own objective (fairness and bias, toxicity rates, explainability, dataset diversity), unless the engagement names it with the owner's criteria, data, and evaluator. The [OWASP AI Testing Guide](https://owasp.org/www-project-ai-testing-guide/) (v1.0, §1.2) counts responsible AI as part of trustworthy-AI testing, so a sponsor may assume it was included. Where a security test touches one of these areas, the risk-class rows below apply, and the coverage note says the wider evaluation was not performed.
 
 Framework references (OWASP, MITRE, NIST and others) are listed in [Framework alignment](#framework-alignment--a-risk-awareness-map-not-a-coverage-proof) near the end of this method.
 
@@ -38,6 +39,7 @@ The engagement record should answer these in plain language. A blank is unsettle
 | Test identities | Test accounts at the relevant privilege/tenant levels; read access to the retrieval corpus where it informs testing; the tool inventory for an agentic target. How credentials are received, stored, and retired (§30.3). |
 | Safety and acceptable use | Synthetic or labeled test data by default; real regulated or sensitive data only under explicit authority and handling rules. For a hosted model, confirm the actual data-use, retention and training terms before submitting test content. Agree a cost/quota ceiling and alert route; apply the relevant acceptable-use rules to prompts as to other traffic. |
 | Evidence | Where prompts, responses, traces, recovered content (with redaction), and review notes are held under access control. |
+| Insight access | Will the tester have read access to application or agent logs, prompts and configuration, and the provider's usage limits and safety settings, granted by their owner? Where not, results that depend on them are limited to what the outside view showed, and the coverage note says so. The OWASP AI Testing Guide (v1.0, §3.0, "Testing Limitations and Requirements") lists this access among its testing requirements. |
 
 If a required identity, tool inventory, corpus access, or safety boundary is missing, record the gap and resolve it before that branch of testing. Inability to test is a recorded limitation, not a secure result.
 
@@ -85,6 +87,7 @@ Anti-overclaim rules, applied per candidate:
 - **A guardrail result has distinct states.** Where the layers can be observed, distinguish *guardrail held* (an input classifier blocked it; the model never saw it), *guardrail passed but model refused*, *output guardrail held* (the model produced it; an output filter stopped it), and *all layers failed under the tested conditions*. A classifier passing one input is not automatically a finding; compare it with the expected control and the downstream effect. Record which layer was actually observed.
 - **Public knowledge is expected; restricted-content exposure needs proof.** A model knowing public facts is normal. A reportable disclosure depends on showing that non-public content, or a meaningful membership signal, was actually exposed to an unauthorized actor under the applicable data rules. Do not assume a legal consequence from the technique name alone.
 - **Retrieval is by design; boundary-crossing is the finding.** A retrieval-backed system returning documents is expected. The finding is retrieval, or an influence on generation, that crosses an authorization or tenant boundary.
+- **Training data can flatter a result.** Consider whether the target's model may have seen the test material in training, such as a public benchmark or a published prompt set. A model can refuse every prompt it has seen and still fail on new ones, so the target looks stronger than it is. Prefer held-out or newly written cases for any robustness claim, and state the overlap risk where it can't be ruled out. NIST's Generative AI Profile names possible training/test data cross-contamination as a benchmark limitation to document ([NIST AI 600-1, MS-2.11-001](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)). The tool-side version of this caution is in §90.5 §3.
 - **Silence is not safety.** A guardrail or integrity detector that does not fire is "not observed" or "integrity unverified," not "secure."
 - **Embeddings may preserve sensitive information.** Until the actual inversion, inference, access and policy risks are assessed, handle a vector derived from sensitive content with comparable care; "just numbers" is not a safe assumption.
 
@@ -143,6 +146,8 @@ Agentic tool abuse often bridges into other methods because each tool reaches an
 
 The example is deliberately bounded and synthetic. A real engagement may need a different corpus model or a different safe proof; the tester owns the decision and a reviewer can challenge it from the recorded conditions.
 
+**Planted content is a test artifact.** Content the test places in the target, such as a document, a memory entry, or a sample, is recorded in the tester action log (§30.1) with its marker, location, and time. At close-out it is removed with the removal confirmed, or handed to its owner, as the rules of engagement record (§10.2 §7); a hold on the tester's own cleanup (§10.2 §6) comes first. Deleting the original can leave copies derived from it, such as index entries, cached or summarized memory, or a model already trained or tuned on it, so confirm removal where each copy lives and record any that cannot be removed. Content goes into a retraining or fine-tuning path only under the separate approval the Boundaries row requires (Before testing), and only with a restore point the owner has confirmed. MITRE ATLAS lists removing modified data and other exercise artifacts as a step of AI red-team practice ([AML.M0035, ATLAS data release 2026.10](https://github.com/mitre-atlas/atlas-data/blob/main/dist/v6/ATLAS-2026.10.yaml)).
+
 ## Human validation, review, and reporting
 
 A qualified human decides every finding; a model assertion, a tool label, or a similarity match is not proof (this method plugs into the umbrella's review discipline and, where an AI tool did the testing, into the AI-testing operating framework's validation rules). For each material candidate, record a compact disposition — **accept, reject, merge, split, defer for more evidence, or report as inconclusive** — and preserve the reason and the evidence state it reached.
@@ -153,6 +158,17 @@ A qualified human decides every finding; a model assertion, a tool label, or a s
 - **Evidence:** preserve protected originals under access control; deliver redacted derivatives. Recovered sensitive content is handled under the engagement's data rules, and its presence may itself be the reportable event.
 - **Coverage note:** state what was tested, from which perspective, what was blocked or partial, and what the result does *not* establish. A negative result is bounded evidence about the tested conditions, not proof the system has no weakness. A multi-step finding needs a trace of each supported step; a single-step finding still needs the actor, condition, observation, consequence and limit.
 - **Retest** repeats the condition that supported the finding against the changed system; an inability to reproduce under a different model build or identity is stated as such, not silently called a fix.
+
+**Prompts for the privacy mapping.** When a disclosure finding may involve personal data, the tester records the facts the adopter's privacy or legal role needs in order to map it to a regime. The tester does not make that determination, and this list is not legal advice. Where real personal data appears outside the agreed proof, the §10.2 stop condition and the engagement's escalation route apply when it is seen, not at report time. Record categories and counts, not values. A working set:
+
+- **Whose data, what kind, and is it real?** Does the content appear to concern a real person who could be identified, and in which category (the Generative AI Profile's own list is biometric, health, location, or other personally identifiable or sensitive data)? A path shown with synthetic or planted data demonstrates the route; it is not evidence that a real person's data was exposed. Say which it was.
+- **Where did it come from?** Training data the model memorized, the retrieval corpus, memory or another session, a tool response, or an inference the model assembled from separate sources. Record the source and how it was established. Who is responsible is not the tester's inference to draw.
+- **Is it accurate?** An inference can harm a person even when it is wrong. Record whether its accuracy is known and from what. Do not research a real person to find out.
+- **Who could receive it, across which boundary?** The same user, another user, another tenant, or an unauthenticated caller, and under which tested identity.
+- **Did it feed a decision about a person?** If the output drives an automated or assisted decision, name the decision and its owner.
+- **Where and when?** The deployment's jurisdiction and sector, where the affected people are if known, when the exposure was first observed, and who was told. What follows from these facts is the privacy owner's call.
+
+The data categories, the split between memorized and inferred data, and the accuracy prompt draw on NIST's Generative AI Profile: the profile's privacy risk covers "leakage and unauthorized use, disclosure, or de-anonymization" of those data categories ([NIST AI 600-1 §2, p. 4](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)), and its discussion separates memorized training data from personal data a model may correctly infer "that was not in their training data nor disclosed by the user", noting that inferences can have a negative impact "even if the inferences are not accurate" (§2.4, p. 7). The rest is this method's own.
 
 ## Automation boundary and the AI-as-testing-capability seam
 
@@ -180,4 +196,5 @@ AI security moves quickly. At each review, re-check the framework editions and t
 
 ## Version notes
 
+- **2026-11-10.** Added the training-data overlap caution, the prompts for the privacy mapping, responsible-AI evaluation in the out-of-scope list, insight access as a scoping input, and planted content as a test artifact.
 - **2026-11 revision.** Framework references moved after the operating method and expanded at first use; OWASP LLM Top 10 2026 change described (Hidden Context Exposure, LLM08:2026) and the ASI list completed with its December 2025 date; the ML Security Top 10's draft status stated; output-guardrail state, k-of-n reporting and shared evidence-state vocabulary with Section 90 added.

@@ -13,11 +13,15 @@ A penetration-test report is a deliverable an author produces and a reviewer def
 Every report carries these sections, in this order. Depth varies with the engagement; the skeleton does not.
 
 1. **Executive summary** — for leadership and risk owners. Business risk in plain language: what was tested, the headline outcome, the most material exposures, and overall posture. No raw technical detail.
-2. **Engagement overview** — scope (assets / URLs / endpoints and the declared depth of testing), objective, dates and window, the methodology referenced, the authorization relied on (the adopter's authority-to-operate plus the engagement scope and rules of engagement), and the limitations and caveats that bound the result.
+2. **Engagement overview** — scope (assets / URLs / endpoints and the declared depth of testing), objective, dates and window, the methodology referenced, the authorization relied on (the adopter's authority-to-operate plus the engagement scope and rules of engagement), the limitations and caveats that bound the result, and a statement of totality: whether testing covered the whole defined scope, naming any in-scope item that was partial, blocked, or not tested. [CREST Defensible Penetration Test §10](https://www.crest-approved.org/wp-content/uploads/2022/12/CREST-Defensible-Penetration-Test-v5-2.pdf) lists a statement of totality among its minimum reporting elements; the coverage matrix in the archive (§30.1) is its source.
+
+   Where the report names a testing guide or catalog as the methodology, it gives the edition and says which of the guide's categories were applied, partly applied, or not applied, drawn from the same coverage matrix. Naming a guide is not a claim that all of it was tested (§20.1). The [WSTG v4.2 reporting chapter](https://wstg.owasp.org/v4.2/5-Reporting/) lists the test methodology used and a checklist of the tests conducted among the appendices a report can carry.
 3. **Findings** — one per issue. Each finding records: title · severity (a named scoring model's base result plus a contextual rating) · affected component · impact (business and technical) · **evidence** · reproduction steps · remediation · references (e.g. CWE / OWASP / CVE). See the evidence and severity rules below.
+
+   Where one finding covers several affected instances, it lists them and says which were proven and which are inferred from the shared cause (§90.5 §1); inferred instances are *Possible, not tested* (§20.13) and do not move the rating; whether they become one remediation item or several is a decision for the program that owns remediation.
 4. **Attack chains** — where individually low or medium issues combine into a higher-impact path, the path is shown explicitly. A single finding record cannot stand in for a chain.
 5. **Positive observations** — controls that held. Balanced reporting is part of the standard.
-6. **Appendices** — references to full tool output and evidence held in the engagement archive (not pasted inline), scope detail, the identity contexts tested, and any compliance overlays.
+6. **Appendices** — references to full tool output and evidence held in the engagement archive (not pasted inline), a timeline of key tester activity drawn from the tester action log, which stays in the archive and is available on request (§30.1), scope detail, the identity contexts tested, and any compliance overlays.
 
 ### Evidence (typed, with residual uncertainty)
 
@@ -32,6 +36,14 @@ Each finding names its evidence type, the validation performed, and the **residu
 ### Severity
 
 Compute a named model's base severity first; a contextual layer may raise or lower the **reported** severity for real exposure (reachability, compensating controls, data sensitivity, strength of evidence). Any departure from the base is justified in the finding, with both the base result and the rationale shown. Severity is justified, never asserted. Context from an environment that was **not** tested never moves a rating.
+
+**Tool severity, reported severity, and deadlines.** Three things are kept apart:
+
+- A tool's or scanner's severity is a claim: it can order triage, and the record keeps it labeled as the tool's (§90.1 §8.2).
+- The reported severity is a qualified person's call, made from the evidence and for the environment tested.
+- Priority and remediation deadlines belong to the program that owns remediation (§10.6); the report supplies the rating and its rationale and sets no deadline of its own.
+
+FIRST draws a similar line for scores: a CVSS Base score measures severity and "should not be used alone to assess risk", and a numerical score should be shown with the nomenclature that says which metric groups produced it, such as CVSS-B or CVSS-BE ([CVSS v4.0 User Guide, "CVSS Nomenclature" and "CVSS Base Score (CVSS-B) Measures Severity, not Risk"](https://www.first.org/cvss/v4.0/user-guide)).
 
 ### Classification, distribution, and redaction
 
@@ -49,8 +61,9 @@ Compute a named model's base severity first; a contextual layer may raise or low
    Business risk, what was tested, headline outcome, posture. No raw detail.
 
 2. Engagement Overview
-   Scope & depth · Objective · Dates/window · Methodology referenced ·
-   Authorization (authority-to-operate + scope/RoE) · Limitations & caveats
+   Scope & depth · Objective · Dates/window · Methodology (edition, categories applied) ·
+   Authorization (authority-to-operate + scope/RoE) · Limitations & caveats ·
+   Statement of totality (whole scope covered? partial, blocked, not-tested items)
 
 3. Findings  (repeat per issue)
    - Title
@@ -70,7 +83,8 @@ Compute a named model's base severity first; a contextual layer may raise or low
    Controls that held.
 
 6. Appendices
-   Evidence references (archive), scope detail, identity contexts, compliance overlays.
+   Evidence references (archive), activity timeline (log on request), scope detail,
+   identity contexts, compliance overlays.
 
 Footer: <Confidentiality marking> · <report ID> · <version> · page <n>
 ```

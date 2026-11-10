@@ -179,6 +179,7 @@ These principles are one layer. They work best beside, and should not be mistake
 - **A method library** — the technical reasoning, scope decisions, and evidence standards for each kind of testing.
 - **Scope and rules-of-engagement controls** — what is authorized, by whom, within what boundaries.
 - **A competence/eligibility record** — demonstrated skill and authorized assignment, kept separately and not implied here.
+- **A professional code of conduct**: optional. A team may adopt a recognized code and reference it here, such as the code CREST requires its testers to have signed within the last 12 months ([CREST Defensible Penetration Test §7.2](https://www.crest-approved.org/wp-content/uploads/2022/12/CREST-Defensible-Penetration-Test-v5-2.pdf)).
 
 Formal policy, employment rules, client terms, legal obligations, and emergency procedures take precedence over anything in this document.
 
