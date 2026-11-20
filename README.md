@@ -1,12 +1,10 @@
 # Open Practice Framework
 
-*This repository: `penetration-testing-practice-framework`.*
-
 A penetration test is one piece of work. A practice makes the next one possible. A test can be technically excellent while the work around it is fragile: scope that may not match the target, evidence that makes sense to its author but not to the reviewer, and a lesson from one engagement that never reaches the next. I wanted to put more of that surrounding work in one place and open it, because a framework like this only gets better when someone who works differently pushes on it. The longer story is in [*Open the Practice*](https://robhunterworks.com/writing/open-the-practice/).
 
-The Open Practice Framework (OPF) is my attempt: a practitioner-built, inspectable implementation of the work around a penetration test. That work covers authority, preparation, technical methods, evidence, review, reporting, support, people, and improvement, along with the links that make those parts a practice rather than a shelf of templates. It sits beside established testing and program guidance. It is **not** an accreditation scheme, a replacement for those sources, a certification, or permission to test.
+The Open Practice Framework (OPF), kept in this `penetration-testing-practice-framework` repository, is my attempt: a practitioner-built, inspectable implementation of the work around a penetration test. That work covers authority, preparation, technical methods, evidence, review, reporting, support, people, and improvement, along with the links that make those parts a practice rather than a shelf of templates. It sits beside established testing and program guidance. It is **not** an accreditation scheme, a replacement for those sources, a certification, or permission to test.
 
-Its value is in the decisions it makes easier to see and improve, not in the number of documents in the repository. Use the parts that help, question the parts that don't, and bring a better path back.
+One rule from the synthetic API walkthrough below shows the approach: a tool's suggested label does not become a finding without an observed unauthorized effect, and a path the engagement was not authorized to test is recorded as **not tested**, with no finding or severity assigned.
 
 ## Start here
 
@@ -18,7 +16,7 @@ Three ways in, each about five minutes:
 | Find the part for your problem | [The component register](COMPONENTS.md#components) | Every component's job, type, status and direct path |
 | Cite or pin a version | [The v1.1.0 release](https://github.com/robhunter-labs/penetration-testing-practice-framework/releases/tag/v1.1.0) | A fixed snapshot with stable section identifiers |
 
-Three published components are still drafts, labelled where they appear: [10.5](components/10-engagement/10-5-operational-brief.md) (draft template), [20.16](components/20-methods/20-16-threat-modeling.md) (draft under review) and [90.5](components/90-extensions/90-5-validation-measurement-annex.md) (draft v0.2). [20.14](components/20-methods/20-14-tactical-checklists-catalogue.md) is catalog-only: no checklists are distributed.
+A few published components are still drafts, labelled where they appear and in the register's Status column. [20.14](components/20-methods/20-14-tactical-checklists-catalogue.md) is catalog-only: no checklists are distributed.
 
 Or enter through your role:
 
@@ -29,8 +27,6 @@ Or enter through your role:
 | Trace a conclusion back to what was actually done | **Reviewer / assurance partner** | [00.3](components/00-start-here/00-3-authority-to-operate.md) authority → [30.5](components/30-evidence/30-5-report-standard.md) report standard → [60.2](components/60-learning/60-2-self-assessment.md) self-assessment → [50.5](components/50-support/50-5-audit-handling.md)–[50.8](components/50-support/50-8-disclosure-log.md) audit & disclosure |
 | Copy, tailor, question, or improve a part without mistaking it for a mandate | **Adopter / contributor** | this README → the [register](COMPONENTS.md) → a component's own sources and limits → the [correction route](SECURITY.md) |
 
-These are reader routes through one body of work, not prescribed job titles or an org chart.
-
 ## The baseline is human-led testing
 
 A qualified person authorizes, plans, performs, reviews, and is accountable for the work. No component is designed to turn a scanner's suggestion or a generated sentence into an accepted finding or to transfer authority from a person.
@@ -39,7 +35,7 @@ A qualified person authorizes, plans, performs, reviews, and is accountable for 
 - **AI as a target:** testing an AI or large language model (LLM) system (the AI/LLM method, §20.13).
 - **AI as a testing capability:** an agent or tool that assists a human-led practice (§90.1–§90.4, with a shared [glossary](components/90-extensions/90-0-glossary.md) in §90.0 and a [validation measurement annex](components/90-extensions/90-5-validation-measurement-annex.md) in §90.5, still a draft).
 
-Either extension must say where an agent may act, what it may read and send, how actions and evidence are recorded, who validates a finding, and where the work returns to a person. Claims about speed, quality, cost, or staffing need observed measurement; enthusiasm is not a method. A reader can understand and improve the human-led practice without first accepting any AI roadmap.
+Either extension must say where an agent may act, what it may read and send, how actions and evidence are recorded, who validates a finding, and where the work returns to a person. Claims about speed, quality, cost, or staffing need observed measurement. A reader can understand and improve the human-led practice without first accepting any AI roadmap.
 
 ## Beside the standards, not over them
 
@@ -47,9 +43,7 @@ Either extension must say where an agent may act, what it may read and send, how
 
 ## What is in this release
 
-- **[58 components](COMPONENTS.md)** across authority, engagement design, technical methods, evidence, operations, support, learning, and AI/R&D extensions. The register gives each component's job and direct path.
-- **[A synthetic API engagement walkthrough](examples/api-engagement/README.md)** connects authority, scope, method, evidence, review, reporting, and retest in one paper example. It records no real test execution or observed outcome.
-- **[§50.3: Penetration Testing Consulting Guidebook](components/50-support/50-3-consulting-guidebook.md)** explains how a team gives post-test technical questions, retest, closure, escalation, and rotation a reliable home. Its companion essay, [*The Leverage Between Penetration Tests*](https://robhunterworks.com/writing/leverage-between-tests/), explains the experience behind the pattern. §50.3 is one support component, not the framework's front door.
+- **[58 components](COMPONENTS.md)** across authority, engagement design, technical methods, evidence, operations, support, learning, and AI/R&D extensions, including [§50.3, the consulting guidebook](components/50-support/50-3-consulting-guidebook.md) behind [*The Leverage Between Penetration Tests*](https://robhunterworks.com/writing/leverage-between-tests/).
 - **[Conceptual diagrams](diagrams)** include an engagement flow and two consulting-service models. They illustrate decisions, not measured outcomes or staffing formulas.
 
 ## Downloads
@@ -64,10 +58,6 @@ This repository contains no employer procedures, customer records, issue data, c
 
 The parts that survive other people's use will be worth more than the parts I'm sure of today, so I'd especially like to hear where a component breaks for a team with different people, systems, or obligations. Use GitHub issues for corrections to public material; the adaptation form is there to share how you adapted a component or where it didn't fit, and [the adaptation discussion](https://github.com/robhunter-labs/penetration-testing-practice-framework/discussions/5) is the place to compare notes. Do not post credentials, customer details, restricted reports, or live exploit evidence. For a sensitive report, use GitHub's private vulnerability reporting (the **Security** tab → **Report a vulnerability**) rather than opening a public issue. See [SECURITY.md](SECURITY.md).
 
----
-
-Copyright © 2026 Rob Hunter. Original material is released under the [MIT License](LICENSE).
-
 ## Checks
 
 The repository check needs Python 3.9+ (standard library only) and, for PDF text, `pdftotext` from poppler-utils.
@@ -78,3 +68,7 @@ python3 .github/scripts/test_check_opf.py            # the checker's own planted
 ```
 
 To also check for terms you keep private, put them in a file **outside** the repository and run with `OPF_PRIVATE_TERMS=/path/to/terms.txt`. No private term is stored in this repository, hashed or plain.
+
+---
+
+Copyright © 2026 Rob Hunter. Original material is released under the [MIT License](LICENSE).
