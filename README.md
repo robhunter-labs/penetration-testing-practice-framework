@@ -10,13 +10,23 @@ Its value is in the decisions it makes easier to see and improve, not in the num
 
 ## Start here
 
-**Open the [component register](COMPONENTS.md) and enter through your problem.** The register lists every component, its job, its type, and its status. Pick the route that matches the question in front of you:
+Three ways in, each about five minutes:
+
+| If you want to… | Open | What you get |
+|---|---|---|
+| See it work end to end | [The synthetic API walkthrough](examples/api-engagement/README.md) | Authority, scope, method, evidence, review, reporting and retest in one paper example (no real test was run) |
+| Find the part for your problem | [The component register](COMPONENTS.md#components) | Every component's job, type, status and direct path |
+| Cite or pin a version | [The v1.1.0 release](https://github.com/robhunter-labs/penetration-testing-practice-framework/releases/tag/v1.1.0) | A fixed snapshot with stable section identifiers |
+
+Three published components are still drafts, labelled where they appear: [10.5](components/10-engagement/10-5-operational-brief.md) (draft template), [20.16](components/20-methods/20-16-threat-modeling.md) (draft under review) and [90.5](components/90-extensions/90-5-validation-measurement-annex.md) (draft v0.2). [20.14](components/20-methods/20-14-tactical-checklists-catalogue.md) is catalog-only: no checklists are distributed.
+
+Or enter through your role:
 
 | If you are trying to… | You are a… | Begin with |
 |---|---|---|
-| Stand up or improve a testing service | **Practice lead** | [00.1](COMPONENTS.md) document control → [00.3](COMPONENTS.md) authority → [20.1](COMPONENTS.md) method → scoping, people, support, learning |
-| Turn a bounded engagement into defensible tests and evidence | **Working tester** | [10.1](COMPONENTS.md)/[10.2](COMPONENTS.md) scope & rules → [20.1](COMPONENTS.md) → the relevant domain method ([20.2](COMPONENTS.md)–[20.13](COMPONENTS.md)) → [a synthetic API walkthrough](examples/api-engagement/README.md) → evidence, report, archive |
-| Trace a conclusion back to what was actually done | **Reviewer / assurance partner** | [00.3](COMPONENTS.md) authority → [30.5](COMPONENTS.md) report standard → [60.2](COMPONENTS.md) self-assessment → [50.5](COMPONENTS.md)–[50.8](COMPONENTS.md) audit & disclosure |
+| Stand up or improve a testing service | **Practice lead** | [00.1](components/00-start-here/00-1-document-control.md) document control → [00.3](components/00-start-here/00-3-authority-to-operate.md) authority → [20.1](components/20-methods/20-1-method-framework.md) method → scoping, people, support, learning |
+| Turn a bounded engagement into defensible tests and evidence | **Working tester** | [10.1](components/10-engagement/10-1-scoping-guide.md)/[10.2](components/10-engagement/10-2-rules-of-engagement.md) scope & rules → [20.1](components/20-methods/20-1-method-framework.md) → the relevant domain method ([20.2](components/20-methods/20-2-web-application.md)–[20.13](components/20-methods/20-13-ai-llm.md)) → [a synthetic API walkthrough](examples/api-engagement/README.md) → evidence, report, archive |
+| Trace a conclusion back to what was actually done | **Reviewer / assurance partner** | [00.3](components/00-start-here/00-3-authority-to-operate.md) authority → [30.5](components/30-evidence/30-5-report-standard.md) report standard → [60.2](components/60-learning/60-2-self-assessment.md) self-assessment → [50.5](components/50-support/50-5-audit-handling.md)–[50.8](components/50-support/50-8-disclosure-log.md) audit & disclosure |
 | Copy, tailor, question, or improve a part without mistaking it for a mandate | **Adopter / contributor** | this README → the [register](COMPONENTS.md) → a component's own sources and limits → the [correction route](SECURITY.md) |
 
 These are reader routes through one body of work, not prescribed job titles or an org chart.
@@ -27,7 +37,7 @@ A qualified person authorizes, plans, performs, reviews, and is accountable for 
 
 **AI appears only as two distinct, versioned extensions:**
 - **AI as a target:** testing an AI or large language model (LLM) system (the AI/LLM method, §20.13).
-- **AI as a testing capability:** an agent or tool that assists a human-led practice (§90.1–§90.4, with a shared [glossary](components/90-extensions/90-0-glossary.md) in §90.0 and a draft [validation measurement annex](components/90-extensions/90-5-validation-measurement-annex.md) in §90.5).
+- **AI as a testing capability:** an agent or tool that assists a human-led practice (§90.1–§90.4, with a shared [glossary](components/90-extensions/90-0-glossary.md) in §90.0 and a [validation measurement annex](components/90-extensions/90-5-validation-measurement-annex.md) in §90.5, still a draft).
 
 Either extension must say where an agent may act, what it may read and send, how actions and evidence are recorded, who validates a finding, and where the work returns to a person. Claims about speed, quality, cost, or staffing need observed measurement; enthusiasm is not a method. A reader can understand and improve the human-led practice without first accepting any AI roadmap.
 
@@ -52,7 +62,7 @@ This repository contains no employer procedures, customer records, issue data, c
 
 ## Security and corrections
 
-The parts that survive other people's use will be worth more than the parts I'm sure of today, so I'd especially like to hear where a component breaks for a team with different people, systems, or obligations. Use GitHub issues for corrections to public material; the adaptation form is there to share how you adapted a component or where it didn't fit. Do not post credentials, customer details, restricted reports, or live exploit evidence. For a sensitive report, use GitHub's private vulnerability reporting (the **Security** tab → **Report a vulnerability**) rather than opening a public issue. See [SECURITY.md](SECURITY.md).
+The parts that survive other people's use will be worth more than the parts I'm sure of today, so I'd especially like to hear where a component breaks for a team with different people, systems, or obligations. Use GitHub issues for corrections to public material; the adaptation form is there to share how you adapted a component or where it didn't fit, and [the adaptation discussion](https://github.com/robhunter-labs/penetration-testing-practice-framework/discussions/5) is the place to compare notes. Do not post credentials, customer details, restricted reports, or live exploit evidence. For a sensitive report, use GitHub's private vulnerability reporting (the **Security** tab → **Report a vulnerability**) rather than opening a public issue. See [SECURITY.md](SECURITY.md).
 
 ---
 
